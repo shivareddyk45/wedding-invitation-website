@@ -34,9 +34,14 @@
   </audio>
 
   <!-- ==============================================
-       FLOATING AUDIO CONTROLLER (Bottom Corner)
+       PERSISTENT FLOATING BAR (Order Now & Audio Controller)
        ============================================== -->
   <div id="km-persistent-bar" class="km-persistent-bar" aria-hidden="true">
+    <a href="https://myshaadhilink.in" target="_blank" rel="noopener" class="km-order-pill" aria-label="Order wedding invitation on MyShaadhi Link">
+      <span class="km-order-pill__price">₹3,999</span>
+      <span class="km-order-pill__divider" aria-hidden="true">|</span>
+      <span class="km-order-pill__label">ORDER NOW</span>
+    </a>
     <button id="music-toggle" class="km-bell" aria-label="Play or Pause Wedding Music" type="button">
       <span class="km-bell__disc">
         <img id="music-icon-img" src="assets/icons/km-audio-off.png" alt="" class="km-bell__icon" width="40" height="40">
@@ -103,6 +108,16 @@
         <!-- Hanging Fresh Mango Leaves & Lotus Toranam Banner -->
         <div class="km-toranam-wrap" aria-hidden="true">
           <img src="assets/banners/toranam-strip.webp" alt="" class="km-toranam-img" width="480" height="64">
+        </div>
+
+        <!-- Corner Banana Leaves & Garlands Framing -->
+        <div class="km-hero__decor-tl" aria-hidden="true">
+          <img src="assets/images/banana_tree_top_left.png" alt="" class="km-hero__decor-img" width="130" height="240">
+          <img src="assets/images/garlands_top_right.png" alt="" class="km-hero__garland-img km-hero__garland-img--tl" width="80" height="180">
+        </div>
+        <div class="km-hero__decor-tr" aria-hidden="true">
+          <img src="assets/images/banana_tree_top_left.png" alt="" class="km-hero__decor-img km-hero__decor-img--flip" width="130" height="240">
+          <img src="assets/images/garlands_top_right.png" alt="" class="km-hero__garland-img km-hero__garland-img--tr" width="80" height="180">
         </div>
 
         <div class="km-container km-hero__inner">
@@ -270,79 +285,87 @@
           </div>
 
           <div class="km-events__stage">
-            <!-- Alta Footsteps Trail (Animated one by one) -->
+            <!-- Alta Footsteps Trail (Gracefully curving path with starting pair) -->
             <div class="km-yatra-trail" aria-hidden="true">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--1" width="22" height="34">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--2" width="22" height="34">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--3" width="22" height="34">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--4" width="22" height="34">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--5" width="22" height="34">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--6" width="22" height="34">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--7" width="22" height="34">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--8" width="22" height="34">
+              <div class="km-footsteps-pair">
+                <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--pair" width="16" height="26">
+                <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--pair" width="16" height="26">
+              </div>
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--1" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--2" width="16" height="26">
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--3" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--4" width="16" height="26">
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--5" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--6" width="16" height="26">
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--7" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--8" width="16" height="26">
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--9" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--10" width="16" height="26">
+              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--11" width="16" height="26">
+              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--12" width="16" height="26">
             </div>
 
-            <!-- Milestone 1: Mehendi (Left) -->
+            <!-- Milestone 1: Mehendi (Medallion Left, Card Right) -->
             <div class="km-events__stop km-events__stop--left" id="event-mehendi">
               <div class="km-events__medallion">
                 <img src="assets/images/event-mehendi.png" alt="Mehendi Henna Art" class="km-events__medallion-img" width="58" height="58">
               </div>
-              <div class="km-events__card km-events__card--left">
+              <div class="km-events__card">
                 <h3 class="km-events__name">Mehendi</h3>
                 <p class="km-events__when">24th February 2026 · 5:00 PM onwards</p>
                 <p class="km-events__venue">ITC Mementos, Udaipur</p>
                 <button class="km-events__map" data-event="Mehendi" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Mehendi location on map">
-                  <img src="assets/icons/map-pin.svg" alt="" class="km-map-pin-icon" width="12" height="12">
+                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
                   <span>VIEW MAP</span>
                 </button>
               </div>
             </div>
 
-            <!-- Milestone 2: Haldi & Sangeet (Right) -->
+            <!-- Milestone 2: Haldi & Sangeet (Card Left, Medallion Right) -->
             <div class="km-events__stop km-events__stop--right" id="event-haldi">
-              <div class="km-events__medallion">
-                <img src="assets/images/event-haldi-bowl.png" alt="Haldi Ceremony" class="km-events__medallion-img" width="58" height="58">
-              </div>
-              <div class="km-events__card km-events__card--right">
+              <div class="km-events__card">
                 <h3 class="km-events__name">Haldi &amp; Sangeet</h3>
                 <p class="km-events__when">25th February 2026 · 10:48 AM</p>
                 <p class="km-events__venue">ITC Mementos, Udaipur</p>
                 <button class="km-events__map" data-event="Haldi &amp; Sangeet" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Haldi and Sangeet location on map">
-                  <img src="assets/icons/map-pin.svg" alt="" class="km-map-pin-icon" width="12" height="12">
+                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
                   <span>VIEW MAP</span>
                 </button>
               </div>
+              <div class="km-events__medallion">
+                <img src="assets/images/event-haldi-bowl.png" alt="Haldi Ceremony" class="km-events__medallion-img" width="58" height="58">
+              </div>
             </div>
 
-            <!-- Milestone 3: Telugu Wedding (Left) -->
+            <!-- Milestone 3: Telugu Wedding (Medallion Left, Card Right) -->
             <div class="km-events__stop km-events__stop--left" id="event-telugu">
               <div class="km-events__medallion">
                 <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding Musical Instrument" class="km-events__medallion-img" width="58" height="58">
               </div>
-              <div class="km-events__card km-events__card--left">
+              <div class="km-events__card">
                 <h3 class="km-events__name">Telugu Wedding</h3>
                 <p class="km-events__when">26th February 2026 · 10:00 AM onwards</p>
                 <p class="km-events__venue">ITC Mementos, Udaipur</p>
                 <button class="km-events__map" data-event="Telugu Wedding" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Telugu Wedding location on map">
-                  <img src="assets/icons/map-pin.svg" alt="" class="km-map-pin-icon" width="12" height="12">
+                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
                   <span>VIEW MAP</span>
                 </button>
               </div>
             </div>
 
-            <!-- Milestone 4: Kodava Ceremony (Right) -->
+            <!-- Milestone 4: Kodava Ceremony (Card Left, Medallion Right) -->
             <div class="km-events__stop km-events__stop--right" id="event-kodava">
-              <div class="km-events__medallion">
-                <img src="assets/images/event-saptapadi.png" alt="Kodava Ceremony Sacred Fire" class="km-events__medallion-img" width="58" height="58">
-              </div>
-              <div class="km-events__card km-events__card--right">
+              <div class="km-events__card">
                 <h3 class="km-events__name">Kodava Ceremony</h3>
-                <p class="km-events__when">26th February 2026 · Evening · 6:30 PM onwards</p>
+                <p class="km-events__when">26th February 2026 — Evening · 6:30 PM onwards</p>
                 <p class="km-events__venue">ITC Mementos, Udaipur</p>
                 <button class="km-events__map" data-event="Kodava Ceremony" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Kodava Ceremony location on map">
-                  <img src="assets/icons/map-pin.svg" alt="" class="km-map-pin-icon" width="12" height="12">
+                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
                   <span>VIEW MAP</span>
                 </button>
+              </div>
+              <div class="km-events__medallion">
+                <img src="assets/images/icon_kodava_ceremony.png" alt="Kodava Ceremony Instruments" class="km-events__medallion-img" width="58" height="58">
               </div>
             </div>
           </div>
@@ -425,86 +448,7 @@
       </section>
 
       <!-- ==============================================
-           7. BLESS US WITH YOUR PRESENCE (RSVP)
-           ============================================== -->
-      <section id="rsvp-section" class="km-section km-rsvp" aria-label="RSVP Response">
-        <!-- Repeating Border Frame Motif -->
-        <div class="km-frame" aria-hidden="true">
-          <div class="km-frame-corner km-frame-corner--tl"></div>
-          <div class="km-frame-corner km-frame-corner--tr"></div>
-          <div class="km-frame-corner km-frame-corner--bl"></div>
-          <div class="km-frame-corner km-frame-corner--br"></div>
-          <div class="km-frame-rail km-frame-rail--top"></div>
-          <div class="km-frame-rail km-frame-rail--bottom"></div>
-          <div class="km-frame-rail km-frame-rail--left"></div>
-          <div class="km-frame-rail km-frame-rail--right"></div>
-        </div>
-
-        <div class="km-container km-rsvp__inner">
-          <div class="km-section-head">
-            <h2 class="km-rsvp__heading">Bless Us With Your Presence</h2>
-            <p class="km-rsvp__sub">Let us know if you can join us, so we may keep a place for you.</p>
-          </div>
-
-          <div class="km-rsvp__card">
-            <form id="wedding-rsvp-form" class="km-rsvp__form">
-              <!-- Two Radio Options with Maroon fill / Gold ring -->
-              <div class="km-rsvp__options" role="radiogroup" aria-label="RSVP attendance decision">
-                <label class="km-rsvp__option-label">
-                  <input type="radio" name="attendance" value="attending" class="km-rsvp__radio" id="rsvp-radio-attending">
-                  <span class="km-rsvp__custom-indicator" aria-hidden="true"></span>
-                  <span class="km-rsvp__option-text">With joy, we will be there</span>
-                </label>
-
-                <label class="km-rsvp__option-label">
-                  <input type="radio" name="attendance" value="regret" class="km-rsvp__radio" id="rsvp-radio-regret">
-                  <span class="km-rsvp__custom-indicator" aria-hidden="true"></span>
-                  <span class="km-rsvp__option-text">With regret, we cannot</span>
-                </label>
-              </div>
-
-              <!-- Submit button: Disabled/Pale pink until selected, enabled deep maroon -->
-              <button type="submit" id="rsvp-submit-btn" class="km-rsvp__submit-btn" disabled>
-                <span>SEND RSVP</span>
-              </button>
-            </form>
-
-            <!-- Inline Success / Regret Status Message -->
-            <div id="rsvp-status-message" class="km-rsvp__status" aria-live="polite" style="display: none;">
-              <p id="rsvp-status-text" class="km-rsvp__status-text"></p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           8. OUR STORY (CARVED WALL + YOUTUBE EMBED)
-           ============================================== -->
-      <section id="our-story" class="km-section km-video" aria-label="Our Wedding Story Film">
-        <div class="km-video__wall">
-          <!-- Carved Temple Stone Architecture Wall Backdrop -->
-          <picture>
-            <source media="(max-width: 600px)" srcset="assets/images/video-wall-sm.jpg">
-            <img src="assets/images/video-wall.jpg" alt="OUR STORY Carved Temple Wall with Elephant Niches" class="km-video__wall-img" width="480" height="320" loading="lazy">
-          </picture>
-
-          <!-- Central Video Player Slot -->
-          <div class="km-video__opening">
-            <div id="video-embed-box" class="km-video__player-box">
-              <div id="video-poster-stage" class="km-video__poster-stage">
-                <img src="assets/images/youtube-video-thumb-maxres.jpg" alt="Vijay &amp; Rashmika's Wedding Story Video" class="km-video__poster-img" width="400" height="225" loading="lazy">
-                <button id="play-wedding-film-btn" class="km-video__play-btn" aria-label="Play Wedding Film Story" type="button">
-                  <img src="assets/logos/youtube-brand-logo.svg" alt="" class="km-yt-play-icon" width="60" height="42">
-                </button>
-              </div>
-              <div id="video-iframe-slot" class="km-video__iframe-slot"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           9. FOOTER (FINAL BLESSINGS & NEUTRAL CREDIT)
+           7. FOOTER (FINAL BLESSINGS & MYSHAADHI LINK)
            ============================================== -->
       <footer id="final-blessings" class="km-section km-footer">
         <div class="km-footer__card">
@@ -518,8 +462,10 @@
             <!-- Telugu Sacred Benediction: శుభమస్తు in Noto Sans Telugu -->
             <p class="km-footer__telugu">శుభమస్తు</p>
 
-            <!-- Neutral Credit Line -->
-            <p class="km-footer__neutral-credit">With love &amp; blessings · 2026</p>
+            <p class="km-footer__credit-lead">This invitation was crafted on MyShaadhi Link</p>
+            <p class="km-footer__credit-link">
+              <a href="https://myshaadhilink.in" target="_blank" rel="noopener">Need one for your wedding? Click here</a>
+            </p>
           </div>
         </div>
       </footer>

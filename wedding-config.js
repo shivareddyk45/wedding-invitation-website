@@ -80,7 +80,7 @@ window.WEDDING_CONFIG = {
         date: "26th February 2026",
         time: "Evening · 6:30 PM onwards",
         venue: "ITC Mementos, Udaipur",
-        icon: "assets/images/event-saptapadi.png",
+        icon: "assets/images/icon_kodava_ceremony.png",
         side: "right",
         mapQuery: "ITC Mementos, Udaipur, Rajasthan"
       }
@@ -159,7 +159,14 @@ window.WEDDING_CONFIG = {
     lead: "We await your gracious presence",
     main: "and your blessings",
     blessingTelugu: "శుభమస్తు",
-    credit: "With love & blessings · 2026"
+    creditLead: "This invitation was crafted on MyShaadhi Link",
+    creditLink: "Need one for your wedding? Click here",
+    creditUrl: "https://myshaadhilink.in"
+  },
+  order: {
+    price: "₹3,999",
+    label: "ORDER NOW",
+    url: "https://myshaadhilink.in"
   },
   audio: {
     src: "assets/videos/wedding-invitation-soundtrack-ybhogam-lyrical.mp3",
