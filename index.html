@@ -27,15 +27,9 @@
   </audio>
 
   <!-- ==============================================
-       PERSISTENT BOTTOM CONTROLS: ORDER NOW & AUDIO BELL
+       FLOATING AUDIO TOGGLE (km-bell)
        ============================================== -->
   <div id="km-persistent-bar" class="km-persistent-bar">
-    <a href="https://myshaadhilink.in" class="demo-cta" target="_blank" rel="noopener noreferrer" aria-label="Order template for ₹3,999">
-      <span class="demo-cta__price">₹3,999</span>
-      <span class="demo-cta__divider"></span>
-      <span class="demo-cta__label">Order Now</span>
-    </a>
-
     <button id="music-toggle" class="km-bell" aria-label="Play or Pause Wedding Music">
       <span class="km-bell__disc">
         <img id="music-icon-img" src="assets/icons/km-audio-off.png" alt="Wedding Music Controller" class="km-bell__icon">
@@ -406,77 +400,7 @@
       </section>
 
       <!-- ==============================================
-           SECTION 6: RSVP FORM (BLESS US WITH YOUR PRESENCE)
-           ============================================== -->
-      <section id="rsvp-section" class="km-section km-rsvp">
-        <!-- Authentic Ethnic Frame Border -->
-        <div class="km-frame" aria-hidden="true">
-          <div class="km-frame-corner km-frame-corner--tl"></div>
-          <div class="km-frame-corner km-frame-corner--tr"></div>
-          <div class="km-frame-corner km-frame-corner--bl"></div>
-          <div class="km-frame-corner km-frame-corner--br"></div>
-          <div class="km-frame-rail km-frame-rail--top"></div>
-          <div class="km-frame-rail km-frame-rail--bottom"></div>
-          <div class="km-frame-rail km-frame-rail--left"></div>
-          <div class="km-frame-rail km-frame-rail--right"></div>
-        </div>
-
-        <div class="km-container km-rsvp__inner">
-          <div class="km-section-head">
-            <h2 class="km-rsvp__heading">Bless Us With Your Presence</h2>
-            <p class="km-rsvp__sub">Let us know if you can join us, so we may keep a place for you.</p>
-          </div>
-
-          <div class="km-rsvp__slip">
-            <form id="wedding-rsvp-form" class="km-rsvp__form">
-              <!-- Full Name -->
-              <div class="km-rsvp__group">
-                <label for="rsvp-name" class="km-rsvp__tag">GUEST NAME</label>
-                <input type="text" id="rsvp-name" class="km-rsvp__input" placeholder="Please enter your name" required>
-              </div>
-
-              <!-- Attendance Choice with Authentic Diamond Markers -->
-              <div class="km-rsvp__options">
-                <label class="km-rsvp__option-card">
-                  <input type="radio" name="attendance" value="attending" checked required>
-                  <img src="assets/icons/rsvp-diamond-marker.svg" alt="" class="km-rsvp__diamond-img">
-                  <span class="km-rsvp__option-title">With joy, we will be there</span>
-                </label>
-
-                <label class="km-rsvp__option-card">
-                  <input type="radio" name="attendance" value="regret">
-                  <img src="assets/icons/rsvp-diamond-marker.svg" alt="" class="km-rsvp__diamond-img">
-                  <span class="km-rsvp__option-title">With regret, we cannot</span>
-                </label>
-              </div>
-
-              <!-- Number of Guests -->
-              <div class="km-rsvp__group" id="rsvp-guest-counter-wrap">
-                <label for="rsvp-guest-count" class="km-rsvp__tag">NUMBER OF GUESTS</label>
-                <div class="km-stepper">
-                  <button type="button" class="km-stepper__btn" id="stepper-dec" aria-label="Decrease guests">-</button>
-                  <input type="number" id="rsvp-guest-count" class="km-stepper__val" value="1" min="1" max="10" readonly>
-                  <button type="button" class="km-stepper__btn" id="stepper-inc" aria-label="Increase guests">+</button>
-                </div>
-              </div>
-
-              <!-- Warm Blessing Message -->
-              <div class="km-rsvp__group">
-                <label for="rsvp-blessing" class="km-rsvp__tag">BLESSINGS / NOTE (OPTIONAL)</label>
-                <textarea id="rsvp-blessing" class="km-rsvp__textarea" rows="2" placeholder="Send your warm wishes to the couple..."></textarea>
-              </div>
-
-              <!-- Submit Button -->
-              <button type="submit" id="rsvp-submit-btn" class="km-rsvp__submit">
-                SEND RSVP
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==============================================
-           SECTION 7: OUR STORY & WEDDING FILM (km-video)
+           SECTION 6: OUR STORY & WEDDING FILM (km-video)
            ============================================== -->
       <section id="our-story" class="km-section km-video">
         <div class="km-video__wall">
@@ -515,14 +439,6 @@
 
             <!-- Telugu Sacred Invocation: శుభమస్తు -->
             <p class="km-footer__telugu">శుభమస్తు</p>
-          </div>
-
-          <div class="km-footer__credit">
-            <p class="km-footer__credit-lead">This invitation was crafted on</p>
-            <div class="km-footer__brand-wrap">
-              <img src="assets/logos/myshaadhilink-brand.svg" alt="MyShaadhi Link" class="km-brand-logo">
-            </div>
-            <a href="#ceremonial-hero" class="km-footer__cta-link">Need one for your wedding? Click here</a>
           </div>
         </div>
       </footer>
@@ -576,25 +492,6 @@
       <a id="external-maps-btn" href="https://maps.google.com/?q=ITC+Mementos+Udaipur" target="_blank" rel="noopener noreferrer" class="km-external-link-btn">
         Open in Google Maps
       </a>
-    </div>
-  </div>
-
-  <!-- RSVP Confirmation Success Modal -->
-  <div id="rsvp-modal" class="km-modal" aria-hidden="true">
-    <div class="km-modal__backdrop"></div>
-    <div class="km-modal__card km-modal__card--success">
-      <button id="rsvp-modal-close" class="km-modal__close-btn" aria-label="Close dialog">&times;</button>
-      <div class="km-success-monogram">
-        <img src="assets/logos/rpk-wedding-logo.webp" alt="Wedding Monogram" class="km-success-logo-img">
-      </div>
-      <h3 class="km-modal__title" style="font-family: var(--km-font-script); font-size: 2.8rem; margin: 4px 0;">Thank You!</h3>
-      <p id="rsvp-success-text" class="km-modal__subtitle" style="font-size: 1.05rem; line-height: 1.5; color: var(--km-ink);">
-        Your response has been received. We warmly look forward to celebrating Vijay &amp; Rashmika's sacred union with you!
-      </p>
-      <p class="km-footer__telugu" style="margin: 12px 0 16px;">శుభమస్తు</p>
-      <button id="rsvp-ack-btn" class="km-rsvp__submit" style="max-width: 160px; margin: 0 auto; display: block;">
-        CLOSE
-      </button>
     </div>
   </div>
 

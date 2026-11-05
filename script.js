@@ -282,101 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 6. RSVP FORM SYSTEM & STEPPER
-  // =========================================================================
-  const rsvpForm = document.getElementById('wedding-rsvp-form');
-  const guestCountInput = document.getElementById('rsvp-guest-count');
-  const stepperDec = document.getElementById('stepper-dec');
-  const stepperInc = document.getElementById('stepper-inc');
-  const guestCounterWrap = document.getElementById('rsvp-guest-counter-wrap');
-  const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
-
-  const rsvpModal = document.getElementById('rsvp-modal');
-  const rsvpModalClose = document.getElementById('rsvp-modal-close');
-  const rsvpAckBtn = document.getElementById('rsvp-ack-btn');
-  const rsvpSuccessText = document.getElementById('rsvp-success-text');
-
-  // Stepper buttons
-  if (stepperDec && guestCountInput) {
-    stepperDec.addEventListener('click', () => {
-      let val = parseInt(guestCountInput.value, 10) || 1;
-      if (val > 1) guestCountInput.value = val - 1;
-    });
-  }
-
-  if (stepperInc && guestCountInput) {
-    stepperInc.addEventListener('click', () => {
-      let val = parseInt(guestCountInput.value, 10) || 1;
-      if (val < 10) guestCountInput.value = val + 1;
-    });
-  }
-
-  // Hide guest count if attending with regret
-  attendanceRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (radio.value === 'regret') {
-        if (guestCounterWrap) guestCounterWrap.style.display = 'none';
-      } else {
-        if (guestCounterWrap) guestCounterWrap.style.display = 'flex';
-      }
-    });
-  });
-
-  function closeRsvpModal() {
-    if (rsvpModal) {
-      rsvpModal.classList.remove('active');
-      rsvpModal.setAttribute('aria-hidden', 'true');
-    }
-  }
-
-  if (rsvpModalClose) rsvpModalClose.addEventListener('click', closeRsvpModal);
-  if (rsvpAckBtn) rsvpAckBtn.addEventListener('click', closeRsvpModal);
-  if (rsvpModal) {
-    const backdrop = rsvpModal.querySelector('.km-modal__backdrop');
-    if (backdrop) backdrop.addEventListener('click', closeRsvpModal);
-  }
-
-  if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const guestNameInput = document.getElementById('rsvp-name');
-      const guestName = guestNameInput ? guestNameInput.value.trim() : 'Honoured Guest';
-      const checkedAttendance = document.querySelector('input[name="attendance"]:checked');
-      const attendance = checkedAttendance ? checkedAttendance.value : 'attending';
-      const count = guestCountInput ? guestCountInput.value : 1;
-
-      if (!guestName) return;
-
-      if (attendance === 'attending') {
-        if (rsvpSuccessText) {
-          rsvpSuccessText.innerHTML = `Dearest <strong>${escapeHtml(guestName)}</strong>, your gracious presence with <strong>${count}</strong> guest(s) will bring immense joy to Vijay &amp; Rashmika's families! See you in Udaipur!`;
-        }
-      } else {
-        if (rsvpSuccessText) {
-          rsvpSuccessText.innerHTML = `Dearest <strong>${escapeHtml(guestName)}</strong>, thank you for letting us know. You will be dearly missed, and your warm blessings remain forever in our hearts!`;
-        }
-      }
-
-      if (rsvpModal) {
-        rsvpModal.classList.add('active');
-        rsvpModal.setAttribute('aria-hidden', 'false');
-      }
-
-      rsvpForm.reset();
-      if (guestCountInput) guestCountInput.value = '1';
-      if (guestCounterWrap) guestCounterWrap.style.display = 'flex';
-    });
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-
-  // =========================================================================
-  // 7. OUR STORY & WEDDING FILM YOUTUBE EMBED
+  // 6. OUR STORY & WEDDING FILM YOUTUBE EMBED
   // =========================================================================
   const playFilmBtn = document.getElementById('play-wedding-film-btn');
   const posterStage = document.getElementById('video-poster-stage');
@@ -408,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 8. GLOBAL ESCAPE & KEYBOARD NAVIGATION
+  // 7. GLOBAL ESCAPE & KEYBOARD NAVIGATION
   // =========================================================================
   window.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('active')) {
@@ -419,14 +325,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mapModal && mapModal.classList.contains('active')) {
       if (e.key === 'Escape') closeMapModal();
     }
-    if (rsvpModal && rsvpModal.classList.contains('active')) {
-      if (e.key === 'Escape') closeRsvpModal();
-    }
   });
 
 
   // =========================================================================
-  // 9. SUBTLE SCROLL REVEAL ANIMATIONS
+  // 8. SUBTLE SCROLL REVEAL ANIMATIONS
   // =========================================================================
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {

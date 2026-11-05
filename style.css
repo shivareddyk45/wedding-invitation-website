@@ -987,7 +987,7 @@ body.km-body {
 .km-gallery {
   position: relative;
   background: #fbebb3;
-  padding: clamp(2rem, 8vw, 3.8rem) 1rem;
+  padding: clamp(2rem, 8vw, 3.8rem) 1rem clamp(3.2rem, 10vw, 5rem);
   overflow: hidden;
 }
 
