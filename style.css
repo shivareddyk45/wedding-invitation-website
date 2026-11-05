@@ -243,12 +243,12 @@ body.km-no-scroll {
 
 .km-entry__mandala {
   position: absolute;
-  top: 36%;
+  top: 34%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(78vw, 340px);
+  width: min(76vw, 330px);
   height: auto;
-  opacity: 0.32;
+  opacity: 0.35;
   pointer-events: none;
   animation: km-mandala-spin 90s linear infinite;
 }
@@ -260,21 +260,21 @@ body.km-no-scroll {
 
 .km-entry__content {
   position: absolute;
-  top: 19%;
+  top: 18%;
   left: 50%;
   transform: translateX(-50%);
-  width: min(86%, 400px);
+  width: min(90%, 420px);
   text-align: center;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
+  gap: clamp(0.45rem, 1.6vw, 0.8rem);
 }
 
 .km-entry__label {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.72rem, 2.5vw, 0.85rem);
+  font-size: clamp(0.7rem, 2.4vw, 0.82rem);
   letter-spacing: 0.28em;
   text-indent: 0.28em;
   color: var(--km-maroon-deep);
@@ -284,27 +284,30 @@ body.km-no-scroll {
 
 .km-entry__names {
   font-family: var(--km-font-script);
-  font-size: clamp(2.8rem, 10vw, 3.8rem);
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 7.8vw, 3.2rem);
+  line-height: 1.08;
   color: var(--km-maroon-deep);
   font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.8);
+  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.85);
 }
 
 .km-entry__amp {
   font-family: var(--km-font-cormorant);
   font-style: italic;
-  font-size: 0.52em;
-  margin: -0.15em 0;
-  color: var(--km-gold);
+  font-weight: 700;
+  font-size: 0.68em;
+  line-height: 1;
+  margin: 0.05em 0;
+  color: var(--km-maroon-deep);
+  text-shadow: 0 1px 3px rgba(251, 238, 184, 0.95);
 }
 
 .km-entry__date {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.85rem, 3.2vw, 1.02rem);
+  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
   letter-spacing: 0.2em;
   text-indent: 0.2em;
   color: var(--km-ink);
@@ -313,24 +316,25 @@ body.km-no-scroll {
 
 .km-entry__city {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.64rem, 2.3vw, 0.74rem);
-  letter-spacing: 0.16em;
-  text-indent: 0.16em;
+  font-size: clamp(0.6rem, 2vw, 0.72rem);
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
   color: var(--km-ink-light);
-  line-height: 1.45;
-  margin-top: 3px;
+  line-height: 1.4;
+  margin-top: 2px;
+  max-width: 32ch;
 }
 
 /* Pulsing Shimmer Pill Button */
 .km-entry__cta {
-  margin-top: 1.4rem;
-  padding: 0.78rem 2.2rem;
+  margin-top: clamp(0.6rem, 2vw, 1.1rem);
+  padding: 0.72rem 2.2rem;
   border-radius: var(--km-radius-full);
   background: var(--km-maroon-deep);
   border: 1.5px solid var(--km-gold);
   color: var(--km-parchment-light);
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.75rem, 2.6vw, 0.86rem);
+  font-size: clamp(0.72rem, 2.4vw, 0.84rem);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-indent: 0.2em;
