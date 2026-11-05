@@ -8,20 +8,22 @@ window.WEDDING_CONFIG = {
       firstName: "Vijay",
       fullName: "Vijay Deverakonda",
       label: "SON OF",
-      parents: "Deverakonda Govardhan Rao & Deverakonda Madhavi",
+      parents: "Kalogotla Bramha Reddy & Vijaya",
       portrait: "assets/images/vijay-groom-portrait-618dff4e0d.jpg"
     },
     bride: {
       firstName: "Rashmika",
       fullName: "Rashmika Mandanna",
       label: "DAUGHTER OF",
-      parents: "Madan Mandanna & Suman Mandanna",
+      parents: "Yet to fill",
       portrait: "assets/images/rashmika-bride-portrait-c4cc91ddfb.jpg"
     }
   },
   cover: {
     label: "THE WEDDING OF",
-    dateText: "26 OCTOBER 2026",
+    groom: "Nageshwar",
+    bride: "Neeraja",
+    dateText: "03 DECEMBER 2026",
     venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA"
   },
   hero: {
@@ -49,40 +51,40 @@ window.WEDDING_CONFIG = {
         name: "Mehendi",
         date: "24th February 2026",
         time: "5:00 PM onwards",
-        venue: "ITC Mementos, Udaipur",
+        venue: "Ravichettu Bazar, Dondapadu",
         icon: "assets/images/event-mehendi.png",
         side: "left",
-        mapQuery: "ITC Mementos, Udaipur, Rajasthan"
+        mapQuery: "Ravichettu Bazar, Dondapadu"
       },
       {
         id: "haldi",
         name: "Haldi & Sangeet",
         date: "25th February 2026",
         time: "10:48 AM",
-        venue: "ITC Mementos, Udaipur",
+        venue: "Ravichettu Bazar, Dondapadu",
         icon: "assets/images/event-haldi-bowl.png",
         side: "right",
-        mapQuery: "ITC Mementos, Udaipur, Rajasthan"
+        mapQuery: "Ravichettu Bazar, Dondapadu"
       },
       {
         id: "telugu-wedding",
         name: "Telugu Wedding",
         date: "26th February 2026",
         time: "10:00 AM onwards",
-        venue: "ITC Mementos, Udaipur",
+        venue: "Ravichettu Bazar, Dondapadu",
         icon: "assets/images/event-nadaswaram.png",
         side: "left",
-        mapQuery: "ITC Mementos, Udaipur, Rajasthan"
+        mapQuery: "Ravichettu Bazar, Dondapadu"
       },
       {
         id: "kodava-ceremony",
         name: "Kodava Ceremony",
         date: "26th February 2026",
         time: "Evening · 6:30 PM onwards",
-        venue: "ITC Mementos, Udaipur",
+        venue: "Ravichettu Bazar, Dondapadu",
         icon: "assets/images/icon_kodava_ceremony.png",
         side: "right",
-        mapQuery: "ITC Mementos, Udaipur, Rajasthan"
+        mapQuery: "Ravichettu Bazar, Dondapadu"
       }
     ]
   },
@@ -158,15 +160,7 @@ window.WEDDING_CONFIG = {
   footer: {
     lead: "We await your gracious presence",
     main: "and your blessings",
-    blessingTelugu: "శుభమస్తు",
-    creditLead: "This invitation was crafted on MyShaadhi Link",
-    creditLink: "Need one for your wedding? Click here",
-    creditUrl: "https://myshaadhilink.in"
-  },
-  order: {
-    price: "₹3,999",
-    label: "ORDER NOW",
-    url: "https://myshaadhilink.in"
+    blessingTelugu: "శుభమస్తు"
   },
   audio: {
     src: "assets/videos/wedding-invitation-soundtrack-ybhogam-lyrical.mp3",
