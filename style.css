@@ -94,8 +94,101 @@ body.km-body {
 }
 
 /* ==========================================================================
-   FLOATING AUDIO BELL (km-bell)
+   PERSISTENT BOTTOM BAR: ORDER NOW & AUDIO BELL
    ========================================================================== */
+.km-persistent-bar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.km-persistent-bar--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.demo-cta {
+  --demo-cta-bg: rgba(253, 245, 230, 0.95);
+  --demo-cta-text: #3D1C00;
+  --demo-cta-border: rgba(212, 168, 67, 0.35);
+  --demo-cta-hover: rgba(247, 236, 206, 0.98);
+  --demo-cta-divider: rgba(61, 28, 0, 0.15);
+  position: fixed;
+  bottom: 20px;
+  left: calc(50% - 240px);
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--demo-cta-border);
+  background: var(--demo-cta-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.22s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 520px) {
+  .demo-cta {
+    left: 14px;
+    bottom: 16px;
+  }
+}
+
+.demo-cta:hover {
+  background: var(--demo-cta-hover);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.demo-cta:active {
+  transform: translateY(0);
+}
+
+.demo-cta__price {
+  display: flex;
+  align-items: center;
+  padding: 0.52rem 0.75rem 0.52rem 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--demo-cta-text);
+  white-space: nowrap;
+}
+
+.demo-cta__divider {
+  width: 1px;
+  height: 16px;
+  background: var(--demo-cta-divider);
+  flex-shrink: 0;
+}
+
+.demo-cta__label {
+  display: flex;
+  align-items: center;
+  padding: 0.52rem 0.9rem 0.52rem 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--demo-cta-text);
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
 .km-bell {
   position: fixed;
   right: calc(50% - 235px);
@@ -105,13 +198,14 @@ body.km-body {
   border: 0;
   background: none;
   cursor: pointer;
+  pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s ease;
 }
 
 @media (max-width: 520px) {
   .km-bell {
-    right: 16px;
+    right: 14px;
     bottom: 16px;
   }
 }
@@ -461,6 +555,21 @@ body.km-body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.km-hero__ganesha-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.km-hero__ganesha {
+  width: 46px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(135, 58, 53, 0.15));
 }
 
 .km-hero__invocation {
@@ -1125,24 +1234,24 @@ body.km-body {
 
 .km-rsvp__submit {
   font-family: var(--km-font-marcellus);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-indent: 0.22em;
-  color: #fff6d2;
-  background: var(--km-maroon-deep);
-  border: 1px solid var(--km-gold);
+  color: #ffffff;
+  background: #c88386;
+  border: none;
   padding: 13px 24px;
-  border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(43, 22, 8, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(200, 131, 134, 0.35);
   cursor: pointer;
   transition: all 0.22s ease;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .km-rsvp__submit:hover {
-  background: var(--km-maroon);
+  background: #b56e72;
   transform: translateY(-1px);
 }
 

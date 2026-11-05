@@ -27,13 +27,21 @@
   </audio>
 
   <!-- ==============================================
-       FLOATING AUDIO TOGGLE (km-bell)
+       PERSISTENT BOTTOM CONTROLS: ORDER NOW & AUDIO BELL
        ============================================== -->
-  <button id="music-toggle" class="km-bell" aria-label="Play or Pause Wedding Music">
-    <span class="km-bell__disc">
-      <img id="music-icon-img" src="assets/icons/km-audio-off.png" alt="Wedding Music Controller" class="km-bell__icon">
-    </span>
-  </button>
+  <div id="km-persistent-bar" class="km-persistent-bar">
+    <a href="https://myshaadhilink.in" class="demo-cta" target="_blank" rel="noopener noreferrer" aria-label="Order template for ₹3,999">
+      <span class="demo-cta__price">₹3,999</span>
+      <span class="demo-cta__divider"></span>
+      <span class="demo-cta__label">Order Now</span>
+    </a>
+
+    <button id="music-toggle" class="km-bell" aria-label="Play or Pause Wedding Music">
+      <span class="km-bell__disc">
+        <img id="music-icon-img" src="assets/icons/km-audio-off.png" alt="Wedding Music Controller" class="km-bell__icon">
+      </span>
+    </button>
+  </div>
 
   <!-- ==============================================
        OPENING INVITATION HERO SCREEN (km-entry)
@@ -91,6 +99,11 @@
         </div>
 
         <div class="km-container km-hero__inner">
+          <!-- Traditional Red Lord Ganesha Artwork -->
+          <div class="km-hero__ganesha-wrap">
+            <img src="assets/images/ganesha_red.png" alt="Lord Ganesha" class="km-hero__ganesha">
+          </div>
+
           <!-- Ganesha Invocation -->
           <p class="km-hero__invocation">|| Shree Ganeshay Namah ||</p>
 

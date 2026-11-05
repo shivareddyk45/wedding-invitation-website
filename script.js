@@ -76,11 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 2. OPENING INVITATION HERO SCREEN (km-entry)
+  // 2. OPENING INVITATION HERO SCREEN (km-entry) & PERSISTENT BAR
   // =========================================================================
   const entryScreen = document.getElementById('km-entry-screen');
   const openBtn = document.getElementById('km-open-btn');
   const ceremonialHero = document.getElementById('ceremonial-hero');
+  const persistentBar = document.getElementById('km-persistent-bar');
+
+  function showPersistentBar() {
+    if (persistentBar) {
+      persistentBar.classList.add('km-persistent-bar--visible');
+    }
+  }
 
   function openInvitation() {
     if (!entryScreen || entryScreen.classList.contains('km-entry--closing')) return;
@@ -91,6 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger flower bloom exit transition
     entryScreen.classList.add('km-entry--closing');
 
+    // Reveal persistent bottom bar (Order Now & Audio Bell)
+    showPersistentBar();
+
     setTimeout(() => {
       entryScreen.style.display = 'none';
     }, 850);
@@ -99,6 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ceremonialHero) {
       ceremonialHero.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  // If entry screen is dismissed or scrolled, ensure persistent bar shows
+  if (!entryScreen || entryScreen.style.display === 'none') {
+    showPersistentBar();
   }
 
   if (openBtn) {
