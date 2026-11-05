@@ -5,15 +5,15 @@
 window.WEDDING_CONFIG = {
   couple: {
     groom: {
-      firstName: "Vijay",
-      fullName: "Vijay Deverakonda",
+      firstName: "Nageshwar Reddy",
+      fullName: "Nageshwar Reddy",
       label: "SON OF",
-      parents: "Kalogotla Bramha Reddy & Vijaya",
+      parents: "Kalagotla Bramha Reddy & Vijaya",
       portrait: "assets/images/vijay-groom-portrait-618dff4e0d.jpg"
     },
     bride: {
-      firstName: "Rashmika",
-      fullName: "Rashmika Mandanna",
+      firstName: "Neeraja",
+      fullName: "Neeraja",
       label: "DAUGHTER OF",
       parents: "Yet to fill",
       portrait: "assets/images/rashmika-bride-portrait-c4cc91ddfb.jpg"
@@ -21,18 +21,18 @@ window.WEDDING_CONFIG = {
   },
   cover: {
     label: "THE WEDDING OF",
-    groom: "Nageshwar",
+    groom: "Nageshwar Reddy",
     bride: "Neeraja",
     dateText: "03 DECEMBER 2026",
-    venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA"
+    venueText: "Ravichettu Bazar, Dondapadu, INDIA"
   },
   hero: {
     invocation: "|| Shree Ganeshay Namah ||",
     groom: "Nageshwar Reddy",
     bride: "Neeraja",
-    dateText: "Monday, October 26, 2026",
+    dateText: "Thursday, December 03 , 2026",
     venueLead: "at",
-    venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA",
+    venueText: "Ravichettu Bazar, Dondapadu, INDIA",
     video: {
       mp4Mobile: "assets/videos/hero-procession-bg-mobile.mp4",
       mp4Desktop: "assets/videos/hero-procession-bg-v2.mp4",
@@ -96,7 +96,7 @@ window.WEDDING_CONFIG = {
     photos: [
       {
         src: "assets/images/gallery-photo-01-a7bbd013fb-22.jpeg",
-        alt: "Vijay and Rashmika Wedding Floral Mandap",
+        alt: "Nageshwar Reddy and Neeraja Wedding Floral Mandap",
         feature: true
       },
       {

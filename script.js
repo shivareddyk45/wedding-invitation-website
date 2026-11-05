@@ -522,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
           width="100%" 
           height="100%" 
           src="https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}?autoplay=1&modestbranding=1&rel=0&playsinline=1" 
-          title="Vijay Deverakonda &amp; Rashmika Mandanna Wedding Story" 
+          title="Nageshwar Reddy &amp; Neeraja Wedding Story" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
           allowfullscreen 
