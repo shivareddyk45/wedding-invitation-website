@@ -243,7 +243,7 @@ body.km-no-scroll {
 
 .km-entry__mandala {
   position: absolute;
-  top: 34%;
+  top: 29%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(76vw, 330px);
@@ -260,7 +260,7 @@ body.km-no-scroll {
 
 .km-entry__content {
   position: absolute;
-  top: 18%;
+  top: 13.5%;
   left: 50%;
   transform: translateX(-50%);
   width: min(90%, 420px);
@@ -269,7 +269,7 @@ body.km-no-scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.45rem, 1.6vw, 0.8rem);
+  gap: clamp(0.45rem, 1.6vw, 0.75rem);
 }
 
 .km-entry__label {
