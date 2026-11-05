@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- Dholak drum body in reddish maroon with gold lacing -->
+  <g transform="translate(6, 8) rotate(-15 14 12)">
+    <!-- Barrel body -->
+    <path d="M 4,4 Q 14,0 24,4 L 24,18 Q 14,22 4,18 Z" fill="#9C2D27" stroke="#681512" stroke-width="1"/>
+    <!-- End rims -->
+    <ellipse cx="4" cy="11" rx="2.5" ry="7" fill="#E6C875" stroke="#873A35" stroke-width="1"/>
+    <ellipse cx="24" cy="11" rx="2.5" ry="7" fill="#E6C875" stroke="#873A35" stroke-width="1"/>
+    <!-- Center brace rings & ropes -->
+    <path d="M 4,5 L 24,17 M 4,17 L 24,5 M 4,8 L 24,14 M 4,14 L 24,8" stroke="#E6C875" stroke-width="0.8" fill="none"/>
+    <ellipse cx="14" cy="11" rx="0.8" ry="8.5" fill="none" stroke="#E6C875" stroke-width="1"/>
+  </g>
+  <!-- Sound waves -->
+  <path d="M 28,11 A 7 7 0 0 1 31,18" fill="none" stroke="#9C2D27" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M 31,8 A 12 12 0 0 1 35,21" fill="none" stroke="#9C2D27" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

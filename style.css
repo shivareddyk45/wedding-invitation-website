@@ -1,0 +1,1421 @@
+/* ==========================================================================
+   WEDDING INVITATION - VIJAY & RASHMIKA
+   Authentic South Indian & Traditional Theme Stylesheet
+   ========================================================================== */
+
+:root {
+  /* Exact Traditional Color Palette */
+  --bg-parchment: #FFF1CD;
+  --bg-parchment-light: #FFF8E7;
+  --bg-parchment-warm: #F6E7BD;
+  --bg-card: #FDF4DB;
+  
+  --text-maroon: #873A35;
+  --text-maroon-dark: #672622;
+  --text-maroon-light: #A34842;
+  --text-brown: #79583A;
+  --text-brown-muted: #8F6D4E;
+  
+  --gold-antique: #C89B43;
+  --gold-bright: #DDA84E;
+  --gold-dark: #A67D2E;
+  --gold-soft: #E8CA83;
+  --gold-line: rgba(200, 155, 67, 0.45);
+
+  --accent-terracotta: #C85A32;
+  --foliage-green: #3F6D28;
+
+  /* Typography */
+  --font-cursive: 'Great Vibes', 'Alex Brush', cursive;
+  --font-serif-heading: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+  --font-telugu: 'Noto Serif Telugu', serif;
+
+  /* Proportions */
+  --site-max-width: 480px;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: #241411; /* Warm dark antique backdrop for desktop framing */
+}
+
+body {
+  font-family: var(--font-serif-body);
+  background: radial-gradient(circle at 50% 30%, #381E19 0%, #20100D 100%);
+  color: var(--text-brown);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Outer Desktop Frame to preserve authentic mobile proportions */
+.site-wrapper {
+  width: 100%;
+  max-width: var(--site-max-width);
+  min-height: 100vh;
+  background-color: var(--bg-parchment);
+  background-image: 
+    radial-gradient(circle at 50% 20%, var(--bg-parchment-light) 0%, var(--bg-parchment) 65%, var(--bg-parchment-warm) 100%);
+  position: relative;
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.4), 0 0 15px rgba(200, 155, 67, 0.25);
+  border-left: 1px solid rgba(200, 155, 67, 0.35);
+  border-right: 1px solid rgba(200, 155, 67, 0.35);
+  overflow: hidden;
+}
+
+/* Generic Screen Section */
+.screen-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ==========================================================================
+   FLOATING MUSIC BUTTON (Authentic Indian Dholak Drum Icon)
+   ========================================================================== */
+.floating-music-btn {
+  position: fixed;
+  bottom: 22px;
+  right: calc(50% - 220px);
+  z-index: 999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF0C8 0%, #F5DE9C 60%, #E0BF6A 100%);
+  border: 2px solid var(--gold-antique);
+  box-shadow: 0 4px 15px rgba(103, 38, 34, 0.35), 0 0 12px rgba(221, 168, 78, 0.4);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (max-width: 500px) {
+  .floating-music-btn {
+    right: 16px;
+    bottom: 20px;
+  }
+}
+
+.floating-music-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(103, 38, 34, 0.45);
+}
+
+.floating-music-btn:active {
+  transform: scale(0.96);
+}
+
+.music-icon-wrap {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dholak-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Pulsing audio rings when active */
+.floating-music-btn.playing .sound-wave-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-bright);
+  animation: pulse-ring 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ==========================================================================
+   SECTION 1: HERO / OPENING INVITATION SCREEN
+   ========================================================================== */
+.cover-screen {
+  min-height: 100vh;
+  justify-content: space-between;
+  padding: 24px 20px 0;
+  background-color: var(--bg-parchment);
+  position: relative;
+  z-index: 10;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Mandala Background Watermark */
+.mandala-bg {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 440px;
+  height: 440px;
+  background-image: url('assets/images/mandala_watermark.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Top Left Banana Plant */
+.decor-top-left-banana {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 135px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.06));
+}
+
+/* Top Right Marigold Torans */
+.decor-top-right-garland {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 82px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(-1px 2px 4px rgba(0,0,0,0.06));
+}
+
+/* Ganesha Emblem */
+.ganesha-emblem-wrap {
+  margin-top: 10px;
+  z-index: 3;
+}
+
+.ganesha-gold-img {
+  width: 68px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.88;
+}
+
+/* Cover Text Content */
+.cover-content {
+  position: relative;
+  z-index: 4;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invitation-intro {
+  font-family: var(--font-serif-heading);
+  font-size: 0.92rem;
+  letter-spacing: 0.28em;
+  color: var(--text-brown);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.couple-hero-names {
+  font-family: var(--font-cursive);
+  font-size: 3.5rem;
+  line-height: 1.05;
+  color: var(--text-maroon);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.couple-hero-names .ampersand {
+  font-size: 1.8rem;
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  line-height: 0.9;
+  color: var(--text-maroon-dark);
+  margin: -2px 0;
+}
+
+.hero-date {
+  font-family: var(--font-serif-heading);
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--text-brown);
+  margin-bottom: 8px;
+}
+
+.hero-venue {
+  font-family: var(--font-serif-heading);
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  color: var(--text-brown);
+  text-transform: uppercase;
+  max-width: 320px;
+  margin-bottom: 24px;
+}
+
+/* Open Invitation CTA Button */
+.open-invitation-btn {
+  font-family: var(--font-serif-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #FFF2D1;
+  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
+  border: 1.5px solid var(--gold-antique);
+  padding: 13px 36px;
+  border-radius: 40px;
+  box-shadow: 0 5px 16px rgba(103, 38, 34, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.open-invitation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(103, 38, 34, 0.5);
+  background: linear-gradient(180deg, #A8383B 0%, #85272B 100%);
+}
+
+.open-invitation-btn:active {
+  transform: translateY(1px);
+}
+
+/* Bottom Sita Rama Kalyanam & Gopuram */
+.cover-bottom-artwork {
+  width: 100%;
+  margin-top: 14px;
+  position: relative;
+  z-index: 3;
+}
+
+.temple-kalyanam-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   MAIN INVITATION CONTENT FLOW
+   ========================================================================== */
+.main-invitation-content {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+/* Top Ceremony Section */
+.ceremonial-section {
+  padding-bottom: 12px;
+}
+
+.top-ceremony-banner {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.garland-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ceremonial-header-content {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ganesha-red-wrap {
+  margin-bottom: 4px;
+}
+
+.ganesha-red-img {
+  width: 60px;
+  height: auto;
+  display: block;
+}
+
+.shree-ganesh-text {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: var(--text-maroon);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.ceremony-couple-names {
+  font-family: var(--font-cursive);
+  font-size: 3.4rem;
+  line-height: 1.05;
+  color: var(--text-maroon);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ceremony-couple-names .name-amp {
+  font-size: 1.8rem;
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  color: var(--text-maroon-dark);
+  margin: -4px 0;
+}
+
+.ceremony-date {
+  font-family: var(--font-serif-heading);
+  font-size: 1.08rem;
+  color: var(--text-brown);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.ceremony-venue {
+  font-family: var(--font-serif-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--text-maroon);
+  text-transform: uppercase;
+  max-width: 380px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.ceremony-venue em {
+  font-style: italic;
+  text-transform: lowercase;
+  font-family: var(--font-serif-body);
+  color: var(--text-brown);
+  font-size: 0.95rem;
+}
+
+.ornament-divider-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 16px;
+}
+
+.ornament-divider-img {
+  width: 250px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.royal-court-artwork {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.royal-court-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   ETHNIC BORDER FRAME SYSTEM
+   ========================================================================== */
+.ethnic-frame-wrap {
+  position: relative;
+  background-color: var(--bg-card);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-image: repeating-linear-gradient(
+    90deg,
+    #6B2022 0px,
+    #6B2022 14px,
+    #A06822 14px,
+    #A06822 20px,
+    #DDB357 20px,
+    #DDB357 32px,
+    #6B2022 32px
+  ) 12;
+  box-shadow: inset 0 0 0 1px rgba(200, 155, 67, 0.35);
+  margin: 12px 0;
+  padding: 26px 18px;
+}
+
+.section-heading-block {
+  margin-bottom: 22px;
+}
+
+.section-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.95rem;
+  color: var(--text-maroon);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.section-title.script-title {
+  font-family: var(--font-cursive);
+  font-size: 2.9rem;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.section-subtitle {
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-brown);
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   SECTION 2: THE COUPLE
+   ========================================================================== */
+.couple-section {
+  padding-top: 28px;
+  padding-bottom: 32px;
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.arch-portrait-container {
+  width: 320px;
+  max-width: 90%;
+  margin: 0 auto 14px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(121, 88, 58, 0.15);
+}
+
+.arch-peacock-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.person-name {
+  font-family: var(--font-cursive);
+  font-size: 2.5rem;
+  line-height: 1.15;
+  color: var(--text-maroon);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.relation-label {
+  font-family: var(--font-serif-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: var(--text-brown);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.parents-names {
+  font-family: var(--font-serif-body);
+  font-size: 1.02rem;
+  line-height: 1.4;
+  color: var(--text-brown-muted);
+  text-align: center;
+}
+
+.couple-divider {
+  margin: 22px 0 20px;
+}
+
+/* ==========================================================================
+   SECTION 3: ARCHITECTURAL COUNTDOWN (OUR MUHURTHAM IN)
+   ========================================================================== */
+.countdown-section {
+  width: 100%;
+  margin: 8px 0;
+  background-color: #DEB873;
+}
+
+.stone-arch-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.stone-arch-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.countdown-niches-grid {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  width: 78%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  z-index: 5;
+}
+
+.countdown-niche {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-number {
+  font-family: var(--font-serif-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #68291A;
+  text-shadow: 0 1px 1px rgba(255, 235, 185, 0.85);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.count-label {
+  font-family: var(--font-serif-heading);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #793D22;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   SECTION 4: WEDDING CEREMONIES & TIMELINE (THE WEDDING JOURNEY)
+   ========================================================================== */
+.journey-section {
+  padding-bottom: 36px;
+}
+
+.journey-timeline-container {
+  position: relative;
+  width: 100%;
+  padding: 10px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Alta Footsteps Trail */
+.footsteps-trail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footstep-step {
+  position: absolute;
+  width: 32px;
+  height: 38px;
+  background-image: url('assets/images/footprints.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.72;
+}
+
+/* Coordinates matching the S-curve trail in the video */
+.step-1 { top: 3%; left: 47%; transform: rotate(10deg); }
+.step-2 { top: 12%; left: 42%; transform: rotate(-25deg); }
+.step-3 { top: 22%; left: 34%; transform: rotate(-45deg); }
+.step-4 { top: 38%; left: 45%; transform: rotate(25deg); }
+.step-5 { top: 50%; left: 56%; transform: rotate(45deg); }
+.step-6 { top: 64%; left: 46%; transform: rotate(-35deg); }
+.step-7 { top: 76%; left: 38%; transform: rotate(-55deg); }
+.step-8 { top: 90%; left: 48%; transform: rotate(20deg); }
+
+/* Timeline Events */
+.timeline-event {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.timeline-event.event-left {
+  flex-direction: row;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.timeline-event.event-right {
+  flex-direction: row-reverse;
+  text-align: right;
+  padding-right: 12px;
+}
+
+.event-icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF8E6 50%, #F5E0A9 100%);
+  border: 1.5px solid var(--gold-antique);
+  box-shadow: 0 4px 10px rgba(121, 88, 58, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 6px;
+}
+
+.event-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-name {
+  font-family: var(--font-serif-heading);
+  font-size: 1.25rem;
+  color: var(--text-maroon);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.event-time {
+  font-family: var(--font-serif-body);
+  font-size: 0.95rem;
+  color: var(--text-brown);
+  margin-bottom: 2px;
+}
+
+.event-location {
+  font-family: var(--font-serif-body);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-brown-muted);
+  margin-bottom: 8px;
+}
+
+.view-map-btn {
+  font-family: var(--font-serif-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-brown);
+  background: #FFF4D9;
+  border: 1px solid var(--gold-antique);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  transition: all 0.2s ease;
+}
+
+.view-map-btn:hover {
+  background: #F7E5BD;
+  color: var(--text-maroon);
+  border-color: var(--gold-dark);
+}
+
+/* ==========================================================================
+   SECTION 5: PHOTO GALLERY (BEFORE THE VOWS)
+   ========================================================================== */
+.gallery-section {
+  padding: 0 16px 36px;
+}
+
+.gallery-toran-banner {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.toran-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.photo-frame {
+  position: relative;
+  border: 2px solid var(--gold-antique);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background-color: #E8D3A7;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.photo-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(103, 38, 34, 0.25);
+}
+
+.photo-frame:hover img {
+  transform: scale(1.03);
+}
+
+.photo-zoom-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 241, 205, 0.85);
+  border: 1px solid var(--gold-antique);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.photo-frame:hover .photo-zoom-hint {
+  opacity: 1;
+}
+
+.item-wide .photo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.gallery-row-double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.item-half .photo-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+}
+
+/* ==========================================================================
+   SECTION 6: RSVP FORM (BLESS US WITH YOUR PRESENCE)
+   ========================================================================== */
+.rsvp-section {
+  padding-bottom: 30px;
+}
+
+.rsvp-form-card {
+  width: 100%;
+  max-width: 390px;
+  background: #FFF7E3;
+  border: 1px solid var(--gold-antique);
+  border-radius: 8px;
+  padding: 22px 18px;
+  box-shadow: 0 4px 14px rgba(121, 88, 58, 0.1);
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-family: var(--font-serif-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--text-brown);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: #FFFDF7;
+  border: 1px solid var(--gold-soft);
+  border-radius: 4px;
+  font-family: var(--font-serif-body);
+  font-size: 1rem;
+  color: var(--text-maroon);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 2px rgba(200, 155, 67, 0.25);
+}
+
+/* Attendance Radio Options */
+.attendance-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 4px 0;
+}
+
+.attendance-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #FFF9E9;
+  border: 1px solid var(--gold-soft);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.attendance-option-btn input[type="radio"] {
+  display: none;
+}
+
+.custom-radio-mark {
+  font-size: 1.15rem;
+  color: var(--gold-antique);
+  font-weight: 700;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.attendance-option-btn:has(input[type="radio"]:checked) {
+  background: #FDF1D3;
+  border-color: var(--text-maroon);
+  box-shadow: 0 2px 6px rgba(103, 38, 34, 0.12);
+}
+
+.attendance-option-btn:has(input[type="radio"]:checked) .custom-radio-mark {
+  color: var(--text-maroon);
+  transform: scale(1.2);
+}
+
+.option-text {
+  font-family: var(--font-serif-heading);
+  font-size: 0.95rem;
+  color: var(--text-brown);
+  font-weight: 500;
+}
+
+/* Stepper for Guests */
+.number-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--gold-antique);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 140px;
+  background: #FFFDF7;
+}
+
+.stepper-btn {
+  width: 40px;
+  height: 38px;
+  background: #F9ECD0;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-maroon);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.stepper-btn:hover {
+  background: #F0DCB3;
+}
+
+.stepper-input {
+  width: 60px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-family: var(--font-serif-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-maroon);
+}
+
+/* Send RSVP Button */
+.send-rsvp-btn {
+  font-family: var(--font-serif-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #FFF2D1;
+  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
+  border: 1px solid var(--gold-antique);
+  padding: 13px 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(103, 38, 34, 0.35);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  width: 100%;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.send-rsvp-btn:hover {
+  background: linear-gradient(180deg, #A8383B 0%, #85272B 100%);
+  box-shadow: 0 6px 16px rgba(103, 38, 34, 0.45);
+}
+
+/* ==========================================================================
+   SECTION 7: OUR STORY & WEDDING FILM
+   ========================================================================== */
+.story-section {
+  width: 100%;
+  background-color: #DEB873;
+  margin: 6px 0 16px;
+}
+
+.story-arch-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-carved-header {
+  width: 100%;
+}
+
+.story-header-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-video-stage {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  background-color: #D2A85B;
+}
+
+.pillar-left,
+.pillar-right {
+  width: 15%;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.pillar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-video-container {
+  width: 70%;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video-poster-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.video-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.youtube-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.youtube-play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-iframe-slot {
+  width: 100%;
+  height: 100%;
+}
+
+.video-iframe-slot iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ==========================================================================
+   SECTION 8: FINAL BLESSINGS & SACRED CLOSING
+   ========================================================================== */
+.blessings-section {
+  padding-top: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blessing-banana-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.blessing-garlands-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.blessings-content {
+  position: relative;
+  z-index: 3;
+  margin: 16px 0 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.await-text {
+  font-family: var(--font-serif-heading);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: var(--text-brown);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.and-blessings-text {
+  font-family: var(--font-cursive);
+  font-size: 2.9rem;
+  line-height: 1.1;
+  color: var(--text-maroon);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.shubhamasthu-telugu {
+  font-family: var(--font-telugu);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-maroon);
+  letter-spacing: 0.05em;
+  margin-bottom: 18px;
+  text-shadow: 1px 1px 0 rgba(255, 240, 195, 0.9);
+}
+
+.crafting-credit {
+  font-family: var(--font-serif-body);
+  font-size: 0.95rem;
+  color: var(--text-brown);
+  margin-bottom: 4px;
+}
+
+.craft-cta {
+  font-family: var(--font-serif-body);
+  font-size: 0.9rem;
+}
+
+.craft-link {
+  color: var(--text-maroon);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.craft-link:hover {
+  color: var(--text-maroon-dark);
+}
+
+.blessings-bottom-artwork {
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   MODALS (GALLERY LIGHTBOX, MAP, RSVP SUCCESS)
+   ========================================================================== */
+.modal-dialog,
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 16px;
+}
+
+.modal-dialog.active,
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop,
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(36, 20, 17, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: #FFF7E3;
+  border: 2px solid var(--gold-antique);
+  border-radius: 10px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.modal-close-btn,
+.lightbox-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text-maroon);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-title {
+  font-family: var(--font-serif-heading);
+  font-size: 1.35rem;
+  color: var(--text-maroon);
+  margin-bottom: 4px;
+}
+
+.modal-title.script-title {
+  font-family: var(--font-cursive);
+  font-size: 2.4rem;
+}
+
+.modal-subtitle {
+  font-family: var(--font-serif-body);
+  font-size: 1rem;
+  color: var(--text-brown);
+  margin-bottom: 16px;
+}
+
+.gmaps-external-btn {
+  display: inline-block;
+  font-family: var(--font-serif-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #FFF2D1;
+  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
+  border: 1px solid var(--gold-antique);
+  padding: 10px 22px;
+  border-radius: 20px;
+  text-decoration: none;
+  margin-top: 14px;
+}
+
+/* Lightbox Specifics */
+.lightbox-content-box {
+  position: relative;
+  z-index: 2;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image-container {
+  max-width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--gold-bright);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-caption-text {
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #FFEFC7;
+  padding: 10px 14px;
+  text-align: center;
+  background: rgba(20, 10, 8, 0.9);
+  width: 100%;
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 241, 205, 0.25);
+  border: 1px solid var(--gold-bright);
+  color: #FFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(200, 155, 67, 0.8);
+  color: #4A1A17;
+}
+
+.prev-btn { left: -60px; }
+.next-btn { right: -60px; }
+
+@media (max-width: 650px) {
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+}
+
+/* Subtle Scroll Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cover screen is always visible initially */
+.cover-screen.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
