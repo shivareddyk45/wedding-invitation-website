@@ -113,12 +113,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const entryScreen = document.getElementById('km-entry-screen');
   const openBtn = document.getElementById('km-open-btn');
   const ceremonialHero = document.getElementById('ceremonial-hero');
+  const heroVideo = document.getElementById('hero-procession-video');
+
+  function ensureHeroVideoPlays() {
+    if (!heroVideo) return;
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.playsInline = true;
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
+  }
+
+  ensureHeroVideoPlays();
+  document.addEventListener('touchstart', ensureHeroVideoPlays, { once: true, passive: true });
+  document.addEventListener('click', ensureHeroVideoPlays, { once: true, passive: true });
 
   function openInvitation() {
     if (!entryScreen || entryScreen.classList.contains('km-entry--closing')) return;
 
     // Start lyrical soundtrack on user gesture with 1.5s fade-in
     fadeInAudio(config.audio?.fadeInDurationMs || 1500);
+
+    // Play hero background video on user interaction
+    ensureHeroVideoPlays();
 
     // Crossfade out over ~1s with slight scale (1 -> 1.04)
     entryScreen.classList.add('km-entry--closing');
