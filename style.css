@@ -472,9 +472,9 @@ body.km-no-scroll {
 
 .km-hero__inner {
   position: absolute;
-  top: 46%;
+  top: 23.5%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: min(100% - 1.8rem, 440px);
   text-align: center;
   display: flex;
@@ -500,17 +500,7 @@ body.km-no-scroll {
 }
 
 .km-hero__ganesha-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: clamp(6px, 1.8vw, 10px);
-}
-
-.km-hero__ganesha {
-  width: clamp(66px, 18vw, 84px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 4px rgba(122, 21, 48, 0.2));
+  display: none;
 }
 
 .km-hero__invocation {
