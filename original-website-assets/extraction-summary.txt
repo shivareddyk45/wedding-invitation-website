@@ -1,0 +1,165 @@
+================================================================================
+           COMPLETE WEBSITE ASSET EXTRACTION & AUDIT REPORT
+================================================================================
+
+Target Website : https://myshaadhilink.in/invitation/vijay-rashmika-wedding-invitation?to=Guest&demo=true
+Project Path   : /Users/kalagotlashivareddy/.gemini/antigravity/scratch/myshaadhilink-extraction/website-assets
+Total Files    : 114
+Total Size     : 33.8 MB (35,485,653 bytes)
+Verification   : 100% Downloaded Successfully (HTTP 200 OK)
+Broken Assets  : 0
+Inaccessible   : 0 (All publicly accessible assets retrieved)
+Duplicates     : Resolved & Deduplicated (All files unique)
+
+--------------------------------------------------------------------------------
+CATEGORY BREAKDOWN
+--------------------------------------------------------------------------------
+ - website-assets/images        : 31 files |     4.7 MB
+ - website-assets/banners       :  4 files |   931.3 KB
+ - website-assets/logos         :  3 files |   136.1 KB
+ - website-assets/icons         : 15 files |   282.9 KB
+ - website-assets/backgrounds   : 12 files |   887.5 KB
+ - website-assets/fonts         : 15 files |   553.2 KB
+ - website-assets/videos        :  5 files |    24.2 MB
+ - website-assets/css           : 16 files |   610.1 KB
+ - website-assets/js            : 13 files |     1.6 MB
+--------------------------------------------------------------------------------
+ TOTAL ASSETS CAPTURED     : 114 files |    33.8 MB
+
+--------------------------------------------------------------------------------
+KEY ASSET HIGHLIGHTS
+--------------------------------------------------------------------------------
+ 1. Original Quality Photographs:
+    - Groom Portrait (Vijay): 1440x1800 uncompressed original Vercel blob storage
+    - Bride Portrait (Rashmika): 1440x1920 uncompressed original Vercel blob storage
+    - 10 Full-Resolution Gallery Photos: Retained at native camera resolution (up to 720x882)
+ 2. Background Video Streams:
+    - 2x UHD Procession Video: 2168x3824 (8.15 MB, 9:16 vertical orientation)
+    - Standard Procession Video: 1626x2868 (5.63 MB, 9:16 vertical orientation)
+    - HEVC/H.265 Procession Streams: 2x (4.48 MB) & standard (3.00 MB)
+ 3. Audio Soundtrack:
+    - Srinivasa Kalyanam 'Yabhogam' Lyrical Track: 4.13 MB MP3 @ 128 kbps stereo
+ 4. Typography:
+    - 15 WOFF2 font files providing full font coverage for headings, scripts, body and numerals
+ 5. Architectural Borders & Backdrops:
+    - Authentic Indian Kalyana Mandapam arch masks, golden rails, corner filigrees, kolam & silk patterns
+ 6. Interactive UI Elements:
+    - Floating audio controller states (on/off), lightbox modals, RSVP diamonds, map pins, animated birds
+
+--------------------------------------------------------------------------------
+COMPLETE FILE MANIFEST WITH SIZES & MD5 CHECKSUMS
+--------------------------------------------------------------------------------
+[IMAGES     ] countdown-wall-sm.webp                           | 1845x762                     |  327.7 KB | MD5: ed4ccba4b74589377748b0f629921b0e
+[IMAGES     ] countdown-wall.webp                              | 1845x762                     |  481.7 KB | MD5: 1c6c78cbca40a6c6bf7f2a98f5359dc7
+[IMAGES     ] event-haldi-bowl.png                             | 260x260                      |   16.6 KB | MD5: 65a2b84af9ac7de935ed71cf37ce9fcd
+[IMAGES     ] event-mehendi.png                                | 260x260                      |   14.9 KB | MD5: 20b8f5900694b6277f5cc9b14ba9ea51
+[IMAGES     ] event-nadaswaram.png                             | 260x260                      |   18.9 KB | MD5: aee79adadb2868bdcd7f5e08f315f097
+[IMAGES     ] event-saptapadi.png                              | 260x260                      |   14.1 KB | MD5: a0060e20c6b84f8f49f8e8caaf4ea0e0
+[IMAGES     ] gallery-parasol.png                              | 430x449                      |  169.6 KB | MD5: e7fa9837190da26f6b55fcde85ab3004
+[IMAGES     ] gallery-photo-01-a7bbd013fb-22.jpeg              | 720x828                      |  143.6 KB | MD5: 3ed86aa0d73f2a63caaa389d476fcbe5
+[IMAGES     ] gallery-photo-02-20d69634d1-29.jpeg              | 720x789                      |   98.6 KB | MD5: fcdbf88b21d6c97d6a7925ee2fd749c5
+[IMAGES     ] gallery-photo-03-1ea95d2922-23-1.jpeg            | 720x684                      |  136.2 KB | MD5: b887a9d7276d5106b5aeb5d828e39eaa
+[IMAGES     ] gallery-photo-04-a509bf14e8-F-1.jpg              | 393x420                      |   39.6 KB | MD5: 57214049c6a06a1debf0909835558c6e
+[IMAGES     ] gallery-photo-05-10630c5a75-25-1.jpeg            | 638x740                      |   93.6 KB | MD5: e98acee2ed433f5cfee2df15d13d7d67
+[IMAGES     ] gallery-photo-06-fdbc188766-34.jpeg              | 720x699                      |   90.6 KB | MD5: 88ef32d4f955b3563aaeeed9f3bf69d1
+[IMAGES     ] gallery-photo-07-f42440eb83-27.jpeg              | 720x833                      |  143.6 KB | MD5: 228c492efe70aeeb59bc77c25e4e3f09
+[IMAGES     ] gallery-photo-08-83ace83b69-26.jpeg              | 720x877                      |  160.6 KB | MD5: 86f63ed125dbac83ee0a3be7964c2ffa
+[IMAGES     ] gallery-photo-09-938d8ff3f5-WhatsApp-Image.jpeg  | 720x882                      |  151.6 KB | MD5: 7f79079b5123bf2b7c16c07af7fd91c3
+[IMAGES     ] gallery-photo-10-88632f61b3-31.jpeg              | 720x526                      |   77.2 KB | MD5: e1a7c77a07d3ebb348cde1cabb9cf371
+[IMAGES     ] gold-divider.webp                                | 1139x163                     |   19.9 KB | MD5: 2c8ab6760ed7cceedfc66284bc432ffa
+[IMAGES     ] hero-poster.jpg                                  | 1626x2868                    |  393.5 KB | MD5: b0bbbc60571ce5871df8b604c9460144
+[IMAGES     ] mandala-gold.webp                                | 738x737                      |  168.6 KB | MD5: 60ca2dec7cb8795803512b46db1a3b62
+[IMAGES     ] peacock-arch.webp                                | 900x1286                     |   66.3 KB | MD5: 25ff8dcb69d799bdf1172de6cdb9db7e
+[IMAGES     ] rashmika-bride-portrait-c4cc91ddfb.jpg           | 1440x1920                    |  264.5 KB | MD5: 491074a51cbd6dd89f3977c74fc3c125
+[IMAGES     ] temple-scenery.png                               | 941x1672                     |  350.3 KB | MD5: 5ab8233bd3c5daae92c0f8f593e3ed28
+[IMAGES     ] video-wall-sm.jpg                                | 1500x1000                    |  390.5 KB | MD5: e8ca15be0ae69bf9e14ae62ed4759653
+[IMAGES     ] video-wall.jpg                                   | 1500x1000                    |  341.8 KB | MD5: c2d0f32700e0452abba3e9671583216c
+[IMAGES     ] vijay-groom-portrait-618dff4e0d.jpg              | 1440x1800                    |  330.4 KB | MD5: 09abfb5cad2cc960bd796501aaf483ad
+[IMAGES     ] yatra-foot-left.png                              | 226x520                      |   42.2 KB | MD5: f95bea67d3f7b7ac8f1252baba5acc8f
+[IMAGES     ] yatra-foot-right.png                             | 226x520                      |   42.4 KB | MD5: 33abe53063c31b10da36963580f26533
+[IMAGES     ] youtube-video-thumb-default.webp                 | 120x90                       |    3.2 KB | MD5: 830fce687cc416dbe5ff901266b72484
+[IMAGES     ] youtube-video-thumb-maxres.jpg                   | 1280x720                     |  136.8 KB | MD5: 73179e76001a53d6fd068845b9a905bd
+[IMAGES     ] youtube-video-thumb-maxres.webp                  | 1280x720                     |   95.9 KB | MD5: ecf07afc3b3953c24999953d783f0aad
+[BANNERS    ] entry-card.jpg                                   | 887x1774                     |  399.1 KB | MD5: ae9ff8ec7d07ffdeb2927399d28dc54d
+[BANNERS    ] footer-card.jpg                                  | 951x1576                     |  371.9 KB | MD5: 6ed762afff151d10849b81497d047cb3
+[BANNERS    ] og-homepage-banner.png                           | 1200x630                     |   88.2 KB | MD5: e0c776b9fa67983647a118523bbb8a96
+[BANNERS    ] toranam-strip.webp                               | 722x240                      |   72.0 KB | MD5: 9a970d7c3971e34353a33285c18faf45
+[LOGOS      ] myshaadhilink-brand.svg                          | Scalable Vector (SVG)        |   239.0 B | MD5: dca10a7317f38503f67f7415071ceb05
+[LOGOS      ] rpk-wedding-logo.webp                            | 514x522                      |  135.4 KB | MD5: e1eed108bf4e54c80097627995f25810
+[LOGOS      ] youtube-brand-logo.svg                           | Scalable Vector (SVG)        |   478.0 B | MD5: 1e78ea4caa31c35bac97a41e5930ffe8
+[ICONS      ] android-chrome-192x192.png                       | 192x192                      |   26.3 KB | MD5: df9a692cf4f35a64072888d1c4cfa2c6
+[ICONS      ] android-chrome-512x512.png                       | 512x512                      |  136.7 KB | MD5: fbc5e32c00a9579acb176f07ea852190
+[ICONS      ] apple-touch-icon.png                             | 180x180                      |   24.0 KB | MD5: beff03d35b0340d8eba5e9daa130a668
+[ICONS      ] couple-bird.svg                                  | Scalable Vector (SVG)        |   185.0 B | MD5: 663d26e219e17bc22174212533d2326f
+[ICONS      ] events-timeline-path.svg                         | Scalable Vector (SVG)        |   247.0 B | MD5: bea3c34aa8f836d2e2b6d7a54f1d0bd3
+[ICONS      ] favicon-16x16.png                                | 16x16                        |    2.7 KB | MD5: 66db3588705844d6ee2957fb4d522a11
+[ICONS      ] favicon-32x32.png                                | 32x32                        |    3.7 KB | MD5: 996d0e7982a9fff7b0ae811b170c12b0
+[ICONS      ] favicon.ico                                      | 32x32                        |    3.7 KB | MD5: 996d0e7982a9fff7b0ae811b170c12b0
+[ICONS      ] km-audio-off.png                                 | 256x256                      |   42.0 KB | MD5: ff29c0560729eaa6b474154d90277489
+[ICONS      ] km-audio-on.png                                  | 256x256                      |   42.3 KB | MD5: cb1e23a4b2699825327a0ce30918e778
+[ICONS      ] lightbox-close.svg                               | Scalable Vector (SVG)        |   273.0 B | MD5: c86513e11dabb9244473acc57067a9a8
+[ICONS      ] lightbox-next.svg                                | Scalable Vector (SVG)        |   232.0 B | MD5: 8da32c1dafdef3fb0a83577fb949ec56
+[ICONS      ] lightbox-prev.svg                                | Scalable Vector (SVG)        |   233.0 B | MD5: 393b29eed2555e56ee6b973b4cdd4a22
+[ICONS      ] map-pin.svg                                      | Scalable Vector (SVG)        |   360.0 B | MD5: 2097c2e2c50257a03aa3ebadd421a4fe
+[ICONS      ] rsvp-diamond-marker.svg                          | Scalable Vector (SVG)        |   121.0 B | MD5: fb18309c144a99f36ca28f237eebce81
+[BACKGROUNDS] arch-photo-mask-mirrored.png                     | 1226x1751                    |   30.9 KB | MD5: e7e22ab30533984084b2b8240d2bba89
+[BACKGROUNDS] arch-photo-mask.png                              | 1226x1751                    |   31.0 KB | MD5: 24ce3941026d4de7ef49293f51b5f731
+[BACKGROUNDS] border-corner-bl.png                             | 228x228                      |   74.7 KB | MD5: e716563ab64197fed34cf9266b221659
+[BACKGROUNDS] border-corner-br.png                             | 228x228                      |   74.9 KB | MD5: 4385be8625c4657b586e1a86f6d746e6
+[BACKGROUNDS] border-corner-tl.png                             | 228x228                      |   75.7 KB | MD5: 88ab6a4b9333d7cdd2e9179e2ef2e5e0
+[BACKGROUNDS] border-corner-tr.png                             | 228x228                      |   76.1 KB | MD5: 1385a6dc98c1e342afa4a783b518fcf5
+[BACKGROUNDS] border-rail-bottom.png                           | 289x228                      |  104.6 KB | MD5: 8ee6af9a37b8f5e56b76c0b10c9217d6
+[BACKGROUNDS] border-rail-left.png                             | 228x300                      |  108.9 KB | MD5: 250fad2e5c7bd9288677e4ce564b97ad
+[BACKGROUNDS] border-rail-right.png                            | 228x300                      |  109.0 KB | MD5: cd99c2ee8a3eb8e12bf421c67863a07f
+[BACKGROUNDS] border-rail-top.png                              | 294x228                      |  105.7 KB | MD5: 59950889cce00d7b30fdc526716c327e
+[BACKGROUNDS] kolam-tile.png                                   | 314x314                      |    7.8 KB | MD5: ef5692bc256dee20a871a8e78c99a6b6
+[BACKGROUNDS] pattu-silk-tile.png                              | 540x460                      |   88.3 KB | MD5: 291578ccb5689e6eeae66beed16e0d85
+[FONTS      ] font-1e41be92c43b3255.woff2                      | Vector Typography (WOFF2)    |   36.6 KB | MD5: b7627e3c9663757d70121f2ad4c8d986
+[FONTS      ] font-5924d7180a413da6.woff2                      | Vector Typography (WOFF2)    |   13.9 KB | MD5: dc6fd559e41d5021de35e485f93be20c
+[FONTS      ] font-636a5ac981f94f8b-p.woff2                    | Vector Typography (WOFF2)    |   26.6 KB | MD5: 52d04440a9faae0db9adc6cdc844099b
+[FONTS      ] font-6c32053678f0295c.woff2                      | Vector Typography (WOFF2)    |   27.4 KB | MD5: 98b44e1ff3ee41a88f024d6ef29b9192
+[FONTS      ] font-73fd63d6adb7b86c.woff2                      | Vector Typography (WOFF2)    |  124.3 KB | MD5: 9430a72db5ed3e37d791e98abc6c63fc
+[FONTS      ] font-78d0dd042ac6d54d-p.woff2                    | Vector Typography (WOFF2)    |   38.0 KB | MD5: f5051d38185e951dfa27454a87b267a7
+[FONTS      ] font-7b89a4fd5e90ede0-p.woff2                    | Vector Typography (WOFF2)    |   36.9 KB | MD5: ec4225ec161bd5285480b6b197e10b2b
+[FONTS      ] font-87069f06a4f1ee13-p.woff2                    | Vector Typography (WOFF2)    |   28.9 KB | MD5: 6fc3675205ef995591f1a196d1c128bb
+[FONTS      ] font-8760c4774489e4ba.woff2                      | Vector Typography (WOFF2)    |   23.9 KB | MD5: b222d83cc2747abdbac1b5b7b976194c
+[FONTS      ] font-a273567b21a7c318-p.woff2                    | Vector Typography (WOFF2)    |   25.3 KB | MD5: 7a5ca92015241c3c4667e78d6071dbfc
+[FONTS      ] font-a736042c9ebfac04-p.woff2                    | Vector Typography (WOFF2)    |   25.8 KB | MD5: d8b5ed6f46f811fbbdea2d41002eb003
+[FONTS      ] font-af4bf8399d1aacdf.woff2                      | Vector Typography (WOFF2)    |   35.7 KB | MD5: 1e6b6cdca8d31530d3519768cbd4825a
+[FONTS      ] font-e18f83c737786aa7-p.woff2                    | Vector Typography (WOFF2)    |   38.4 KB | MD5: b0fa095eb2a6dcb5c16b01bd4497711c
+[FONTS      ] font-eaead17c7dbfcd5d.woff2                      | Vector Typography (WOFF2)    |   37.6 KB | MD5: 6da252de0cbc8a69b5d5c2e0e3f67722
+[FONTS      ] font-roboto-latin.woff2                          | Vector Typography (WOFF2)    |   33.9 KB | MD5: 4746809ed1c17447d45d2a96c64796d4
+[VIDEOS     ] hero-procession-bg-2x-hevc.mp4                   | 2168x3824 (9:16 UHD Vertical Video) |    4.3 MB | MD5: dd0d147524199a5aca139bd8214edfde
+[VIDEOS     ] hero-procession-bg-2x-v2.mp4                     | 2168x3824 (9:16 UHD Vertical Video) |    7.8 MB | MD5: 8c57c2d3ef83713d5122602c83f97f4a
+[VIDEOS     ] hero-procession-bg-hevc.mp4                      | 1626x2868 (9:16 HD Vertical Video) |    2.9 MB | MD5: 530fbd2c6f5ae6ffb25b4e27ac566890
+[VIDEOS     ] hero-procession-bg-v2.mp4                        | 1626x2868 (9:16 HD Vertical Video) |    5.4 MB | MD5: ae8c58e77329f3cc97059171f383160b
+[VIDEOS     ] wedding-invitation-soundtrack-ybhogam-lyrical.mp3 | Audio Stream (128 kbps stereo) |    3.9 MB | MD5: a690747c61c7ee3a8f29147f5f831d66
+[CSS        ] 061626effb924be2.css                             | CSS Stylesheet               |   60.0 KB | MD5: 16b4a043535a4fe596ab4923145fd4d6
+[CSS        ] 30d60975c3acb472.css                             | CSS Stylesheet               |   19.5 KB | MD5: 414a2c6201d9a324b697a24fee6025bd
+[CSS        ] 4d774ff9bca78052.css                             | CSS Stylesheet               |   43.7 KB | MD5: 52266817557386c7523eec0a061196cc
+[CSS        ] 4e42ba5200776c61.css                             | CSS Stylesheet               |   25.6 KB | MD5: 52f735e848c27ab1bfd04ae2e6e1d3c7
+[CSS        ] 5cead55fdd2f3772.css                             | CSS Stylesheet               |   29.0 KB | MD5: d16c71a36393fd985edfb7f3a579f0eb
+[CSS        ] 7fa75a07104e2006.css                             | CSS Stylesheet               |   20.6 KB | MD5: e89e686d8aceaa0ea6a4b5f89b5163d9
+[CSS        ] 81e6bcde95d55310.css                             | CSS Stylesheet               |   46.9 KB | MD5: a04a46daf87dd9699b4ced9d5c2215a2
+[CSS        ] 8a2ba4ee77c0e6e4.css                             | CSS Stylesheet               |   48.1 KB | MD5: 1b21b9425f34ee9fe881bbf109ff1fb1
+[CSS        ] 8a3a291f54b0fc65.css                             | CSS Stylesheet               |   57.7 KB | MD5: 31f6fa83324dac1d8f01c8e1a88d9ecd
+[CSS        ] 8baf6eb542ed34fc.css                             | CSS Stylesheet               |   32.4 KB | MD5: 285892df8f6076bb2b4eff7b7a8ded4b
+[CSS        ] 904338649fbe98d7.css                             | CSS Stylesheet               |   42.8 KB | MD5: 6d590c5d737ae4e1fcc40bfecda8bf07
+[CSS        ] 977682f4bb13712f.css                             | CSS Stylesheet               |   28.1 KB | MD5: 30d4852be1968ec8c9fc6c04114addfd
+[CSS        ] a73839f60502ed87.css                             | CSS Stylesheet               |   28.6 KB | MD5: c92b7f90cf7f889a3a3b55a0245de15a
+[CSS        ] bdb06ee5848cc691.css                             | CSS Stylesheet               |   56.5 KB | MD5: 8a974b0ee70419a5666e774cd973e508
+[CSS        ] eae701d83bf709f4.css                             | CSS Stylesheet               |   24.1 KB | MD5: bb85de274917581f4bc5b1ef9be19e07
+[CSS        ] eeb1a55b8a72ca5e.css                             | CSS Stylesheet               |   46.5 KB | MD5: 374428f24da84322c5916a1e56046ac5
+[JS         ] 1255-965f46c587a492c4.js                         | JavaScript Bundle            |  169.5 KB | MD5: f2b70de75019fbd5a68580434db4653f
+[JS         ] 1356-a3d7192c15db1e15.js                         | JavaScript Bundle            |   13.3 KB | MD5: acdac639fc7defef932026da6185072a
+[JS         ] 1540-1e7eddb3228c5405.js                         | JavaScript Bundle            |   29.0 KB | MD5: 9fcc750886e054ba3b27e856887a8265
+[JS         ] 269-66ec038d87e94c78.js                          | JavaScript Bundle            |   79.9 KB | MD5: f97df6a5176581d957f80f8cf8cabad8
+[JS         ] 2932-24637e0edf8d3990.js                         | JavaScript Bundle            |  283.4 KB | MD5: 45b2938f6617743aadcbf5d9f20a3c1e
+[JS         ] 4bd1b696-16dcc2bec6e1bff8.js                     | JavaScript Bundle            |  169.0 KB | MD5: 65b1d2e7d192bfa31dc09bd69370a4d3
+[JS         ] c15bf2b0-08288913d619f687.js                     | JavaScript Bundle            |   50.2 KB | MD5: 5a40b7f7fc67ce6600efcd5d8c16b2c3
+[JS         ] error-b3dab580a1e708b6.js                        | JavaScript Bundle            |    2.0 KB | MD5: ccb6550b7163e3b60731753ca82ff430
+[JS         ] layout-2f37d8a17e7932d7.js                       | JavaScript Bundle            |   15.3 KB | MD5: 20d75826622b1d6329fc660339e8d1b4
+[JS         ] main-app-4a99a8316d93e51b.js                     | JavaScript Bundle            |   626.0 B | MD5: d9e2c45aebf85c37570f64f99eab7ace
+[JS         ] page-e503e4b696a43189.js                         | JavaScript Bundle            |  690.0 KB | MD5: e11ff0f12ed17ab8a8dc3d6d997f6d4a
+[JS         ] polyfills-42372ed130431b0a.js                    | JavaScript Bundle            |  110.0 KB | MD5: 846118c33b2c0e922d7b3a7676f81f6f
+[JS         ] webpack-c355c57d28ff85a5.js                      | JavaScript Bundle            |    4.2 KB | MD5: 5786fa0a328c7d2d392fb14fb568bcea

@@ -1,42 +1,39 @@
 /* ==========================================================================
-   WEDDING INVITATION - VIJAY & RASHMIKA
-   Authentic South Indian & Traditional Theme Stylesheet
+   VIJAY & RASHMIKA - WEDDING INVITATION (KALYANA MANDAPAM THEME)
+   Exact Recreation using Original Extracted Assets & Styling Stack
    ========================================================================== */
 
 :root {
-  /* Exact Traditional Color Palette */
-  --bg-parchment: #FFF1CD;
-  --bg-parchment-light: #FFF8E7;
-  --bg-parchment-warm: #F6E7BD;
-  --bg-card: #FDF4DB;
-  
-  --text-maroon: #873A35;
-  --text-maroon-dark: #672622;
-  --text-maroon-light: #A34842;
-  --text-brown: #79583A;
-  --text-brown-muted: #8F6D4E;
-  
-  --gold-antique: #C89B43;
-  --gold-bright: #DDA84E;
-  --gold-dark: #A67D2E;
-  --gold-soft: #E8CA83;
-  --gold-line: rgba(200, 155, 67, 0.45);
+  /* Authentic Color Palette */
+  --km-parchment: #fbeeb8;
+  --km-parchment-deep: #f3e19c;
+  --km-stone-base: #e9bc8a;
+  --km-stone-shadow: #ae8252;
+  --km-stone-highlight: #fbeebe;
+  --km-maroon: #9a1b41;
+  --km-maroon-deep: #711433;
+  --km-green: #3f4a26;
+  --km-gold: #c9932f;
+  --km-ink: #2b1608;
 
-  --accent-terracotta: #C85A32;
-  --foliage-green: #3F6D28;
+  --km-shadow-soft: 0 14px 30px rgba(43,22,8,0.16);
+  --km-shadow-strong: 0 24px 48px rgba(43,22,8,0.28);
+  --km-radius-md: 16px;
+  --km-radius-lg: 26px;
+
+  --km-frame-w: clamp(14px, 4.2vw, 26px);
 
   /* Typography */
-  --font-cursive: 'Great Vibes', 'Alex Brush', cursive;
-  --font-serif-heading: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-  --font-serif-body: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
-  --font-telugu: 'Noto Serif Telugu', serif;
-
-  /* Proportions */
-  --site-max-width: 480px;
+  --km-font-cinzel: "Cinzel", serif;
+  --km-font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --km-font-marcellus: "Marcellus", serif;
+  --km-font-script: "Great Vibes", cursive;
+  --km-font-telugu: "Noto Serif Telugu", serif;
+  --km-font-playfair: "Playfair Display", Georgia, serif;
 }
 
-/* Reset & Base Styles */
-* {
+/* Reset & Mobile-First Foundation */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -46,15 +43,16 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: #241411; /* Warm dark antique backdrop for desktop framing */
+  background-color: #2b1608;
 }
 
-body {
-  font-family: var(--font-serif-body);
-  background: radial-gradient(circle at 50% 30%, #381E19 0%, #20100D 100%);
-  color: var(--text-brown);
-  line-height: 1.5;
+body.km-body {
+  font-family: var(--km-font-cormorant);
+  background: radial-gradient(circle at 50% 30%, #3a1c0d 0%, #1e0e05 100%);
+  color: var(--km-ink);
+  line-height: 1.6;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -62,754 +60,872 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Outer Desktop Frame to preserve authentic mobile proportions */
-.site-wrapper {
+/* Desktop Presentation Frame (Keeps authentic mobile proportions perfectly preserved) */
+.site-outer-frame {
   width: 100%;
-  max-width: var(--site-max-width);
+  max-width: 520px;
   min-height: 100vh;
-  background-color: var(--bg-parchment);
-  background-image: 
-    radial-gradient(circle at 50% 20%, var(--bg-parchment-light) 0%, var(--bg-parchment) 65%, var(--bg-parchment-warm) 100%);
+  min-height: 100dvh;
+  background-color: var(--km-parchment);
   position: relative;
-  box-shadow: 0 0 45px rgba(0, 0, 0, 0.4), 0 0 15px rgba(200, 155, 67, 0.25);
-  border-left: 1px solid rgba(200, 155, 67, 0.35);
-  border-right: 1px solid rgba(200, 155, 67, 0.35);
-  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 147, 47, 0.25);
+  border-left: 1px solid rgba(201, 147, 47, 0.35);
+  border-right: 1px solid rgba(201, 147, 47, 0.35);
+  overflow-x: clip;
 }
 
-/* Generic Screen Section */
-.screen-section {
+.kalyana-mandapam {
   position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  background: var(--km-parchment);
+  color: var(--km-ink);
+}
+
+.km-container {
+  z-index: 2;
+  width: min(100% - 2rem, 460px);
+  margin-inline: auto;
+  position: relative;
+}
+
+.km-section {
+  position: relative;
+  width: 100%;
 }
 
 /* ==========================================================================
-   FLOATING MUSIC BUTTON (Authentic Indian Dholak Drum Icon)
+   FLOATING AUDIO BELL (km-bell)
    ========================================================================== */
-.floating-music-btn {
+.km-bell {
   position: fixed;
-  bottom: 22px;
-  right: calc(50% - 220px);
-  z-index: 999;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFF0C8 0%, #F5DE9C 60%, #E0BF6A 100%);
-  border: 2px solid var(--gold-antique);
-  box-shadow: 0 4px 15px rgba(103, 38, 34, 0.35), 0 0 12px rgba(221, 168, 78, 0.4);
+  right: calc(50% - 235px);
+  bottom: 20px;
+  z-index: 100;
+  padding: 0;
+  border: 0;
+  background: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
 }
 
-@media (max-width: 500px) {
-  .floating-music-btn {
+@media (max-width: 520px) {
+  .km-bell {
     right: 16px;
-    bottom: 20px;
+    bottom: 16px;
   }
 }
 
-.floating-music-btn:hover {
+.km-bell:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 18px rgba(103, 38, 34, 0.45);
 }
 
-.floating-music-btn:active {
-  transform: scale(0.96);
+.km-bell:active {
+  transform: scale(0.95);
 }
 
-.music-icon-wrap {
-  width: 32px;
-  height: 32px;
+.km-bell__disc {
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.dholak-icon {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Pulsing audio rings when active */
-.floating-music-btn.playing .sound-wave-ring {
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  border: 1.5px solid var(--gold-bright);
-  animation: pulse-ring 2s infinite ease-out;
-  pointer-events: none;
+  background: #fbebb3;
+  box-shadow: 0 0 0 1px rgba(201, 147, 47, 0.32), var(--km-shadow-soft);
+  transition: box-shadow 0.22s ease;
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1.35); opacity: 0; }
+.km-bell--playing .km-bell__disc {
+  box-shadow: 0 0 0 1px rgba(201, 147, 47, 0.5), 0 0 0 6px rgba(201, 147, 47, 0.16), var(--km-shadow-soft);
+  animation: bell-pulse 2s infinite ease-in-out;
+}
+
+@keyframes bell-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.km-bell__icon {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  display: block;
 }
 
 /* ==========================================================================
-   SECTION 1: HERO / OPENING INVITATION SCREEN
+   OPENING INVITATION HERO SCREEN (km-entry)
    ========================================================================== */
-.cover-screen {
-  min-height: 100vh;
-  justify-content: space-between;
-  padding: 24px 20px 0;
-  background-color: var(--bg-parchment);
-  position: relative;
-  z-index: 10;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.km-entry {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-/* Mandala Background Watermark */
-.mandala-bg {
+.km-entry--closing {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.km-entry__veil {
   position: absolute;
-  top: 130px;
+  inset: 0;
+  background: #fdefc8;
+}
+
+.km-entry__card {
+  position: absolute;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 440px;
-  height: 440px;
-  background-image: url('assets/images/mandala_watermark.svg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.16;
-  pointer-events: none;
-  z-index: 1;
+  width: min(100vw, 520px);
+  aspect-ratio: 887 / 1774;
+  height: 100%;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
-/* Top Left Banana Plant */
-.decor-top-left-banana {
+.km-entry__art {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 135px;
-  height: auto;
-  pointer-events: none;
-  z-index: 2;
-  filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.06));
-}
-
-/* Top Right Marigold Torans */
-.decor-top-right-garland {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 82px;
-  height: auto;
-  pointer-events: none;
-  z-index: 2;
-  filter: drop-shadow(-1px 2px 4px rgba(0,0,0,0.06));
-}
-
-/* Ganesha Emblem */
-.ganesha-emblem-wrap {
-  margin-top: 10px;
-  z-index: 3;
-}
-
-.ganesha-gold-img {
-  width: 68px;
-  height: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
   display: block;
-  margin: 0 auto;
+}
+
+.km-entry__bloom {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: 120vmax;
+  height: 120vmax;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 249, 224, 0.92) 0, rgba(255, 243, 205, 0.5) 32%, rgba(251, 235, 179, 0) 62%);
+  pointer-events: none;
+}
+
+.km-entry__mandala {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(84%, 400px);
+  height: auto;
+  opacity: 0.16;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.km-entry__content {
+  position: absolute;
+  top: 14%;
+  bottom: 48%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: min(82%, 420px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.km-entry__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.km-entry__label {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(10px, 2.9vw, 13px);
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  color: var(--km-maroon);
+  margin-bottom: 0.4em;
   opacity: 0.88;
 }
 
-/* Cover Text Content */
-.cover-content {
-  position: relative;
-  z-index: 4;
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.invitation-intro {
-  font-family: var(--font-serif-heading);
-  font-size: 0.92rem;
-  letter-spacing: 0.28em;
-  color: var(--text-brown);
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.couple-hero-names {
-  font-family: var(--font-cursive);
-  font-size: 3.5rem;
+.km-entry__names {
+  font-family: var(--km-font-script);
+  font-size: clamp(34px, 11vw, 56px);
   line-height: 1.05;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 18px;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.couple-hero-names .ampersand {
-  font-size: 1.8rem;
-  font-family: var(--font-serif-body);
-  font-style: italic;
-  line-height: 0.9;
-  color: var(--text-maroon-dark);
-  margin: -2px 0;
+.km-entry__amp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  width: 100%;
+  margin: 0.05em 0;
+  font-size: 0.4em;
+  line-height: 1;
+  color: var(--km-gold);
+  font-family: var(--km-font-cormorant);
 }
 
-.hero-date {
-  font-family: var(--font-serif-heading);
-  font-size: 0.96rem;
-  font-weight: 600;
+.km-entry__amp::before,
+.km-entry__amp::after {
+  content: "";
+  height: 1px;
+  width: 2em;
+  background: linear-gradient(90deg, rgba(201, 147, 47, 0), rgba(201, 147, 47, 0.85));
+}
+
+.km-entry__amp::after {
+  transform: scaleX(-1);
+}
+
+.km-entry__meta {
+  gap: 0.5em;
+}
+
+.km-entry__date {
+  font-family: var(--km-font-cinzel);
+  font-size: clamp(11px, 3.4vw, 15px);
   letter-spacing: 0.22em;
-  color: var(--text-brown);
-  margin-bottom: 8px;
+  text-indent: 0.22em;
+  color: var(--km-ink);
+  font-weight: 600;
 }
 
-.hero-venue {
-  font-family: var(--font-serif-heading);
-  font-size: 0.78rem;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.16em;
-  color: var(--text-brown);
+.km-entry__city {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(8.5px, 2.5vw, 11px);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
   text-transform: uppercase;
-  max-width: 320px;
+  color: var(--km-green);
+  opacity: 0.82;
+  max-width: 280px;
+  line-height: 1.45;
+}
+
+.km-entry__cta {
+  pointer-events: auto;
+  padding: 0;
+  border: 0;
+  background: var(--km-maroon-deep);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(43, 22, 8, 0.26);
+  transition: background 0.22s ease, transform 0.22s ease;
+  margin-top: 10px;
+}
+
+.km-entry__cta-inner {
+  display: block;
+  margin: 3px;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(10px, 2.9vw, 13px);
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+  color: #fbeeb8;
+  box-shadow: inset 0 0 0 1px rgba(201, 147, 47, 0.85);
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.km-entry__cta:hover {
+  background: var(--km-maroon);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   AUTHENTIC ETHNIC FRAME SYSTEM (Corners + Rails)
+   ========================================================================== */
+.km-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.km-frame-corner {
+  position: absolute;
+  width: var(--km-frame-w);
+  height: var(--km-frame-w);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.km-frame-corner--tl { top: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-tl.png'); }
+.km-frame-corner--tr { top: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-tr.png'); }
+.km-frame-corner--bl { bottom: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-bl.png'); }
+.km-frame-corner--br { bottom: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-br.png'); }
+
+.km-frame-rail {
+  position: absolute;
+  background-repeat: round;
+}
+
+.km-frame-rail--top {
+  top: 0;
+  left: var(--km-frame-w);
+  right: var(--km-frame-w);
+  height: var(--km-frame-w);
+  background-size: auto 100%;
+  background-image: url('assets/kalyana-mandapam/border/rail-top.png');
+}
+
+.km-frame-rail--bottom {
+  bottom: 0;
+  left: var(--km-frame-w);
+  right: var(--km-frame-w);
+  height: var(--km-frame-w);
+  background-size: auto 100%;
+  background-image: url('assets/kalyana-mandapam/border/rail-bottom.png');
+}
+
+.km-frame-rail--left {
+  left: 0;
+  top: var(--km-frame-w);
+  bottom: var(--km-frame-w);
+  width: var(--km-frame-w);
+  background-size: 100% auto;
+  background-image: url('assets/kalyana-mandapam/border/rail-left.png');
+}
+
+.km-frame-rail--right {
+  right: 0;
+  top: var(--km-frame-w);
+  bottom: var(--km-frame-w);
+  width: var(--km-frame-w);
+  background-size: 100% auto;
+  background-image: url('assets/kalyana-mandapam/border/rail-right.png');
+}
+
+/* Common Section Head */
+.km-section-head {
+  text-align: center;
   margin-bottom: 24px;
 }
 
-/* Open Invitation CTA Button */
-.open-invitation-btn {
-  font-family: var(--font-serif-heading);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: #FFF2D1;
-  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
-  border: 1.5px solid var(--gold-antique);
-  padding: 13px 36px;
-  border-radius: 40px;
-  box-shadow: 0 5px 16px rgba(103, 38, 34, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  outline: none;
-}
-
-.open-invitation-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 20px rgba(103, 38, 34, 0.5);
-  background: linear-gradient(180deg, #A8383B 0%, #85272B 100%);
-}
-
-.open-invitation-btn:active {
-  transform: translateY(1px);
-}
-
-/* Bottom Sita Rama Kalyanam & Gopuram */
-.cover-bottom-artwork {
+.km-toranam-wrap {
   width: 100%;
-  margin-top: 14px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
-.temple-kalyanam-img {
+.km-toranam-img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.km-divider-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0;
+}
+
+.km-divider-img {
+  width: min(72%, 340px);
+  height: auto;
+  display: block;
+  opacity: 0.9;
 }
 
 /* ==========================================================================
-   MAIN INVITATION CONTENT FLOW
+   SECTION 1: CEREMONIAL HERO & ROYAL DURBAR
    ========================================================================== */
-.main-invitation-content {
-  width: 100%;
-  position: relative;
-  display: block;
+.km-hero-section {
+  padding-bottom: 0;
+  background: var(--km-parchment);
 }
 
-/* Top Ceremony Section */
-.ceremonial-section {
-  padding-bottom: 12px;
-}
-
-.top-ceremony-banner {
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.garland-banner-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.ceremonial-header-content {
-  padding: 0 20px;
+.km-hero__inner {
+  text-align: center;
+  padding: 10px 16px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ganesha-red-wrap {
-  margin-bottom: 4px;
+.km-hero__invocation {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(0.72rem, 3vw, 0.92rem);
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: var(--km-maroon);
+  margin-bottom: 8px;
 }
 
-.ganesha-red-img {
-  width: 60px;
-  height: auto;
-  display: block;
-}
-
-.shree-ganesh-text {
-  font-family: var(--font-serif-heading);
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-  color: var(--text-maroon);
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-.ceremony-couple-names {
-  font-family: var(--font-cursive);
-  font-size: 3.4rem;
+.km-hero__names {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.6rem, 10vw, 4rem);
   line-height: 1.05;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.ceremony-couple-names .name-amp {
-  font-size: 1.8rem;
-  font-family: var(--font-serif-body);
+.km-hero__names-amp {
+  font-family: var(--km-font-cormorant);
+  font-size: 0.45em;
   font-style: italic;
-  color: var(--text-maroon-dark);
-  margin: -4px 0;
+  color: var(--km-gold);
+  margin: -6px 0;
 }
 
-.ceremony-date {
-  font-family: var(--font-serif-heading);
-  font-size: 1.08rem;
-  color: var(--text-brown);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-
-.ceremony-venue {
-  font-family: var(--font-serif-heading);
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  color: var(--text-maroon);
-  text-transform: uppercase;
-  max-width: 380px;
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-
-.ceremony-venue em {
-  font-style: italic;
-  text-transform: lowercase;
-  font-family: var(--font-serif-body);
-  color: var(--text-brown);
-  font-size: 0.95rem;
-}
-
-.ornament-divider-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 10px 0 16px;
-}
-
-.ornament-divider-img {
-  width: 250px;
-  height: auto;
-  opacity: 0.85;
-}
-
-.royal-court-artwork {
-  width: 100%;
-  margin-top: 8px;
-}
-
-.royal-court-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ==========================================================================
-   ETHNIC BORDER FRAME SYSTEM
-   ========================================================================== */
-.ethnic-frame-wrap {
-  position: relative;
-  background-color: var(--bg-card);
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-image: repeating-linear-gradient(
-    90deg,
-    #6B2022 0px,
-    #6B2022 14px,
-    #A06822 14px,
-    #A06822 20px,
-    #DDB357 20px,
-    #DDB357 32px,
-    #6B2022 32px
-  ) 12;
-  box-shadow: inset 0 0 0 1px rgba(200, 155, 67, 0.35);
-  margin: 12px 0;
-  padding: 26px 18px;
-}
-
-.section-heading-block {
-  margin-bottom: 22px;
-}
-
-.section-title {
-  font-family: var(--font-serif-heading);
-  font-size: 1.95rem;
-  color: var(--text-maroon);
-  font-weight: 500;
+.km-hero__date {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+  color: var(--km-green);
   letter-spacing: 0.05em;
   margin-bottom: 4px;
 }
 
-.section-title.script-title {
-  font-family: var(--font-cursive);
-  font-size: 2.9rem;
-  line-height: 1.1;
-  font-weight: 400;
+.km-hero__venue {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(0.74rem, 2.7vw, 0.88rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--km-maroon-deep);
+  line-height: 1.45;
+  max-width: 380px;
 }
 
-.section-subtitle {
-  font-family: var(--font-serif-body);
-  font-size: 1.05rem;
+.km-hero__venue em {
   font-style: italic;
-  color: var(--text-brown);
-  max-width: 320px;
-  margin: 0 auto;
+  font-family: var(--km-font-cormorant);
+  text-transform: lowercase;
+  color: var(--km-ink);
+  font-size: 1.1em;
+}
+
+.km-hero__artwork {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.km-temple-scenery-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ==========================================================================
    SECTION 2: THE COUPLE
    ========================================================================== */
-.couple-section {
-  padding-top: 28px;
-  padding-bottom: 32px;
+.km-couple {
+  background: #fbebb3;
+  padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 2.5rem);
 }
 
-.person-card {
+.km-couple__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 12px;
-  width: 100%;
-}
-
-.arch-portrait-container {
-  width: 320px;
-  max-width: 90%;
-  margin: 0 auto 14px;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(121, 88, 58, 0.15);
-}
-
-.arch-peacock-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.person-name {
-  font-family: var(--font-cursive);
-  font-size: 2.5rem;
-  line-height: 1.15;
-  color: var(--text-maroon);
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-
-.relation-label {
-  font-family: var(--font-serif-heading);
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  color: var(--text-brown);
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.parents-names {
-  font-family: var(--font-serif-body);
-  font-size: 1.02rem;
-  line-height: 1.4;
-  color: var(--text-brown-muted);
   text-align: center;
 }
 
-.couple-divider {
-  margin: 22px 0 20px;
+.km-couple__heading {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--km-maroon-deep);
+  margin-bottom: 0.3rem;
+}
+
+.km-couple__sub {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-style: italic;
+  color: var(--km-green);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.km-couple__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.km-couple__card {
+  position: relative;
+  width: min(74vw, 310px);
+  aspect-ratio: 1226 / 1751;
+  margin: 0 auto;
+}
+
+.km-couple__ornament {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.km-couple__photo-window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.km-couple__photo-window--groom {
+  -webkit-mask-image: url('assets/kalyana-mandapam/arch-photo-mask-mirrored.png');
+  mask-image: url('assets/kalyana-mandapam/arch-photo-mask-mirrored.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.km-couple__photo-window--bride {
+  -webkit-mask-image: url('assets/kalyana-mandapam/arch-photo-mask.png');
+  mask-image: url('assets/kalyana-mandapam/arch-photo-mask.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.km-couple__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.35) translateY(26%) !important;
+  transform-origin: 50% 20%;
+}
+
+.km-couple__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.1rem;
+}
+
+.km-couple__name {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.2rem, 8vw, 3rem);
+  line-height: 1.15;
+  color: var(--km-maroon-deep);
+  font-weight: 400;
+}
+
+.km-couple__parent-label {
+  font-family: var(--km-font-marcellus);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  text-transform: uppercase;
+  color: var(--km-gold);
+  font-weight: 600;
+}
+
+.km-couple__parents {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  line-height: 1.35;
+  color: var(--km-green);
+  text-align: center;
+}
+
+.km-couple__parent-line {
+  display: block;
+}
+
+.km-couple__divider {
+  margin: 1.8rem 0;
 }
 
 /* ==========================================================================
    SECTION 3: ARCHITECTURAL COUNTDOWN (OUR MUHURTHAM IN)
    ========================================================================== */
-.countdown-section {
-  width: 100%;
-  margin: 8px 0;
-  background-color: #DEB873;
-}
-
-.stone-arch-container {
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.km-countdown {
+  background: #fbebb3;
+  padding: 0;
   overflow: hidden;
 }
 
-.stone-arch-bg {
+.km-countdown__stage {
+  position: relative;
+  width: 100%;
+}
+
+.km-countdown__panel {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
 }
 
-.countdown-niches-grid {
+.km-countdown__unit {
   position: absolute;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -15%);
-  width: 78%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  z-index: 5;
-}
-
-.countdown-niche {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
-.count-number {
-  font-family: var(--font-serif-heading);
-  font-size: 1.45rem;
+.km-countdown__value {
+  font-family: var(--km-font-cinzel);
   font-weight: 700;
-  color: #68291A;
+  font-size: clamp(0.95rem, 5.2vw, 2.2rem);
+  color: #68291a;
   text-shadow: 0 1px 1px rgba(255, 235, 185, 0.85);
   line-height: 1;
-  margin-bottom: 2px;
-}
-
-.count-label {
-  font-family: var(--font-serif-heading);
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: #793D22;
-  text-transform: uppercase;
 }
 
 /* ==========================================================================
    SECTION 4: WEDDING CEREMONIES & TIMELINE (THE WEDDING JOURNEY)
    ========================================================================== */
-.journey-section {
-  padding-bottom: 36px;
+.km-events {
+  position: relative;
+  background: #fbebb3;
+  padding: calc(var(--km-frame-w) + 2rem) 1rem calc(var(--km-frame-w) + 3.2rem);
+  overflow: hidden;
 }
 
-.journey-timeline-container {
+.km-events__kolam {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('assets/kalyana-mandapam/kolam-tile.png');
+  background-size: 160px;
+  opacity: 0.18;
+}
+
+.km-events__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.km-events__heading {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--km-maroon-deep);
+  font-weight: 400;
+}
+
+.km-events__sub {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-style: italic;
+  color: var(--km-green);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.km-events__stage {
   position: relative;
   width: 100%;
-  padding: 10px 10px 20px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 40px;
 }
 
-/* Alta Footsteps Trail */
-.footsteps-trail {
+.km-yatra-trail {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   pointer-events: none;
   z-index: 1;
 }
 
-.footstep-step {
+.km-footstep {
   position: absolute;
-  width: 32px;
-  height: 38px;
-  background-image: url('assets/images/footprints.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.72;
+  width: clamp(14px, 3.6vw, 20px);
+  height: auto;
+  opacity: 0.75;
 }
 
-/* Coordinates matching the S-curve trail in the video */
-.step-1 { top: 3%; left: 47%; transform: rotate(10deg); }
-.step-2 { top: 12%; left: 42%; transform: rotate(-25deg); }
-.step-3 { top: 22%; left: 34%; transform: rotate(-45deg); }
-.step-4 { top: 38%; left: 45%; transform: rotate(25deg); }
-.step-5 { top: 50%; left: 56%; transform: rotate(45deg); }
-.step-6 { top: 64%; left: 46%; transform: rotate(-35deg); }
-.step-7 { top: 76%; left: 38%; transform: rotate(-55deg); }
-.step-8 { top: 90%; left: 48%; transform: rotate(20deg); }
+.km-footstep--1 { top: 4%; left: 48%; transform: rotate(10deg); }
+.km-footstep--2 { top: 15%; left: 43%; transform: rotate(-25deg); }
+.km-footstep--3 { top: 28%; left: 36%; transform: rotate(-45deg); }
+.km-footstep--4 { top: 42%; left: 46%; transform: rotate(25deg); }
+.km-footstep--5 { top: 56%; left: 58%; transform: rotate(45deg); }
+.km-footstep--6 { top: 70%; left: 46%; transform: rotate(-30deg); }
+.km-footstep--7 { top: 82%; left: 38%; transform: rotate(-50deg); }
+.km-footstep--8 { top: 94%; left: 49%; transform: rotate(15deg); }
 
-/* Timeline Events */
-.timeline-event {
+.km-events__stop {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 14px;
   width: 100%;
 }
 
-.timeline-event.event-left {
+.km-events__stop--left {
   flex-direction: row;
-  text-align: left;
-  padding-left: 12px;
+  padding-left: 6px;
 }
 
-.timeline-event.event-right {
+.km-events__stop--right {
   flex-direction: row-reverse;
-  text-align: right;
-  padding-right: 12px;
+  padding-right: 6px;
 }
 
-.event-icon-circle {
-  width: 72px;
-  height: 72px;
+.km-events__medallion {
+  width: clamp(60px, 16vw, 84px);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(circle, #FFF8E6 50%, #F5E0A9 100%);
-  border: 1.5px solid var(--gold-antique);
-  box-shadow: 0 4px 10px rgba(121, 88, 58, 0.15);
+  background: radial-gradient(circle, #fff7dc 40%, #edd89e 100%);
+  border: 1.5px solid var(--km-gold);
+  box-shadow: 0 4px 12px rgba(43, 22, 8, 0.16);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   padding: 6px;
 }
 
-.event-icon-img {
+.km-events__medallion-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.event-details {
+.km-events__card {
   flex: 1;
+  padding: 0 14px;
 }
 
-.event-name {
-  font-family: var(--font-serif-heading);
-  font-size: 1.25rem;
-  color: var(--text-maroon);
+.km-events__card--left {
+  text-align: left;
+}
+
+.km-events__card--right {
+  text-align: right;
+}
+
+.km-events__name {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(1.15rem, 4.6vw, 1.5rem);
+  line-height: 1.2;
+  color: var(--km-maroon-deep);
   font-weight: 600;
   margin-bottom: 2px;
 }
 
-.event-time {
-  font-family: var(--font-serif-body);
-  font-size: 0.95rem;
-  color: var(--text-brown);
+.km-events__when {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.85rem, 3.2vw, 1rem);
+  color: var(--km-maroon);
+  font-weight: 500;
   margin-bottom: 2px;
 }
 
-.event-location {
-  font-family: var(--font-serif-body);
-  font-size: 0.9rem;
+.km-events__venue {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.82rem, 3vw, 0.94rem);
   font-style: italic;
-  color: var(--text-brown-muted);
+  color: var(--km-ink);
+  opacity: 0.85;
   margin-bottom: 8px;
 }
 
-.view-map-btn {
-  font-family: var(--font-serif-heading);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--text-brown);
-  background: #FFF4D9;
-  border: 1px solid var(--gold-antique);
-  padding: 6px 14px;
-  border-radius: 20px;
-  cursor: pointer;
+.km-events__map {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  gap: 0.4em;
+  padding: 0.35rem 0.95rem;
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(0.7rem, 2.5vw, 0.82rem);
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: var(--km-ink);
+  background: #fdf3d4;
+  border: 1px solid var(--km-gold);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(43, 22, 8, 0.08);
   transition: all 0.2s ease;
 }
 
-.view-map-btn:hover {
-  background: #F7E5BD;
-  color: var(--text-maroon);
-  border-color: var(--gold-dark);
+.km-events__map:hover {
+  background: #f6e3b5;
+  color: var(--km-maroon-deep);
+}
+
+.km-map-pin-icon {
+  width: 12px;
+  height: 12px;
 }
 
 /* ==========================================================================
    SECTION 5: PHOTO GALLERY (BEFORE THE VOWS)
    ========================================================================== */
-.gallery-section {
-  padding: 0 16px 36px;
-}
-
-.gallery-toran-banner {
-  width: 100%;
-  margin-bottom: 12px;
-}
-
-.toran-banner-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.gallery-grid {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.gallery-item {
+.km-gallery {
   position: relative;
-  cursor: pointer;
-}
-
-.photo-frame {
-  position: relative;
-  border: 2px solid var(--gold-antique);
-  border-radius: 4px;
+  background: #fbebb3;
+  padding: clamp(2rem, 8vw, 3.8rem) 1rem;
   overflow: hidden;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  background-color: #E8D3A7;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.photo-frame img {
+.km-gallery__heading {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--km-maroon-deep);
+  font-weight: 400;
+}
+
+.km-gallery__sub {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-style: italic;
+  color: var(--km-green);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.km-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 3vw, 16px);
+  width: 100%;
+  margin-top: 20px;
+}
+
+.km-gallery__cell {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--km-gold);
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+  background: var(--km-parchment-deep);
+  aspect-ratio: 1 / 1.15;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(43, 22, 8, 0.14);
+}
+
+.km-gallery__cell--feature {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+}
+
+.km-gallery__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -817,299 +933,271 @@ body {
   transition: transform 0.4s ease;
 }
 
-.photo-frame:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(103, 38, 34, 0.25);
+.km-gallery__cell:hover .km-gallery__img {
+  transform: scale(1.05);
 }
 
-.photo-frame:hover img {
-  transform: scale(1.03);
-}
-
-.photo-zoom-hint {
+.km-gallery__zoom-badge {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: rgba(255, 241, 205, 0.85);
-  border: 1px solid var(--gold-antique);
+  background: rgba(251, 238, 184, 0.88);
+  border: 1px solid var(--km-gold);
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 0.75rem;
+  justify-content: center;
+  font-size: 0.72rem;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
-.photo-frame:hover .photo-zoom-hint {
+.km-gallery__cell:hover .km-gallery__zoom-badge {
   opacity: 1;
-}
-
-.item-wide .photo-frame {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-}
-
-.gallery-row-double {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  width: 100%;
-}
-
-.item-half .photo-frame {
-  width: 100%;
-  aspect-ratio: 1 / 1.15;
 }
 
 /* ==========================================================================
    SECTION 6: RSVP FORM (BLESS US WITH YOUR PRESENCE)
    ========================================================================== */
-.rsvp-section {
-  padding-bottom: 30px;
+.km-rsvp {
+  position: relative;
+  background: #fbebb3;
+  padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 2.5rem);
 }
 
-.rsvp-form-card {
+.km-rsvp__heading {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.3rem, 8.5vw, 3.2rem);
+  line-height: 1.15;
+  color: var(--km-maroon-deep);
+  font-weight: 400;
+}
+
+.km-rsvp__sub {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-style: italic;
+  color: var(--km-green);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+.km-rsvp__slip {
   width: 100%;
-  max-width: 390px;
-  background: #FFF7E3;
-  border: 1px solid var(--gold-antique);
+  max-width: 420px;
+  margin: 18px auto 0;
+  background: #fff8e5;
+  border: 1px solid var(--km-gold);
   border-radius: 8px;
   padding: 22px 18px;
-  box-shadow: 0 4px 14px rgba(121, 88, 58, 0.1);
+  box-shadow: 0 6px 18px rgba(43, 22, 8, 0.1);
 }
 
-.rsvp-form {
+.km-rsvp__form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  text-align: left;
 }
 
-.form-group {
+.km-rsvp__group {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  text-align: left;
 }
 
-.form-label {
-  font-family: var(--font-serif-heading);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  color: var(--text-brown);
-  text-transform: uppercase;
+.km-rsvp__tag {
+  font-family: var(--km-font-marcellus);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  color: var(--km-maroon);
   font-weight: 600;
 }
 
-.form-input,
-.form-textarea {
+.km-rsvp__input,
+.km-rsvp__textarea {
   width: 100%;
   padding: 10px 14px;
-  background: #FFFDF7;
-  border: 1px solid var(--gold-soft);
+  background: #fffdf8;
+  border: 1px solid rgba(201, 147, 47, 0.6);
   border-radius: 4px;
-  font-family: var(--font-serif-body);
-  font-size: 1rem;
-  color: var(--text-maroon);
+  font-family: var(--km-font-cormorant);
+  font-size: 1.02rem;
+  color: var(--km-maroon-deep);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-input:focus,
-.form-textarea:focus {
-  border-color: var(--gold-dark);
-  box-shadow: 0 0 0 2px rgba(200, 155, 67, 0.25);
+.km-rsvp__input:focus,
+.km-rsvp__textarea:focus {
+  border-color: var(--km-maroon);
+  box-shadow: 0 0 0 2px rgba(154, 27, 65, 0.18);
 }
 
-/* Attendance Radio Options */
-.attendance-options {
+.km-rsvp__options {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 4px 0;
 }
 
-.attendance-option-btn {
+.km-rsvp__option-card {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
-  background: #FFF9E9;
-  border: 1px solid var(--gold-soft);
+  padding: 11px 14px;
+  background: #fdf3d8;
+  border: 1px solid rgba(201, 147, 47, 0.5);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.attendance-option-btn input[type="radio"] {
+.km-rsvp__option-card input[type="radio"] {
   display: none;
 }
 
-.custom-radio-mark {
-  font-size: 1.15rem;
-  color: var(--gold-antique);
-  font-weight: 700;
-  transition: transform 0.2s ease, color 0.2s ease;
+.km-rsvp__diamond-img {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.attendance-option-btn:has(input[type="radio"]:checked) {
-  background: #FDF1D3;
-  border-color: var(--text-maroon);
-  box-shadow: 0 2px 6px rgba(103, 38, 34, 0.12);
+.km-rsvp__option-card:has(input[type="radio"]:checked) {
+  background: #faeac4;
+  border-color: var(--km-maroon-deep);
+  box-shadow: 0 2px 8px rgba(113, 20, 51, 0.12);
 }
 
-.attendance-option-btn:has(input[type="radio"]:checked) .custom-radio-mark {
-  color: var(--text-maroon);
-  transform: scale(1.2);
+.km-rsvp__option-card:has(input[type="radio"]:checked) .km-rsvp__diamond-img {
+  opacity: 1;
+  transform: scale(1.25);
+  filter: drop-shadow(0 1px 2px rgba(113, 20, 51, 0.3));
 }
 
-.option-text {
-  font-family: var(--font-serif-heading);
-  font-size: 0.95rem;
-  color: var(--text-brown);
+.km-rsvp__option-title {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(0.85rem, 3vw, 0.96rem);
+  color: var(--km-ink);
   font-weight: 500;
 }
 
-/* Stepper for Guests */
-.number-stepper {
+/* Stepper */
+.km-stepper {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--gold-antique);
+  border: 1px solid var(--km-gold);
   border-radius: 4px;
   overflow: hidden;
-  width: 140px;
-  background: #FFFDF7;
+  width: 130px;
+  background: #fffdf8;
 }
 
-.stepper-btn {
-  width: 40px;
-  height: 38px;
-  background: #F9ECD0;
+.km-stepper__btn {
+  width: 38px;
+  height: 36px;
+  background: #fbf0d0;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   cursor: pointer;
   transition: background 0.15s ease;
 }
 
-.stepper-btn:hover {
-  background: #F0DCB3;
+.km-stepper__btn:hover {
+  background: #f5e2b0;
 }
 
-.stepper-input {
-  width: 60px;
-  height: 38px;
+.km-stepper__val {
+  width: 54px;
+  height: 36px;
   border: none;
   background: transparent;
   text-align: center;
-  font-family: var(--font-serif-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-maroon);
+  font-family: var(--km-font-cinzel);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--km-maroon-deep);
 }
 
-/* Send RSVP Button */
-.send-rsvp-btn {
-  font-family: var(--font-serif-heading);
+.km-rsvp__submit {
+  font-family: var(--km-font-marcellus);
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.22em;
-  color: #FFF2D1;
-  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
-  border: 1px solid var(--gold-antique);
+  text-indent: 0.22em;
+  color: #fff6d2;
+  background: var(--km-maroon-deep);
+  border: 1px solid var(--km-gold);
   padding: 13px 24px;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(103, 38, 34, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(43, 22, 8, 0.3);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.22s ease;
   width: 100%;
-  text-align: center;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
-.send-rsvp-btn:hover {
-  background: linear-gradient(180deg, #A8383B 0%, #85272B 100%);
-  box-shadow: 0 6px 16px rgba(103, 38, 34, 0.45);
+.km-rsvp__submit:hover {
+  background: var(--km-maroon);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   SECTION 7: OUR STORY & WEDDING FILM
+   SECTION 7: OUR STORY & WEDDING FILM (km-video)
    ========================================================================== */
-.story-section {
-  width: 100%;
-  background-color: #DEB873;
-  margin: 6px 0 16px;
-}
-
-.story-arch-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.story-carved-header {
-  width: 100%;
-}
-
-.story-header-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.story-video-stage {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-  background-color: #D2A85B;
-}
-
-.pillar-left,
-.pillar-right {
-  width: 15%;
-  flex-shrink: 0;
-  display: flex;
-}
-
-.pillar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.story-video-container {
-  width: 70%;
+.km-video {
   position: relative;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #fbebb3;
+  padding: 0;
   overflow: hidden;
 }
 
-.video-poster-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  cursor: pointer;
+.km-video__wall {
+  position: relative;
+  width: 100%;
 }
 
-.video-thumb-img {
+.km-video__wall-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.km-video__opening {
+  position: absolute;
+  left: 14.733%;
+  top: 29.7%;
+  width: 69.667%;
+  height: 59.1%;
+  background: #1a120a;
+  overflow: hidden;
+}
+
+.km-video__player-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.km-video__poster-stage {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.km-video__poster-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.youtube-play-btn {
+.km-video__play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1117,130 +1205,143 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  width: clamp(52px, 12vw, 68px);
+  height: auto;
   transition: transform 0.2s ease;
 }
 
-.youtube-play-btn:hover {
-  transform: translate(-50%, -50%) scale(1.1);
+.km-video__play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.12);
 }
 
-.video-iframe-slot {
+.km-yt-play-icon {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.km-video__iframe-slot {
   width: 100%;
   height: 100%;
 }
 
-.video-iframe-slot iframe {
+.km-video__iframe-slot iframe {
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
 }
 
 /* ==========================================================================
    SECTION 8: FINAL BLESSINGS & SACRED CLOSING
    ========================================================================== */
-.blessings-section {
-  padding-top: 18px;
+.km-footer {
   position: relative;
+  width: 100%;
   overflow: hidden;
+  background: #fbebb3;
 }
 
-.blessing-banana-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 130px;
-  height: auto;
-  pointer-events: none;
-  opacity: 0.9;
-}
-
-.blessing-garlands-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: auto;
-  pointer-events: none;
-  opacity: 0.9;
-}
-
-.blessings-content {
+.km-footer__card {
   position: relative;
-  z-index: 3;
-  margin: 16px 0 20px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
 }
 
-.await-text {
-  font-family: var(--font-serif-heading);
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
-  color: var(--text-brown);
-  font-weight: 500;
+.km-footer__art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.km-footer__greeting {
+  position: absolute;
+  top: 18.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  text-align: center;
+  z-index: 2;
+}
+
+.km-footer__greet-lead {
+  font-family: var(--km-font-marcellus);
+  font-size: clamp(1rem, 4.2vw, 1.3rem);
+  color: var(--km-ink);
+  letter-spacing: 0.08em;
   margin-bottom: 2px;
 }
 
-.and-blessings-text {
-  font-family: var(--font-cursive);
-  font-size: 2.9rem;
+.km-footer__greet-main {
+  font-family: var(--km-font-script);
+  font-size: clamp(2.4rem, 9.5vw, 3.5rem);
   line-height: 1.1;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   font-weight: 400;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
-.shubhamasthu-telugu {
-  font-family: var(--font-telugu);
-  font-size: 1.65rem;
+.km-footer__telugu {
+  font-family: var(--km-font-telugu);
+  font-size: clamp(1.4rem, 5.5vw, 1.85rem);
   font-weight: 700;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   letter-spacing: 0.05em;
-  margin-bottom: 18px;
-  text-shadow: 1px 1px 0 rgba(255, 240, 195, 0.9);
+  text-shadow: 1px 1px 0 rgba(251, 238, 184, 0.9);
 }
 
-.crafting-credit {
-  font-family: var(--font-serif-body);
-  font-size: 0.95rem;
-  color: var(--text-brown);
-  margin-bottom: 4px;
+.km-footer__credit {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-.craft-cta {
-  font-family: var(--font-serif-body);
-  font-size: 0.9rem;
+.km-footer__credit-lead {
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.78rem, 2.8vw, 0.92rem);
+  color: var(--km-ink);
+  opacity: 0.85;
 }
 
-.craft-link {
-  color: var(--text-maroon);
+.km-footer__brand-wrap {
+  width: 130px;
+  margin: 2px 0 4px;
+}
+
+.km-brand-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.km-footer__cta-link {
+  font-family: var(--km-font-cormorant);
+  font-size: 0.88rem;
+  color: var(--km-maroon);
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 600;
   transition: color 0.2s ease;
 }
 
-.craft-link:hover {
-  color: var(--text-maroon-dark);
-}
-
-.blessings-bottom-artwork {
-  width: 100%;
-  margin-top: 14px;
+.km-footer__cta-link:hover {
+  color: var(--km-maroon-deep);
 }
 
 /* ==========================================================================
    MODALS (GALLERY LIGHTBOX, MAP, RSVP SUCCESS)
    ========================================================================== */
-.modal-dialog,
-.lightbox-modal {
+.km-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -1251,171 +1352,177 @@ body {
   padding: 16px;
 }
 
-.modal-dialog.active,
-.lightbox-modal.active {
+.km-modal.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-.modal-backdrop,
-.lightbox-backdrop {
+.km-modal__backdrop {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(36, 20, 17, 0.88);
+  inset: 0;
+  background: rgba(36, 18, 10, 0.9);
   backdrop-filter: blur(4px);
 }
 
-.modal-card {
+.km-modal__card {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 420px;
-  background: #FFF7E3;
-  border: 2px solid var(--gold-antique);
-  border-radius: 10px;
+  background: #fbf3dc;
+  border: 2px solid var(--km-gold);
+  border-radius: 12px;
   padding: 24px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   text-align: center;
 }
 
-.modal-close-btn,
-.lightbox-close-btn {
+.km-modal__close-btn {
   position: absolute;
   top: 10px;
   right: 14px;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1;
-  color: var(--text-maroon);
+  color: var(--km-maroon-deep);
   cursor: pointer;
-  z-index: 10;
 }
 
-.modal-title {
-  font-family: var(--font-serif-heading);
+.km-modal__title {
+  font-family: var(--km-font-marcellus);
   font-size: 1.35rem;
-  color: var(--text-maroon);
-  margin-bottom: 4px;
+  color: var(--km-maroon-deep);
+  margin-bottom: 2px;
 }
 
-.modal-title.script-title {
-  font-family: var(--font-cursive);
-  font-size: 2.4rem;
-}
-
-.modal-subtitle {
-  font-family: var(--font-serif-body);
+.km-modal__subtitle {
+  font-family: var(--km-font-cormorant);
   font-size: 1rem;
-  color: var(--text-brown);
-  margin-bottom: 16px;
+  color: var(--km-green);
+  margin-bottom: 14px;
 }
 
-.gmaps-external-btn {
+.km-map-frame-box {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 14px;
+}
+
+.km-external-link-btn {
   display: inline-block;
-  font-family: var(--font-serif-heading);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #FFF2D1;
-  background: linear-gradient(180deg, #9C3335 0%, #7B2428 100%);
-  border: 1px solid var(--gold-antique);
-  padding: 10px 22px;
-  border-radius: 20px;
+  font-family: var(--km-font-marcellus);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: #fff6d2;
+  background: var(--km-maroon-deep);
+  border: 1px solid var(--km-gold);
+  padding: 9px 20px;
+  border-radius: 999px;
   text-decoration: none;
-  margin-top: 14px;
+  transition: background 0.2s ease;
 }
 
-/* Lightbox Specifics */
-.lightbox-content-box {
+.km-external-link-btn:hover {
+  background: var(--km-maroon);
+}
+
+.km-success-monogram {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 6px;
+}
+
+.km-success-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Lightbox */
+.km-lightbox__stage {
   position: relative;
   z-index: 2;
-  max-width: 90vw;
+  max-width: 92vw;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.lightbox-image-container {
-  max-width: 100%;
-  max-height: 80vh;
+.km-lightbox__close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.km-lightbox__close img {
+  width: 100%;
+  height: 100%;
+}
+
+.km-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(251, 238, 184, 0.25);
+  border: 1px solid var(--km-gold);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border: 2px solid var(--gold-bright);
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.km-lightbox__nav img {
+  width: 22px;
+  height: 22px;
+}
+
+.km-lightbox__nav--prev { left: -56px; }
+.km-lightbox__nav--next { right: -56px; }
+
+@media (max-width: 640px) {
+  .km-lightbox__nav--prev { left: 8px; }
+  .km-lightbox__nav--next { right: 8px; }
+}
+
+.km-lightbox__img-wrap {
+  border: 2px solid var(--km-gold);
   border-radius: 6px;
   overflow: hidden;
   background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
 }
 
-.lightbox-img {
+.km-lightbox__img {
   max-width: 100%;
   max-height: 72vh;
   object-fit: contain;
   display: block;
 }
 
-.lightbox-caption-text {
-  font-family: var(--font-serif-body);
+.km-lightbox__caption {
+  font-family: var(--km-font-cormorant);
   font-size: 1.05rem;
   font-style: italic;
-  color: #FFEFC7;
-  padding: 10px 14px;
+  color: #fbeeb8;
+  padding: 8px 14px;
   text-align: center;
-  background: rgba(20, 10, 8, 0.9);
+  background: rgba(18, 9, 4, 0.92);
   width: 100%;
-}
-
-.lightbox-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 241, 205, 0.25);
-  border: 1px solid var(--gold-bright);
-  color: #FFF;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.lightbox-nav-btn:hover {
-  background: rgba(200, 155, 67, 0.8);
-  color: #4A1A17;
-}
-
-.prev-btn { left: -60px; }
-.next-btn { right: -60px; }
-
-@media (max-width: 650px) {
-  .prev-btn { left: 10px; }
-  .next-btn { right: 10px; }
-}
-
-/* Subtle Scroll Animations */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Cover screen is always visible initially */
-.cover-screen.reveal-on-scroll {
-  opacity: 1;
-  transform: none;
 }
