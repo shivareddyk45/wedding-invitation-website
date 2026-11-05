@@ -472,11 +472,10 @@ body.km-no-scroll {
 
 .km-hero__inner {
   position: absolute;
-  top: 21%;
-  left: 0;
-  right: 0;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: min(100% - 1.8rem, 440px);
-  margin-inline: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -501,7 +500,17 @@ body.km-no-scroll {
 }
 
 .km-hero__ganesha-wrap {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: clamp(6px, 1.8vw, 10px);
+}
+
+.km-hero__ganesha {
+  width: clamp(66px, 18vw, 84px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(122, 21, 48, 0.2));
 }
 
 .km-hero__invocation {
@@ -530,9 +539,12 @@ body.km-no-scroll {
 .km-hero__names-amp {
   font-family: var(--km-font-cormorant);
   font-style: italic;
-  font-size: 0.5em;
-  margin: -0.1em 0;
-  color: var(--km-gold);
+  font-weight: 700;
+  font-size: 0.72em;
+  line-height: 1;
+  margin: 0.08em 0;
+  color: var(--km-maroon-deep);
+  text-shadow: 0 1px 3px rgba(251, 238, 184, 0.95), 0 0 6px rgba(201, 162, 75, 0.4);
 }
 
 .km-hero__date {
