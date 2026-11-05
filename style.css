@@ -236,8 +236,7 @@ body.km-no-scroll {
 .km-entry__art {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
+  object-fit: fill;
   display: block;
 }
 
