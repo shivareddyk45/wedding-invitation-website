@@ -28,6 +28,8 @@ window.WEDDING_CONFIG = {
   },
   hero: {
     invocation: "|| Shree Ganeshay Namah ||",
+    groom: "Nageshwar Reddy",
+    bride: "Neeraja",
     dateText: "Monday, October 26, 2026",
     venueLead: "at",
     venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA",

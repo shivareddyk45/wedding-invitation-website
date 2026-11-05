@@ -434,11 +434,14 @@ body.km-no-scroll {
 .km-hero-section {
   position: relative;
   background-color: var(--km-parchment);
-  min-height: 580px;
+  min-height: 560px;
+  min-height: 80vh;
+  min-height: 80dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding-bottom: 2.5rem;
 }
 
 /* Video Background Layer */
@@ -486,12 +489,13 @@ body.km-no-scroll {
 
 .km-hero__inner {
   text-align: center;
-  padding: 10px 14px 0;
+  padding: 18px 14px 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   z-index: 3;
+  margin-block: auto;
 }
 
 /* Hero Stagger Animation */
