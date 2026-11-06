@@ -68,8 +68,10 @@ body.km-body {
   background-color: var(--km-desktop-bg);
   color: var(--km-ink);
   line-height: 1.6;
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* Body itself does NOT scroll — the outer frame handles scrolling */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -90,14 +92,17 @@ body.km-no-scroll {
 .site-outer-frame {
   width: 100%;
   max-width: 480px;
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* Frame is exactly one viewport tall and scrolls internally */
+  height: 100vh;
+  height: 100dvh;
+  overflow-x: clip;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
   background-color: var(--km-parchment);
   position: relative;
   box-shadow: 0 0 45px rgba(91, 58, 41, 0.16), 0 0 16px rgba(201, 162, 75, 0.2);
   border-left: 1px solid rgba(201, 162, 75, 0.32);
   border-right: 1px solid rgba(201, 162, 75, 0.32);
-  overflow-x: clip;
 }
 
 .kalyana-mandapam {
@@ -437,7 +442,9 @@ body.km-no-scroll {
 .km-hero-section {
   position: relative;
   width: 100%;
-  aspect-ratio: 1626 / 2868;
+  /* Fill exactly one viewport — no aspect-ratio overflow */
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background-color: var(--km-parchment);
   display: block;
@@ -459,6 +466,7 @@ body.km-no-scroll {
   inset: 0;
   width: 100%;
   height: 100%;
+  /* Cover the full section; video is portrait so it always fills height */
   object-fit: cover;
   object-position: center center;
   display: block;
