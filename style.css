@@ -1656,33 +1656,50 @@ body.km-no-scroll {
 }
 
 /* ==========================================================================
-   9. FOOTER (FINAL BLESSINGS & NEUTRAL CREDIT)
+   9. FOOTER (FINAL BLESSINGS & NEUTRAL CREDIT - PAGE 7)
    ========================================================================== */
 .km-footer {
   position: relative;
-  background-color: var(--km-parchment);
-  padding: 0;
+  width: 100%;
+  /* Fill exactly one viewport — matching Page 2 dimensions */
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
   overflow: hidden;
+  background-color: var(--km-parchment);
+  display: block;
+  padding: 0;
 }
 
 .km-footer__card {
   position: relative;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .km-footer__art {
   display: block;
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: auto;
+  height: calc(100% + 40px);
+  object-fit: cover;
+  object-position: center bottom;
   will-change: transform;
 }
 
 .km-footer__greeting {
   position: absolute;
-  top: 19%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
+  max-width: 440px;
   text-align: center;
   z-index: 2;
   display: flex;
@@ -1744,15 +1761,17 @@ body.km-no-scroll {
 }
 
 .km-footer__border {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: var(--km-frame-w);
   background-image: url('assets/kalyana-mandapam/border/rail-bottom.png');
   background-size: auto 100%;
   background-repeat: repeat-x;
   background-position: center bottom;
-  margin-top: -1px;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* ==========================================================================
