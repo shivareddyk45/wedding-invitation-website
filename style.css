@@ -452,6 +452,9 @@ body.km-no-scroll {
 /* ==========================================================================
    2. HERO SECTION (VIDEO BG + CEREMONIAL DURBAR)
    ========================================================================== */
+/* ==========================================================================
+   2. HERO SECTION (CEREMONIAL INVITATION OPENING)
+   ========================================================================== */
 .km-hero-section {
   position: relative;
   width: 100%;
@@ -460,54 +463,42 @@ body.km-no-scroll {
   height: 100dvh;
   overflow: hidden;
   background-color: var(--km-parchment);
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Video Background Layer */
-.km-hero__video-container {
+/* Top Traditional Indian Wedding Decorations */
+.km-hero__top-decor {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: 100%;
   z-index: 1;
-  overflow: hidden;
-  background-color: var(--km-parchment);
+  pointer-events: none;
+  line-height: 0;
 }
 
-.km-hero__video {
-  position: absolute;
-  inset: 0;
+.km-hero__top-decor-img {
   width: 100%;
-  height: 100%;
-  /* Cover the full section; video is portrait so it always fills height */
-  object-fit: cover;
-  object-position: center bottom;
-  transform: scale(1.15);
-  transform-origin: center bottom;
+  height: auto;
   display: block;
-  background-color: var(--km-parchment);
 }
 
-.km-hero__video-overlay {
-  display: none;
-}
-
-.km-toranam-wrap {
-  display: none;
-}
-
+/* Center Content */
 .km-hero__inner {
-  position: absolute;
-  top: clamp(18.5%, 21vh, 22.5%);
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(100% - 1.8rem, 440px);
+  position: relative;
+  z-index: 3;
+  width: min(100% - 1.8rem, 420px);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 3;
-  padding: 0;
+  margin: auto 0;
+  padding-top: clamp(105px, 24vw, 140px);
+  padding-bottom: clamp(6px, 1.5vw, 16px);
 }
 
 /* Hero Stagger Animation */
@@ -548,56 +539,58 @@ body.km-no-scroll {
 
 .km-hero__invocation {
   font-family: var(--km-font-marcellus);
-  font-size: clamp(0.72rem, 2.6vw, 0.88rem);
+  font-size: clamp(0.76rem, 2.8vw, 0.95rem);
   letter-spacing: 0.16em;
   text-indent: 0.16em;
   color: var(--km-maroon);
   margin-bottom: clamp(6px, 1.8vw, 12px);
+  font-weight: 500;
   text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-hero__names {
   font-family: var(--km-font-script);
-  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  font-size: clamp(2.5rem, 8.8vw, 3.6rem);
   line-height: 1.05;
   color: var(--km-maroon-deep);
   font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: clamp(6px, 1.8vw, 12px);
+  margin-bottom: clamp(6px, 1.8vw, 10px);
   text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 16px rgba(251, 238, 184, 0.7);
 }
 
 .km-hero__names-amp {
-  font-family: var(--km-font-cormorant);
+  font-family: var(--km-font-script);
   font-style: italic;
-  font-weight: 700;
-  font-size: 0.72em;
+  font-weight: 400;
+  font-size: 0.62em;
   line-height: 1;
-  margin: 0.08em 0;
+  margin: -0.05em 0;
   color: var(--km-maroon-deep);
   text-shadow: 0 1px 3px rgba(251, 238, 184, 0.95), 0 0 6px rgba(201, 162, 75, 0.4);
 }
 
 .km-hero__date {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.95rem, 3.4vw, 1.2rem);
+  font-size: clamp(1rem, 3.6vw, 1.25rem);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--km-ink);
-  margin-bottom: clamp(3px, 1vw, 6px);
+  margin-bottom: clamp(3px, 1vw, 5px);
   text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-hero__venue {
-  font-family: var(--km-font-cinzel);
-  font-size: clamp(0.62rem, 2.2vw, 0.76rem);
+  font-family: var(--km-font-cormorant);
+  font-size: clamp(0.72rem, 2.5vw, 0.86rem);
   letter-spacing: 0.12em;
   text-indent: 0.12em;
-  color: var(--km-ink-light);
+  color: var(--km-maroon);
   line-height: 1.45;
-  max-width: 32ch;
+  text-transform: uppercase;
+  max-width: 34ch;
   margin-inline: auto;
   text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
@@ -606,32 +599,34 @@ body.km-no-scroll {
   font-family: var(--km-font-cormorant);
   font-style: italic;
   font-size: 1.05em;
-  text-transform: none;
+  text-transform: lowercase;
+  color: var(--km-ink);
 }
 
-.km-divider-wrap {
+/* Middle Golden Ornamental Divider */
+.km-hero__divider-wrap {
   width: 100%;
-  max-width: 240px;
-  margin: 12px auto 0;
+  max-width: clamp(200px, 58vw, 290px);
+  margin: clamp(10px, 2.5vw, 18px) auto 0;
   line-height: 0;
 }
 
-.km-divider-img {
+.km-hero__divider-img {
   width: 100%;
   height: auto;
+  opacity: 0.92;
 }
 
-/* Scenery image with slight parallax */
-.km-hero__artwork {
+/* Bottom Durbar Illustration */
+.km-hero__durbar-wrap {
   position: relative;
-  z-index: 2;
   width: 100%;
+  z-index: 1;
+  margin-top: auto;
   line-height: 0;
-  margin-top: 14px;
-  will-change: transform;
 }
 
-.km-temple-scenery-img {
+.km-hero__durbar-img {
   width: 100%;
   height: auto;
   display: block;
@@ -1882,6 +1877,9 @@ body.km-no-scroll {
   }
 
   .km-hero-stagger,
+  .km-hero__top-decor,
+  .km-hero__divider-wrap,
+  .km-hero__durbar-wrap,
   .km-section-head,
   .km-couple__name,
   .km-couple__parent-label,

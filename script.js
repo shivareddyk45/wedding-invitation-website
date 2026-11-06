@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     if (musicIconImg) {
-      musicIconImg.src = playing ? 'assets/icons/km-audio-on.png' : 'assets/icons/km-audio-off.png';
+      musicIconImg.src = 'assets/images/dholak_icon.svg';
     }
   }
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. SMOOTH PARALLAX CONTROLLER
   // =========================================================================
   if (!prefersReducedMotion) {
-    const heroVideoContainer = document.querySelector('.km-hero__video-container');
+    const heroDurbar = document.querySelector('.km-hero__durbar-wrap');
     const countdownPanel = document.querySelector('.km-countdown__panel');
     const galleryParasol = document.querySelector('.km-gallery__parasol');
     const footerArt = document.querySelector('.km-footer__art');
@@ -205,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const scrollY = getScrollTop();
       const winH = window.innerHeight;
 
-      // Hero video container subtle depth parallax
-      if (heroVideoContainer && scrollY < 900) {
-        heroVideoContainer.style.transform = `translateY(${scrollY * 0.12}px)`;
+      // Hero durbar illustration subtle depth parallax
+      if (heroDurbar && scrollY < 900) {
+        heroDurbar.style.transform = `translateY(${scrollY * 0.08}px)`;
       }
 
       // Countdown wall image subtle parallax
