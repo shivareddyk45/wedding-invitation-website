@@ -256,7 +256,7 @@ body.km-no-scroll {
 
 .km-entry__mandala {
   position: absolute;
-  top: 29%;
+  top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(76vw, 330px);
@@ -273,7 +273,7 @@ body.km-no-scroll {
 
 .km-entry__content {
   position: absolute;
-  top: 13.5%;
+  top: 17.5%;
   left: 50%;
   transform: translateX(-50%);
   width: min(90%, 420px);
@@ -1682,20 +1682,20 @@ body.km-no-scroll {
 .km-footer__art {
   display: block;
   position: absolute;
-  top: -20px;
-  bottom: -20px;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: calc(100% + 40px);
+  height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center top;
   will-change: transform;
 }
 
 .km-footer__greeting {
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
