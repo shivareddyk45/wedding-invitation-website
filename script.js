@@ -139,25 +139,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Play hero background video on user interaction
     ensureHeroVideoPlays();
 
-    // Crossfade out over ~1s with slight scale (1 -> 1.04)
-    entryScreen.classList.add('km-entry--closing');
-
-    // Unlock scrolling
-    document.body.classList.remove('km-no-scroll');
-
-    // Reveal floating audio controller
-    if (persistentBar) {
-      persistentBar.classList.add('km-persistent-bar--visible');
+    // Button tactile feedback
+    if (openBtn) {
+      openBtn.classList.add('km-entry__cta--pressed');
     }
 
     setTimeout(() => {
-      entryScreen.style.display = 'none';
-    }, 1000);
+      // Crossfade out over ~850ms with subtle scale (1 -> 1.03)
+      entryScreen.classList.add('km-entry--closing');
 
-    // Smooth scroll to ceremonial hero
-    if (ceremonialHero) {
-      ceremonialHero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+      // Trigger hero content entrance simultaneously
+      if (ceremonialHero) {
+        ceremonialHero.classList.add('km-hero--active');
+      }
+
+      // Unlock scrolling
+      document.body.classList.remove('km-no-scroll');
+
+      // Reveal floating audio controller
+      if (persistentBar) {
+        persistentBar.classList.add('km-persistent-bar--visible');
+      }
+
+      setTimeout(() => {
+        entryScreen.style.display = 'none';
+      }, 850);
+
+      // Smooth scroll to ceremonial hero
+      if (ceremonialHero) {
+        ceremonialHero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, prefersReducedMotion ? 0 : 120);
   }
 
   if (openBtn) {
@@ -173,35 +185,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 3. HERO PARALLAX
+  // 3. SMOOTH PARALLAX CONTROLLER
   // =========================================================================
-  const templeScenery = document.getElementById('hero-temple-scenery');
-  if (templeScenery && !prefersReducedMotion) {
-    window.addEventListener('scroll', () => {
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollY < 800) {
-        // Scenery moves slower than the page (slight parallax)
-        templeScenery.style.transform = `translateY(${scrollY * 0.12}px)`;
+  if (!prefersReducedMotion) {
+    const heroVideoContainer = document.querySelector('.km-hero__video-container');
+    const countdownPanel = document.querySelector('.km-countdown__panel');
+    const galleryParasol = document.querySelector('.km-gallery__parasol');
+    const footerArt = document.querySelector('.km-footer__art');
+
+    let ticking = false;
+
+    function getScrollTop() {
+      const frame = document.querySelector('.site-outer-frame');
+      if (frame && frame.scrollTop > 0) return frame.scrollTop;
+      return window.pageYOffset || document.documentElement.scrollTop || 0;
+    }
+
+    function updateParallax() {
+      const scrollY = getScrollTop();
+      const winH = window.innerHeight;
+
+      // Hero video container subtle depth parallax
+      if (heroVideoContainer && scrollY < 900) {
+        heroVideoContainer.style.transform = `translateY(${scrollY * 0.12}px)`;
       }
-    }, { passive: true });
+
+      // Countdown wall image subtle parallax
+      if (countdownPanel) {
+        const rect = countdownPanel.getBoundingClientRect();
+        if (rect.top < winH && rect.bottom > 0) {
+          const offset = (rect.top - winH * 0.5) * 0.05;
+          countdownPanel.style.transform = `translateY(${offset}px)`;
+        }
+      }
+
+      // Gallery parasol gentle drift
+      if (galleryParasol) {
+        const rect = galleryParasol.getBoundingClientRect();
+        if (rect.top < winH && rect.bottom > 0) {
+          const offset = (rect.top - winH * 0.5) * -0.06;
+          galleryParasol.style.transform = `translateY(${offset}px)`;
+        }
+      }
+
+      // Footer art slight parallax on entry
+      if (footerArt) {
+        const rect = footerArt.getBoundingClientRect();
+        if (rect.top < winH) {
+          const offset = (rect.top - winH * 0.5) * 0.04;
+          footerArt.style.transform = `translateY(${offset}px)`;
+        }
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateParallax();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    const outerFrame = document.querySelector('.site-outer-frame');
+    if (outerFrame) outerFrame.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
 
   // =========================================================================
-  // 4. THE COUPLE REVEALS (PORTRAIT + PEACOCK STAGGER)
+  // 4. UNIFIED SCROLL REVEALS
   // =========================================================================
-  const coupleCards = document.querySelectorAll('.km-couple__unit');
-  if (coupleCards.length > 0) {
-    const coupleObserver = new IntersectionObserver((entries, observer) => {
+  const revealSelectors = [
+    '.km-section-head',
+    '.km-couple__unit',
+    '.km-couple__divider',
+    '.km-countdown__stage',
+    '.km-events__stop',
+    '.km-toranam-wrap',
+    '.km-gallery__parasol',
+    '.km-gallery__cell',
+    '.km-video__wall',
+    '.km-footer'
+  ];
+
+  const revealElements = document.querySelectorAll(revealSelectors.join(', '));
+  if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.18 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    coupleCards.forEach(card => coupleObserver.observe(card));
+    revealElements.forEach(el => revealObserver.observe(el));
   }
 
 
@@ -361,25 +441,81 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   let currentPhotoIdx = 0;
+  let isSwitchingPhoto = false;
 
-  function showPhoto(idx) {
+  function showPhoto(idx, direction = 0) {
     if (photos.length === 0) return;
     if (idx < 0) idx = photos.length - 1;
     if (idx >= photos.length) idx = 0;
     currentPhotoIdx = idx;
 
     const current = photos[idx];
-    if (lightboxImg) {
+    if (!lightboxImg) return;
+
+    // Direct update if lightbox is not currently open
+    if (!lightbox || !lightbox.classList.contains('active')) {
       lightboxImg.src = current.src;
       lightboxImg.alt = current.alt;
+      if (lightboxCaption) {
+        lightboxCaption.textContent = `${current.alt} (${idx + 1} of ${photos.length})`;
+      }
+      return;
     }
-    if (lightboxCaption) {
-      lightboxCaption.textContent = `${current.alt} (${idx + 1} of ${photos.length})`;
+
+    if (isSwitchingPhoto) return;
+    isSwitchingPhoto = true;
+
+    if (prefersReducedMotion || direction === 0) {
+      lightboxImg.style.transition = 'opacity 0.16s ease';
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = current.src;
+        lightboxImg.alt = current.alt;
+        if (lightboxCaption) {
+          lightboxCaption.textContent = `${current.alt} (${idx + 1} of ${photos.length})`;
+        }
+        lightboxImg.style.opacity = '1';
+        setTimeout(() => {
+          isSwitchingPhoto = false;
+          lightboxImg.style.transition = '';
+        }, 160);
+      }, 140);
+      return;
     }
+
+    // Directional slide
+    const outX = direction > 0 ? -24 : 24;
+    const inX = -outX;
+
+    lightboxImg.style.transition = 'opacity 0.18s var(--km-ease-reveal), transform 0.18s var(--km-ease-reveal)';
+    lightboxImg.style.opacity = '0';
+    lightboxImg.style.transform = `translateX(${outX}px) scale(0.97)`;
+
+    setTimeout(() => {
+      lightboxImg.src = current.src;
+      lightboxImg.alt = current.alt;
+      if (lightboxCaption) {
+        lightboxCaption.textContent = `${current.alt} (${idx + 1} of ${photos.length})`;
+      }
+      lightboxImg.style.transition = 'none';
+      lightboxImg.style.transform = `translateX(${inX}px) scale(0.97)`;
+
+      void lightboxImg.offsetWidth; // Force layout
+
+      lightboxImg.style.transition = 'opacity 0.22s var(--km-ease-reveal), transform 0.22s var(--km-ease-reveal)';
+      lightboxImg.style.opacity = '1';
+      lightboxImg.style.transform = 'translateX(0) scale(1)';
+
+      setTimeout(() => {
+        isSwitchingPhoto = false;
+        lightboxImg.style.transition = '';
+        lightboxImg.style.transform = '';
+      }, 230);
+    }, 170);
   }
 
   function openLightbox(idx) {
-    showPhoto(idx);
+    showPhoto(idx, 0);
     if (lightbox) {
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -400,8 +536,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightboxPrev) lightboxPrev.addEventListener('click', () => showPhoto(currentPhotoIdx - 1));
-  if (lightboxNext) lightboxNext.addEventListener('click', () => showPhoto(currentPhotoIdx + 1));
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => showPhoto(currentPhotoIdx - 1, -1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => showPhoto(currentPhotoIdx + 1, 1));
 
   if (lightbox) {
     const backdrop = lightbox.querySelector('.km-modal__backdrop');
@@ -425,11 +561,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleSwipe() {
     const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) > 45) {
+    if (Math.abs(diff) > 40) {
       if (diff > 0) {
-        showPhoto(currentPhotoIdx - 1); // Swipe right -> prev
+        showPhoto(currentPhotoIdx - 1, -1); // Swipe right -> prev
       } else {
-        showPhoto(currentPhotoIdx + 1); // Swipe left -> next
+        showPhoto(currentPhotoIdx + 1, 1); // Swipe left -> next
       }
     }
   }
@@ -513,10 +649,18 @@ document.addEventListener('DOMContentLoaded', () => {
       // Pause background lyrical music
       pauseAudio();
 
-      // Hide poster thumbnail
-      if (posterStage) posterStage.style.display = 'none';
+      // Fade out poster thumbnail
+      if (posterStage) {
+        posterStage.style.transition = 'opacity 0.3s ease';
+        posterStage.style.opacity = '0';
+        setTimeout(() => {
+          posterStage.style.display = 'none';
+        }, 300);
+      }
 
-      // Load YouTube embed with autoplay and modest branding
+      // Load YouTube embed with smooth fade-in
+      iframeSlot.style.opacity = '0';
+      iframeSlot.style.transition = 'opacity 0.35s ease';
       iframeSlot.innerHTML = `
         <iframe 
           width="100%" 
@@ -529,6 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
           style="width: 100%; height: 100%; border: 0; border-radius: 4px;">
         </iframe>
       `;
+      requestAnimationFrame(() => {
+        iframeSlot.style.opacity = '1';
+      });
     });
   }
 
@@ -539,8 +686,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('active')) {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showPhoto(currentPhotoIdx - 1);
-      if (e.key === 'ArrowRight') showPhoto(currentPhotoIdx + 1);
+      if (e.key === 'ArrowLeft') showPhoto(currentPhotoIdx - 1, -1);
+      if (e.key === 'ArrowRight') showPhoto(currentPhotoIdx + 1, 1);
     }
     if (mapModal && mapModal.classList.contains('active')) {
       if (e.key === 'Escape') closeMapModal();
