@@ -254,88 +254,76 @@
             <p class="km-events__sub">Walk with us, function to function, to the sacred hour.</p>
           </div>
 
-          <div class="km-events__stage">
-            <!-- Alta Footsteps Trail (Gracefully curving path with starting pair) -->
-            <div class="km-yatra-trail" aria-hidden="true">
-              <div class="km-footsteps-pair">
-                <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--pair" width="16" height="26">
-                <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--pair" width="16" height="26">
-              </div>
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--1" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--2" width="16" height="26">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--3" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--4" width="16" height="26">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--5" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--6" width="16" height="26">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--7" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--8" width="16" height="26">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--9" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--10" width="16" height="26">
-              <img src="assets/images/yatra-foot-left.png" alt="" class="km-footstep km-footstep--11" width="16" height="26">
-              <img src="assets/images/yatra-foot-right.png" alt="" class="km-footstep km-footstep--12" width="16" height="26">
-            </div>
+          <div class="km-events__stage" style="aspect-ratio: 400 / 1260;">
+            <!-- Hidden SVG Reference for Path & Step Geometry -->
+            <svg class="km-events__svg" viewBox="0 0 400 1260" preserveAspectRatio="none" aria-hidden="true">
+              <path class="km-events__path" d="M 200 30 C 200 115, 116 115, 116 200 C 116 350, 284 350, 284 500 C 284 650, 116 650, 116 800 C 116 950, 284 950, 284 1100 C 284 1170, 200 1170, 200 1240" fill="none" stroke="none" />
+            </svg>
 
-            <!-- Milestone 1: Mehendi (Medallion Left, Card Right) -->
-            <div class="km-events__stop km-events__stop--left" id="event-mehendi">
-              <div class="km-events__medallion">
-                <img src="assets/images/event-mehendi.png" alt="Mehendi Henna Art" class="km-events__medallion-img" width="58" height="58">
+            <!-- Dynamic Programmatic Footsteps Container -->
+            <div class="km-events__feet-layer" aria-hidden="true"></div>
+
+            <!-- Event 1: Mehendi (Medallion Left, Text Right) -->
+            <div class="km-events__row km-events__row--even" id="event-mehendi" data-event-idx="0">
+              <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
+                <img src="assets/images/event-mehendi.png" alt="Mehendi" class="km-events__medallion-img" width="56" height="56">
               </div>
-              <div class="km-events__card">
+              <div class="km-events__card km-events__card--right">
                 <h3 class="km-events__name">Mehendi</h3>
                 <p class="km-events__when">24th February 2026 · 5:00 PM onwards</p>
-                <p class="km-events__venue">Ravichettu Bazar, Dondapadu</p>
-                <button class="km-events__map" data-event="Mehendi" data-location="Ravichettu Bazar, Dondapadu" type="button" aria-label="View Mehendi location on map">
-                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
+                <p class="km-events__venue">ITC Mementos, Udaipur</p>
+                <button class="km-events__map" data-event="Mehendi" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Mehendi location on map">
+                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
                   <span>VIEW MAP</span>
                 </button>
               </div>
             </div>
 
-            <!-- Milestone 2: Haldi & Sangeet (Card Left, Medallion Right) -->
-            <div class="km-events__stop km-events__stop--right" id="event-haldi">
-              <div class="km-events__card">
+            <!-- Event 2: Haldi & Sangeet (Text Left, Medallion Right) -->
+            <div class="km-events__row km-events__row--odd" id="event-haldi" data-event-idx="1">
+              <div class="km-events__card km-events__card--left">
                 <h3 class="km-events__name">Haldi &amp; Sangeet</h3>
                 <p class="km-events__when">25th February 2026 · 10:48 AM</p>
-                <p class="km-events__venue">Ravichettu Bazar, Dondapadu</p>
-                <button class="km-events__map" data-event="Haldi &amp; Sangeet" data-location="Ravichettu Bazar, Dondapadu" type="button" aria-label="View Haldi and Sangeet location on map">
-                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
+                <p class="km-events__venue">ITC Mementos, Udaipur</p>
+                <button class="km-events__map" data-event="Haldi &amp; Sangeet" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Haldi and Sangeet location on map">
+                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
                   <span>VIEW MAP</span>
                 </button>
               </div>
-              <div class="km-events__medallion">
-                <img src="assets/images/event-haldi-bowl.png" alt="Haldi Ceremony" class="km-events__medallion-img" width="58" height="58">
+              <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
+                <img src="assets/images/event-haldi-bowl.png" alt="Haldi &amp; Sangeet" class="km-events__medallion-img" width="56" height="56">
               </div>
             </div>
 
-            <!-- Milestone 3: Telugu Wedding (Medallion Left, Card Right) -->
-            <div class="km-events__stop km-events__stop--left" id="event-telugu">
-              <div class="km-events__medallion">
-                <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding Musical Instrument" class="km-events__medallion-img" width="58" height="58">
+            <!-- Event 3: Telugu Wedding (Medallion Left, Text Right) -->
+            <div class="km-events__row km-events__row--even" id="event-telugu" data-event-idx="2">
+              <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
+                <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding" class="km-events__medallion-img" width="56" height="56">
               </div>
-              <div class="km-events__card">
+              <div class="km-events__card km-events__card--right">
                 <h3 class="km-events__name">Telugu Wedding</h3>
                 <p class="km-events__when">26th February 2026 · 10:00 AM onwards</p>
-                <p class="km-events__venue">Ravichettu Bazar, Dondapadu</p>
-                <button class="km-events__map" data-event="Telugu Wedding" data-location="Ravichettu Bazar, Dondapadu" type="button" aria-label="View Telugu Wedding location on map">
-                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
+                <p class="km-events__venue">ITC Mementos, Udaipur</p>
+                <button class="km-events__map" data-event="Telugu Wedding" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Telugu Wedding location on map">
+                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
                   <span>VIEW MAP</span>
                 </button>
               </div>
             </div>
 
-            <!-- Milestone 4: Kodava Ceremony (Card Left, Medallion Right) -->
-            <div class="km-events__stop km-events__stop--right" id="event-kodava">
-              <div class="km-events__card">
+            <!-- Event 4: Kodava Ceremony (Text Left, Medallion Right) -->
+            <div class="km-events__row km-events__row--odd" id="event-kodava" data-event-idx="3">
+              <div class="km-events__card km-events__card--left">
                 <h3 class="km-events__name">Kodava Ceremony</h3>
                 <p class="km-events__when">26th February 2026 — Evening · 6:30 PM onwards</p>
-                <p class="km-events__venue">Ravichettu Bazar, Dondapadu</p>
-                <button class="km-events__map" data-event="Kodava Ceremony" data-location="Ravichettu Bazar, Dondapadu" type="button" aria-label="View Kodava Ceremony location on map">
-                  <span class="km-map-pin-icon" aria-hidden="true">📍</span>
+                <p class="km-events__venue">ITC Mementos, Udaipur</p>
+                <button class="km-events__map" data-event="Kodava Ceremony" data-location="ITC Mementos, Udaipur" type="button" aria-label="View Kodava Ceremony location on map">
+                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
                   <span>VIEW MAP</span>
                 </button>
               </div>
-              <div class="km-events__medallion">
-                <img src="assets/images/icon_kodava_ceremony.png" alt="Kodava Ceremony Instruments" class="km-events__medallion-img" width="58" height="58">
+              <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
+                <img src="assets/images/event-nadaswaram.png" alt="Kodava Ceremony" class="km-events__medallion-img" width="56" height="56">
               </div>
             </div>
           </div>

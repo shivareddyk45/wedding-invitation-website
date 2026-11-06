@@ -338,28 +338,272 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 6. THE WEDDING JOURNEY (YATRA TIMELINE & FOOTPRINTS)
+  // 6. THE WEDDING JOURNEY (SCROLL-DRIVEN WALKING TRANSITION)
   // =========================================================================
-  const footprints = document.querySelectorAll('.km-footstep');
-  const eventStops = document.querySelectorAll('.km-events__stop');
+  function initWeddingJourneyWalk() {
+    const section = document.getElementById('wedding-journey');
+    if (!section) return;
 
-  if (footprints.length > 0 || eventStops.length > 0) {
-    const journeyObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
+    const stage = section.querySelector('.km-events__stage');
+    const path = section.querySelector('.km-events__path');
+    const feetLayer = section.querySelector('.km-events__feet-layer');
+    const rows = Array.from(section.querySelectorAll('.km-events__row'));
+    const head = section.querySelector('.km-events__head');
+    const outerFrame = document.querySelector('.site-outer-frame');
+
+    if (!stage || !path || !feetLayer || rows.length === 0) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1. Path geometry setup
+    const anchors = [
+      { id: 0, x: 116, y: 200, side: 'left' },
+      { id: 1, x: 284, y: 500, side: 'right' },
+      { id: 2, x: 116, y: 800, side: 'left' },
+      { id: 3, x: 284, y: 1100, side: 'right' }
+    ];
+
+    const startPt = { x: 200, y: 30 };
+    const endPt = { x: 200, y: 1240 };
+    const curvePoints = [startPt, ...anchors, endPt];
+
+    let d = `M ${curvePoints[0].x} ${curvePoints[0].y}`;
+    for (let i = 1; i < curvePoints.length; i++) {
+      const p0 = curvePoints[i - 1];
+      const p1 = curvePoints[i];
+      const midY = (p0.y + p1.y) / 2;
+      d += ` C ${p0.x} ${midY}, ${p1.x} ${midY}, ${p1.x} ${p1.y}`;
+    }
+    path.setAttribute('d', d);
+
+    // 2. Programmatic step generation along path
+    const totalLen = path.getTotalLength();
+    const stepSpacing = 36;
+    const stepsData = [];
+    const anchorStepIndices = [5, 13, 20, 27]; // fallback defaults
+    const closestDistances = [Infinity, Infinity, Infinity, Infinity];
+
+    let footCounter = 0;
+    for (let s = 10; s <= totalLen - 10; s += stepSpacing) {
+      const pt = path.getPointAtLength(s);
+
+      // Check distance to each event anchor
+      let nearIcon = false;
+      anchors.forEach(a => {
+        const dist = Math.hypot(pt.x - a.x, pt.y - a.y);
+        if (dist < 38) nearIcon = true; // stops ~10px short of 56px icon
+        if (dist < closestDistances[a.id]) {
+          closestDistances[a.id] = dist;
+          anchorStepIndices[a.id] = footCounter;
         }
       });
-    }, { threshold: 0.12 });
 
-    footprints.forEach((foot, i) => {
-      foot.style.transitionDelay = `${i * 100}ms`;
-      journeyObserver.observe(foot);
+      if (!nearIcon) {
+        const nextPt = path.getPointAtLength(Math.min(s + 1, totalLen));
+        let dx = nextPt.x - pt.x;
+        let dy = nextPt.y - pt.y;
+        const len = Math.hypot(dx, dy) || 1;
+        dx /= len;
+        dy /= len;
+
+        const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
+        const side = (footCounter % 2 === 0) ? 'left' : 'right';
+        const offset = 8 * (side === 'left' ? -1 : 1);
+        const footX = pt.x + dy * offset;
+        const footY = pt.y - dx * offset;
+
+        stepsData.push({
+          index: footCounter,
+          side,
+          xPct: (footX / 400) * 100,
+          yPct: (footY / 1260) * 100,
+          angle: angle
+        });
+        footCounter++;
+      }
+    }
+
+    // Populate DOM footsteps
+    feetLayer.innerHTML = '';
+    const footElements = stepsData.map(st => {
+      const img = document.createElement('img');
+      img.src = st.side === 'left' ? 'assets/images/yatra-foot-left.png' : 'assets/images/yatra-foot-right.png';
+      img.alt = '';
+      img.className = `km-events__foot km-events__foot--${st.side}`;
+      img.style.left = `${st.xPct.toFixed(2)}%`;
+      img.style.top = `${st.yPct.toFixed(2)}%`;
+      img.style.setProperty('--target-rot', `${st.angle.toFixed(1)}deg`);
+      feetLayer.appendChild(img);
+      return img;
     });
 
-    eventStops.forEach(stop => journeyObserver.observe(stop));
+    // Event rows metadata
+    const eventRowsData = rows.map((row, i) => {
+      const anchorIdx = anchorStepIndices[i] !== undefined ? anchorStepIndices[i] : (i + 1) * 7;
+      const triggerStep = Math.max(0, anchorIdx - 3);
+      const medallion = row.querySelector('.km-events__medallion');
+      const title = row.querySelector('.km-events__name');
+      const when = row.querySelector('.km-events__when');
+      const venue = row.querySelector('.km-events__venue');
+      const mapBtn = row.querySelector('.km-events__map');
+      const isOdd = row.classList.contains('km-events__row--odd');
+      const side = isOdd ? 'left' : 'right';
+      return { row, triggerStep, medallion, title, when, venue, mapBtn, side };
+    });
+
+    // Reduced motion shortcut
+    if (prefersReducedMotion) {
+      if (head) head.classList.add('km-in-view');
+      footElements.forEach(f => {
+        f.style.setProperty('--step-opacity', '0.85');
+        f.style.setProperty('--step-scale', '1');
+      });
+      eventRowsData.forEach(ev => {
+        if (ev.medallion) {
+          ev.medallion.style.setProperty('--medallion-opacity', '1');
+          ev.medallion.style.setProperty('--medallion-scale', '1');
+        }
+        ['title', 'when', 'venue', 'mapBtn'].forEach(k => {
+          if (ev[k]) {
+            ev[k].style.setProperty(`--${k}-opacity`, '1');
+            ev[k].style.setProperty(`--${k}-tx`, '0px');
+          }
+        });
+      });
+      return;
+    }
+
+    // 3. Render state function (pure function of walkProgress 0..1)
+    const totalSteps = stepsData.length;
+
+    function renderWalk(walkProgress) {
+      const currentStepFloat = walkProgress * (totalSteps + 1.2) - 0.4;
+
+      // Update footsteps
+      for (let k = 0; k < totalSteps; k++) {
+        const diff = currentStepFloat - k;
+        const el = footElements[k];
+        if (diff < 0) {
+          el.style.setProperty('--step-opacity', '0');
+          el.style.setProperty('--step-scale', '0.6');
+          el.style.setProperty('--step-glow', 'none');
+        } else if (diff <= 1.5) {
+          const t = diff / 1.5;
+          const overshoot = Math.sin(t * Math.PI) * 0.08;
+          const scale = 0.6 + 0.4 * t + overshoot;
+          const opacity = Math.min(0.95, t * 1.2);
+          const glow = Math.max(0, 1 - t) * 0.8;
+          el.style.setProperty('--step-opacity', opacity.toFixed(2));
+          el.style.setProperty('--step-scale', scale.toFixed(3));
+          el.style.setProperty('--step-glow', glow > 0.05 ? `drop-shadow(0 0 6px rgba(201, 147, 47, ${glow.toFixed(2)}))` : 'none');
+        } else {
+          const isLatest = diff <= 2.6;
+          el.style.setProperty('--step-opacity', isLatest ? '0.95' : '0.82');
+          el.style.setProperty('--step-scale', '1');
+          el.style.setProperty('--step-glow', 'none');
+        }
+      }
+
+      // Update event rows
+      for (let i = 0; i < eventRowsData.length; i++) {
+        const ev = eventRowsData[i];
+        const eventDiff = currentStepFloat - ev.triggerStep;
+
+        if (eventDiff < 0) {
+          if (ev.medallion) {
+            ev.medallion.style.setProperty('--medallion-opacity', '0');
+            ev.medallion.style.setProperty('--medallion-scale', '0.7');
+          }
+          const initTx = ev.side === 'left' ? '-20px' : '20px';
+          if (ev.title) { ev.title.style.setProperty('--title-opacity', '0'); ev.title.style.setProperty('--title-tx', initTx); }
+          if (ev.when) { ev.when.style.setProperty('--when-opacity', '0'); ev.when.style.setProperty('--when-tx', initTx); }
+          if (ev.venue) { ev.venue.style.setProperty('--venue-opacity', '0'); ev.venue.style.setProperty('--venue-tx', initTx); }
+          if (ev.mapBtn) { ev.mapBtn.style.setProperty('--map-opacity', '0'); ev.mapBtn.style.setProperty('--map-tx', initTx); }
+        } else {
+          // Icon pops in with slight spring
+          const p = Math.min(1, eventDiff / 1.6);
+          const spring = p < 1 ? Math.sin(p * Math.PI) * 0.08 : 0;
+          const medScale = Math.min(1.08, 0.7 + 0.3 * p + spring);
+          if (ev.medallion) {
+            ev.medallion.style.setProperty('--medallion-opacity', Math.min(1, p * 1.5).toFixed(2));
+            ev.medallion.style.setProperty('--medallion-scale', medScale.toFixed(3));
+          }
+
+          // Staggered text (title, date, venue, map button)
+          const items = [
+            { el: ev.title, key: 'title', delay: 0.12 },
+            { el: ev.when, key: 'when', delay: 0.24 },
+            { el: ev.venue, key: 'venue', delay: 0.36 },
+            { el: ev.mapBtn, key: 'map', delay: 0.48 }
+          ];
+
+          items.forEach(it => {
+            if (it.el) {
+              const itemP = Math.min(1, Math.max(0, (eventDiff - it.delay) / 0.9));
+              const eased = 1 - Math.pow(1 - itemP, 3);
+              const tx = (1 - eased) * (ev.side === 'left' ? -20 : 20);
+              it.el.style.setProperty(`--${it.key}-opacity`, itemP.toFixed(2));
+              it.el.style.setProperty(`--${it.key}-tx`, `${tx.toFixed(1)}px`);
+            }
+          });
+        }
+      }
+    }
+
+    // 4. Scroll tracking with damped scrub
+    let currentProgress = 0;
+    let targetProgress = 0;
+    let isTicking = false;
+
+    function onScrollCheck() {
+      const scroller = (outerFrame && outerFrame.scrollHeight > outerFrame.clientHeight) ? outerFrame : window;
+      const vh = scroller === window ? window.innerHeight : scroller.clientHeight;
+
+      const rect = stage.getBoundingClientRect();
+      const sectionRect = section.getBoundingClientRect();
+
+      // Heading reveal
+      if (sectionRect.top < vh * 0.85 && head) {
+        head.classList.add('km-in-view');
+      }
+
+      // Map scroll to walk progress
+      const walkStart = vh * 0.68;
+      const walkDist = 1260; // stage height
+      const raw = (walkStart - rect.top) / walkDist;
+      targetProgress = Math.min(1, Math.max(0, raw));
+
+      if (!isTicking) {
+        isTicking = true;
+        requestAnimationFrame(scrubTick);
+      }
+    }
+
+    function scrubTick() {
+      const delta = targetProgress - currentProgress;
+      if (Math.abs(delta) > 0.0006) {
+        currentProgress += delta * 0.15;
+        renderWalk(currentProgress);
+        requestAnimationFrame(scrubTick);
+      } else {
+        currentProgress = targetProgress;
+        renderWalk(currentProgress);
+        isTicking = false;
+      }
+    }
+
+    // Attach listeners
+    if (outerFrame) outerFrame.addEventListener('scroll', onScrollCheck, { passive: true });
+    window.addEventListener('scroll', onScrollCheck, { passive: true });
+    window.addEventListener('resize', onScrollCheck, { passive: true });
+
+    // Enable interactive styling and run initial check
+    section.classList.add('km-events--interactive');
+    renderWalk(0);
+    onScrollCheck();
   }
+
+  initWeddingJourneyWalk();
 
   // Venue Map Modal Controller
   const mapModal = document.getElementById('map-modal');

@@ -903,7 +903,7 @@ body.km-no-scroll {
 .km-events {
   position: relative;
   background-color: var(--km-parchment);
-  padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 2.5rem);
+  padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 96px);
   overflow: hidden;
 }
 
@@ -920,226 +920,302 @@ body.km-no-scroll {
 .km-events__inner {
   position: relative;
   z-index: 2;
+  width: min(100% - 1.5rem, 480px);
+  margin-inline: auto;
+}
+
+/* Header */
+.km-events__head {
+  text-align: center;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--km-ease-reveal), transform 0.7s var(--km-ease-reveal);
+}
+
+.km-events__head.km-in-view,
+.km-events:not(.km-events--interactive) .km-events__head {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .km-events__heading {
   font-family: var(--km-font-script);
-  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  font-size: clamp(2.0rem, 7.5vw, 2.7rem);
   line-height: 1.15;
   color: var(--km-maroon-deep);
   font-weight: 400;
+  text-wrap: balance;
+  margin: 0 0 12px;
 }
 
 .km-events__sub {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-size: clamp(0.88rem, 3.2vw, 1.02rem);
   font-style: italic;
   color: var(--km-green);
   max-width: 32ch;
   margin: 0 auto;
 }
 
+/* Stage - reserved fixed height container, CLS ~ 0 */
 .km-events__stage {
   position: relative;
-  margin-top: 1.5rem;
-  padding-block: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
+  width: 100%;
+  max-width: 480px;
+  height: 1260px;
+  margin-inline: auto;
 }
 
-/* Alta Footsteps Trail */
-.km-yatra-trail {
+/* Reference SVG */
+.km-events__svg {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.km-events__path {
+  fill: none;
+  stroke: none;
+}
+
+/* Programmatic Footsteps Layer */
+.km-events__feet-layer {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
   z-index: 1;
 }
 
-.km-footsteps-pair {
+.km-events__foot {
   position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 4px;
-}
-
-.km-footstep {
-  position: absolute;
-  width: 18px;
+  width: clamp(14px, 3.8vw, 18px);
   height: auto;
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.5s var(--km-ease-reveal), transform 0.5s var(--km-ease-reveal);
+  pointer-events: none;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%) rotate(var(--target-rot, 0deg)) scale(var(--step-scale, 0.6));
+  opacity: var(--step-opacity, 0);
+  filter: var(--step-glow, none);
+  transition: filter 0.3s ease;
 }
 
-.km-footstep.in-view {
-  opacity: 0.88;
-  transform: scale(1);
-}
-
-.km-footstep--pair {
-  position: static;
-  opacity: 0.88;
-  transform: none;
-}
-
-/* Gracefully curved alta footsteps along S-path matching PDF */
-.km-footstep--1  { top: 5%;  left: calc(50% - 14px); transform: rotate(-12deg); }
-.km-footstep--2  { top: 11%; left: calc(50% - 32px); transform: rotate(-22deg); }
-.km-footstep--3  { top: 18%; left: calc(50% - 46px); transform: rotate(-15deg); }
-.km-footstep--4  { top: 25%; left: calc(50% - 28px); transform: rotate(10deg); }
-.km-footstep--5  { top: 32%; left: calc(50% - 6px);  transform: rotate(24deg); }
-.km-footstep--6  { top: 39%; left: calc(50% + 24px); transform: rotate(26deg); }
-.km-footstep--7  { top: 46%; left: calc(50% + 48px); transform: rotate(14deg); }
-.km-footstep--8  { top: 54%; left: calc(50% + 28px); transform: rotate(-12deg); }
-.km-footstep--9  { top: 62%; left: calc(50% - 4px);  transform: rotate(-26deg); }
-.km-footstep--10 { top: 70%; left: calc(50% - 38px); transform: rotate(-22deg); }
-.km-footstep--11 { top: 78%; left: calc(50% - 16px); transform: rotate(14deg); }
-.km-footstep--12 { top: 86%; left: calc(50% + 22px); transform: rotate(28deg); }
-
-/* Timeline Event Stops */
-.km-events__stop {
-  position: relative;
-  z-index: 2;
+/* 4 Milestone Rows (Each ~300px tall) */
+.km-events__row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 300px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  opacity: 0;
-  transition: opacity 0.75s var(--km-ease-reveal), transform 0.75s var(--km-ease-reveal);
-  will-change: opacity, transform;
+  z-index: 2;
 }
 
-.km-events__stop--left {
-  transform: translateX(-20px);
-}
+.km-events__row[data-event-idx="0"] { top: 50px; }
+.km-events__row[data-event-idx="1"] { top: 350px; }
+.km-events__row[data-event-idx="2"] { top: 650px; }
+.km-events__row[data-event-idx="3"] { top: 950px; }
 
-.km-events__stop--right {
-  transform: translateX(20px);
-}
-
-.km-events__stop.in-view {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+/* Medallions (Directly on path apex: ~56px illustration with subtle cream backing, gold border, soft shadow) */
 .km-events__medallion {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  position: absolute;
+  top: 50%;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #faeec7;
-  border: 1.5px solid var(--km-gold);
+  background: radial-gradient(circle, #fffbee 0%, #faeec7 70%, #ebd492 100%);
+  border: 1px solid var(--km-gold);
+  box-shadow: 0 3px 12px rgba(91, 58, 41, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(91, 58, 41, 0.14);
-  transform: scale(0.82);
-  opacity: 0;
-  transition: transform 0.65s var(--km-ease-reveal) 0.1s, opacity 0.65s var(--km-ease-reveal) 0.1s;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) scale(var(--medallion-scale, 0.7));
+  opacity: var(--medallion-opacity, 0);
+  z-index: 3;
 }
 
-.km-events__stop.in-view .km-events__medallion {
-  transform: scale(1);
-  opacity: 1;
+.km-events__medallion--right {
+  left: 71%;
 }
 
-.km-events__card {
-  flex: 1;
-  text-align: center;
-}
-
-.km-events__stop--left .km-events__card {
-  transform: translateX(16px);
-  opacity: 0;
-  transition: transform 0.75s var(--km-ease-reveal) 0.18s, opacity 0.75s var(--km-ease-reveal) 0.18s;
-}
-
-.km-events__stop--right .km-events__card {
-  transform: translateX(-16px);
-  opacity: 0;
-  transition: transform 0.75s var(--km-ease-reveal) 0.18s, opacity 0.75s var(--km-ease-reveal) 0.18s;
-}
-
-.km-events__stop.in-view .km-events__card {
-  transform: translateX(0);
-  opacity: 1;
+.km-events__medallion--left {
+  left: 29%;
 }
 
 .km-events__medallion-img {
-  width: 82%;
-  height: 82%;
+  width: 76%;
+  height: 76%;
   object-fit: contain;
 }
 
+/* Event Cards (leaning near the image) */
+.km-events__card {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52%;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
+
 .km-events__card--left {
-  text-align: center;
+  right: calc(29% + 40px);
+  left: auto;
+  align-items: flex-end;
+  text-align: right;
 }
 
 .km-events__card--right {
-  text-align: center;
+  left: calc(29% + 44px);
+  right: auto;
+  align-items: flex-start;
+  text-align: left;
 }
 
+/* Card Content Typography & Staggered Transitions */
 .km-events__name {
-  font-family: var(--km-font-cinzel);
-  font-size: clamp(1.05rem, 3.8vw, 1.25rem);
-  font-weight: 700;
+  font-family: var(--km-font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(20px, 5.2vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--km-maroon-deep);
-  margin-bottom: 2px;
+  margin: 0 0 4px;
+  line-height: 1.2;
+  opacity: var(--title-opacity, 0);
+  transform: translateX(var(--title-tx, 20px));
 }
 
 .km-events__when {
-  font-family: var(--km-font-cormorant);
-  font-size: clamp(0.88rem, 3.2vw, 1rem);
-  font-weight: 600;
-  color: var(--km-ink);
+  font-family: var(--km-font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 500;
   line-height: 1.35;
+  color: var(--km-ink);
+  margin: 0 0 4px;
+  opacity: var(--when-opacity, 0);
+  transform: translateX(var(--when-tx, 20px));
 }
 
 .km-events__venue {
-  font-family: var(--km-font-cormorant);
-  font-size: clamp(0.82rem, 3vw, 0.94rem);
+  font-family: var(--km-font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(13px, 3.4vw, 14.5px);
   font-style: italic;
   color: var(--km-ink-light);
-  margin-bottom: 6px;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  opacity: var(--venue-opacity, 0);
+  transform: translateX(var(--venue-tx, 20px));
 }
 
 .km-events__map {
   display: inline-flex;
   align-items: center;
-  gap: 0.35em;
-  padding: 0.32rem 0.85rem;
-  font-family: var(--km-font-marcellus);
-  font-size: clamp(0.68rem, 2.4vw, 0.78rem);
-  letter-spacing: 0.14em;
-  text-indent: 0.14em;
-  color: var(--km-maroon-deep);
-  background: #fdf5dd;
+  justify-content: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #fdf6e2;
   border: 1px solid var(--km-gold);
-  border-radius: var(--km-radius-full);
+  color: var(--km-maroon-deep);
+  font-family: var(--km-font-cinzel), 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
+  margin-top: 4px;
   box-shadow: 0 2px 6px rgba(91, 58, 41, 0.08);
-  transition: background 0.25s ease, transform 0.2s var(--km-ease-reveal), box-shadow 0.25s ease;
+  opacity: var(--map-opacity, 0);
+  transform: translateX(var(--map-tx, 20px));
+  transition: background 0.2s ease, transform 0.2s var(--km-ease-reveal), box-shadow 0.2s ease;
 }
 
 .km-events__map:hover {
-  background: #f6e3b5;
-  transform: scale(1.04);
+  background: #f7e8be;
+  transform: translateX(var(--map-tx, 0)) scale(1.03);
   box-shadow: 0 4px 10px rgba(91, 58, 41, 0.16);
 }
 
 .km-events__map:active {
-  transform: scale(0.97);
+  transform: translateX(var(--map-tx, 0)) scale(0.98);
 }
 
-.km-map-pin-icon {
+.km-map-pin-svg {
   width: 12px;
   height: 12px;
+  color: var(--km-maroon-deep);
+  flex-shrink: 0;
+}
+
+/* Fallback when JS is disabled or not interactive yet */
+.km-events:not(.km-events--interactive) .km-events__foot {
+  opacity: 0.85 !important;
+  transform: translate(-50%, -50%) rotate(var(--target-rot, 0deg)) scale(1) !important;
+}
+
+.km-events:not(.km-events--interactive) .km-events__medallion,
+.km-events:not(.km-events--interactive) .km-events__card,
+.km-events:not(.km-events--interactive) .km-events__name,
+.km-events:not(.km-events--interactive) .km-events__when,
+.km-events:not(.km-events--interactive) .km-events__venue,
+.km-events:not(.km-events--interactive) .km-events__map {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .km-events__foot {
+    opacity: 0.85 !important;
+    transform: translate(-50%, -50%) rotate(var(--target-rot, 0deg)) scale(1) !important;
+    filter: none !important;
+  }
+  .km-events__medallion,
+  .km-events__card,
+  .km-events__name,
+  .km-events__when,
+  .km-events__venue,
+  .km-events__map,
+  .km-events__head {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+}
+
+/* Responsive Scaling: 360px adjustments */
+@media (max-width: 374px) {
+  .km-events__card {
+    width: 48%;
+  }
+  .km-events__card--left {
+    right: calc(29% + 32px);
+  }
+  .km-events__card--right {
+    left: calc(29% + 34px);
+  }
+  .km-events__name {
+    font-size: 18px;
+  }
+  .km-events__when {
+    font-size: 12px;
+  }
+  .km-events__venue {
+    font-size: 12px;
+  }
+  .km-events__map {
+    font-size: 10px;
+    height: 30px;
+    padding: 0 12px;
+  }
 }
 
 /* ==========================================================================
@@ -1903,9 +1979,14 @@ body.km-no-scroll {
   .km-countdown__stage,
   .km-countdown__unit,
   .km-footstep,
-  .km-events__stop,
+  .km-events__foot,
+  .km-events__row,
   .km-events__medallion,
   .km-events__card,
+  .km-events__name,
+  .km-events__when,
+  .km-events__venue,
+  .km-events__map,
   .km-toranam-wrap,
   .km-gallery__parasol,
   .km-gallery__cell,
