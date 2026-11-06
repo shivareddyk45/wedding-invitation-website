@@ -364,8 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const startPt = { x: 200, y: 30 };
-    const endPt = { x: 200, y: 1240 };
-    const curvePoints = [startPt, ...anchors, endPt];
+    const curvePoints = [startPt, ...anchors];
 
     let d = `M ${curvePoints[0].x} ${curvePoints[0].y}`;
     for (let i = 1; i < curvePoints.length; i++) {
@@ -416,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
           index: footCounter,
           side,
           xPct: (footX / 400) * 100,
-          yPct: (footY / 1260) * 100,
+          yPct: (footY / 1200) * 100,
           angle: angle
         });
         footCounter++;
@@ -569,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Map scroll to walk progress
       const walkStart = vh * 0.68;
-      const walkDist = 1260; // stage height
+      const walkDist = 1200; // stage height
       const raw = (walkStart - rect.top) / walkDist;
       targetProgress = Math.min(1, Math.max(0, raw));
 
