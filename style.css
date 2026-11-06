@@ -254,29 +254,9 @@ body.km-no-scroll {
   display: block;
 }
 
-/* Prominent Sacred Vinayaka on Page 1 */
-.km-entry__vinayaka-wrap {
-  position: absolute;
-  top: 2.8%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(252, 241, 210, 0.95) 45%, rgba(252, 241, 210, 0) 75%);
-  padding: 6px;
-  border-radius: 50%;
-}
-
-.km-entry__vinayaka {
-  width: clamp(52px, 14vw, 64px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(122, 21, 48, 0.25));
-}
-
 .km-entry__mandala {
   position: absolute;
-  top: 32%;
+  top: 29%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(76vw, 330px);
@@ -293,7 +273,7 @@ body.km-no-scroll {
 
 .km-entry__content {
   position: absolute;
-  top: clamp(14.8%, 16vh, 16.5%);
+  top: 13.5%;
   left: 50%;
   transform: translateX(-50%);
   width: min(90%, 420px);
@@ -302,7 +282,7 @@ body.km-no-scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.28rem, 1.1vw, 0.48rem);
+  gap: clamp(0.45rem, 1.6vw, 0.75rem);
 }
 
 .km-entry__label {
@@ -364,8 +344,8 @@ body.km-no-scroll {
 
 /* Pulsing Shimmer Pill Button - Royal Wax Seal Aesthetic */
 .km-entry__cta {
-  margin-top: clamp(0.45rem, 1.8vw, 0.85rem);
-  padding: 0.72rem 2.2rem;
+  margin-top: clamp(0.7rem, 2.2vw, 1.2rem);
+  padding: 0.78rem 2.4rem;
   border-radius: var(--km-radius-full);
   background: linear-gradient(135deg, #7a1530 0%, #981c3c 50%, #681026 100%);
   border: 1.5px solid #d4af37;
@@ -507,8 +487,6 @@ body.km-no-scroll {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.08);
-  transform-origin: center 75%;
   display: block;
   background-color: var(--km-parchment);
 }
@@ -1715,29 +1693,9 @@ body.km-no-scroll {
   will-change: transform;
 }
 
-/* Prominent Sacred Vinayaka on Page 7 */
-.km-footer__vinayaka-wrap {
-  position: absolute;
-  top: 2.8%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(252, 241, 210, 0.95) 45%, rgba(252, 241, 210, 0) 75%);
-  padding: 6px;
-  border-radius: 50%;
-}
-
-.km-footer__vinayaka {
-  width: clamp(52px, 14vw, 64px);
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(122, 21, 48, 0.25));
-}
-
 .km-footer__greeting {
   position: absolute;
-  top: clamp(17.5%, 19vh, 20.5%);
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
