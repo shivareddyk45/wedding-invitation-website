@@ -184,23 +184,23 @@ body.km-no-scroll {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: #faeed0;
-  border: 1.5px solid var(--km-gold);
-  box-shadow: 0 4px 14px rgba(91, 58, 41, 0.18);
-  transition: box-shadow 0.25s ease, background 0.25s ease;
+  background: radial-gradient(circle, #FFF9ED 0%, #faeed0 75%, #edd89e 100%);
+  border: 1.8px solid var(--km-gold);
+  box-shadow: 0 6px 20px rgba(122, 21, 48, 0.35), 0 0 14px rgba(201, 162, 75, 0.4);
+  transition: box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
 .km-bell--playing .km-bell__disc {
-  box-shadow: 0 0 0 2px rgba(201, 162, 75, 0.5), 0 0 0 6px rgba(201, 162, 75, 0.2), var(--km-shadow-soft);
-  animation: km-bell-pulse 2s infinite ease-in-out;
+  box-shadow: 0 0 0 2.5px rgba(201, 162, 75, 0.7), 0 0 0 7px rgba(201, 162, 75, 0.25), 0 6px 22px rgba(122, 21, 48, 0.4);
+  animation: km-bell-pulse 2.2s infinite ease-in-out;
 }
 
 @keyframes km-bell-pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+  50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
 
@@ -287,101 +287,105 @@ body.km-no-scroll {
 
 .km-entry__label {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.7rem, 2.4vw, 0.82rem);
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
+  font-size: clamp(0.72rem, 2.5vw, 0.84rem);
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
   color: var(--km-maroon-deep);
-  font-weight: 600;
-  margin-bottom: 2px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
 }
 
 .km-entry__names {
   font-family: var(--km-font-script);
-  font-size: clamp(2.2rem, 7.8vw, 3.2rem);
+  font-size: clamp(2.35rem, 8.2vw, 3.4rem);
   line-height: 1.08;
   color: var(--km-maroon-deep);
   font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.85);
+  text-shadow: 0 2px 10px rgba(251, 238, 184, 0.95), 0 0 20px rgba(201, 162, 75, 0.4);
 }
 
 .km-entry__amp {
-  font-family: var(--km-font-cormorant);
+  font-family: var(--km-font-script);
   font-style: italic;
-  font-weight: 700;
-  font-size: 0.68em;
+  font-weight: 400;
+  font-size: 0.65em;
   line-height: 1;
-  margin: 0.05em 0;
+  margin: 0.02em 0;
   color: var(--km-maroon-deep);
   text-shadow: 0 1px 3px rgba(251, 238, 184, 0.95);
 }
 
 .km-entry__date {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
-  letter-spacing: 0.2em;
-  text-indent: 0.2em;
-  color: var(--km-ink);
-  font-weight: 600;
+  font-size: clamp(0.82rem, 2.9vw, 0.98rem);
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  color: #4a2e20;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
 }
 
 .km-entry__city {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.6rem, 2vw, 0.72rem);
-  letter-spacing: 0.14em;
-  text-indent: 0.14em;
-  color: var(--km-ink-light);
-  line-height: 1.4;
-  margin-top: 2px;
+  font-size: clamp(0.62rem, 2.1vw, 0.74rem);
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: var(--km-maroon);
+  line-height: 1.45;
+  margin-top: 3px;
   max-width: 32ch;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
 }
 
-/* Pulsing Shimmer Pill Button */
+/* Pulsing Shimmer Pill Button - Royal Wax Seal Aesthetic */
 .km-entry__cta {
-  margin-top: clamp(0.6rem, 2vw, 1.1rem);
-  padding: 0.72rem 2.2rem;
+  margin-top: clamp(0.7rem, 2.2vw, 1.2rem);
+  padding: 0.78rem 2.4rem;
   border-radius: var(--km-radius-full);
-  background: var(--km-maroon-deep);
-  border: 1.5px solid var(--km-gold);
-  color: var(--km-parchment-light);
+  background: linear-gradient(135deg, #7a1530 0%, #981c3c 50%, #681026 100%);
+  border: 1.5px solid #d4af37;
+  color: #fff6db;
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.72rem, 2.4vw, 0.84rem);
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-indent: 0.2em;
+  font-size: clamp(0.74rem, 2.5vw, 0.86rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(122, 21, 48, 0.38);
+  box-shadow: 0 8px 24px rgba(122, 21, 48, 0.45), inset 0 1px 2px rgba(255, 245, 210, 0.5), 0 0 14px rgba(212, 175, 55, 0.35);
   animation: km-cta-shimmer 2.4s infinite ease-in-out;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .km-entry__cta:hover {
-  transform: scale(1.04);
-  box-shadow: 0 8px 26px rgba(122, 21, 48, 0.55);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(122, 21, 48, 0.6), 0 0 20px rgba(212, 175, 55, 0.55);
 }
 
 .km-entry__cta:active,
 .km-entry__cta--pressed {
   transform: scale(0.97) !important;
-  background: #a03050 !important;
-  box-shadow: 0 2px 10px rgba(160, 48, 80, 0.4) !important;
+  background: #681026 !important;
+  box-shadow: 0 3px 12px rgba(104, 16, 38, 0.5) !important;
   transition-duration: 0.15s !important;
 }
 
 @keyframes km-cta-shimmer {
   0% {
     transform: scale(1);
-    box-shadow: 0 6px 20px rgba(122, 21, 48, 0.38);
+    box-shadow: 0 8px 24px rgba(122, 21, 48, 0.45), 0 0 14px rgba(212, 175, 55, 0.35);
   }
   50% {
     transform: scale(1.03);
-    box-shadow: 0 8px 28px rgba(201, 162, 75, 0.6), 0 0 10px rgba(201, 162, 75, 0.4);
+    box-shadow: 0 10px 32px rgba(201, 162, 75, 0.7), 0 0 18px rgba(212, 175, 55, 0.6);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 6px 20px rgba(122, 21, 48, 0.38);
+    box-shadow: 0 8px 24px rgba(122, 21, 48, 0.45), 0 0 14px rgba(212, 175, 55, 0.35);
   }
 }
 
@@ -640,19 +644,21 @@ body.km-no-scroll {
 
 .km-couple__heading {
   font-family: var(--km-font-script);
-  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  font-size: clamp(2.5rem, 9.2vw, 3.5rem);
   line-height: 1.15;
   color: var(--km-maroon-deep);
   font-weight: 400;
+  text-shadow: 0 2px 10px rgba(251, 238, 184, 0.95);
 }
 
 .km-couple__sub {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+  font-size: clamp(0.96rem, 3.5vw, 1.12rem);
   font-style: italic;
-  color: var(--km-green);
+  color: #4a2e20;
   max-width: 32ch;
   margin: 0 auto;
+  text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-couple__unit {
@@ -666,6 +672,7 @@ body.km-no-scroll {
   position: relative;
   width: min(84vw, 310px);
   margin-inline: auto;
+  filter: drop-shadow(0 12px 28px rgba(91, 58, 41, 0.18));
 }
 
 /* Peacock Arch Reveal (Arrives a beat later) */
@@ -715,6 +722,7 @@ body.km-no-scroll {
   overflow: hidden;
   background: #fbf3dc;
   border-radius: 8px;
+  box-shadow: inset 0 0 20px rgba(91, 58, 41, 0.14);
 }
 
 .km-couple__photo-window--groom {
@@ -750,7 +758,7 @@ body.km-no-scroll {
 /* Sequential Stagger for Couple Meta */
 .km-couple__name {
   font-family: var(--km-font-script);
-  font-size: clamp(2rem, 7.5vw, 2.8rem);
+  font-size: clamp(2.2rem, 8vw, 3rem);
   line-height: 1.15;
   color: var(--km-maroon-deep);
   font-weight: 400;
@@ -758,29 +766,33 @@ body.km-no-scroll {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.75s var(--km-ease-reveal) 0.32s, transform 0.75s var(--km-ease-reveal) 0.32s;
+  text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 14px rgba(201, 162, 75, 0.3);
 }
 
 .km-couple__parent-label {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.68rem, 2.4vw, 0.78rem);
+  font-size: clamp(0.68rem, 2.3vw, 0.78rem);
   letter-spacing: 0.22em;
   text-indent: 0.22em;
-  color: var(--km-maroon);
-  font-weight: 600;
-  margin-bottom: 2px;
+  color: var(--km-gold);
+  font-weight: 700;
+  margin-bottom: 3px;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.75s var(--km-ease-reveal) 0.44s, transform 0.75s var(--km-ease-reveal) 0.44s;
+  text-shadow: 0 1px 1px rgba(91, 58, 41, 0.15);
 }
 
 .km-couple__parents {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
-  color: var(--km-ink);
-  line-height: 1.4;
+  font-size: clamp(0.96rem, 3.4vw, 1.12rem);
+  font-weight: 600;
+  color: #4a2e20;
+  line-height: 1.45;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.75s var(--km-ease-reveal) 0.56s, transform 0.75s var(--km-ease-reveal) 0.56s;
+  text-shadow: 0 1px 2px rgba(251, 238, 184, 0.85);
 }
 
 .km-couple__parent-line {
@@ -858,10 +870,10 @@ body.km-no-scroll {
 
 .km-countdown__value {
   font-family: var(--km-font-cinzel);
-  font-weight: 700;
-  font-size: clamp(0.95rem, 5vw, 2.1rem);
-  color: #68291a;
-  text-shadow: 0 1px 1px rgba(255, 235, 185, 0.85);
+  font-weight: 800;
+  font-size: clamp(1rem, 5vw, 2rem);
+  color: #fff6dc;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(201, 162, 75, 0.85), 0 0 18px rgba(201, 162, 75, 0.45);
   line-height: 1;
   transition: transform 0.28s var(--km-ease-reveal), opacity 0.28s var(--km-ease-reveal);
 }
@@ -1188,6 +1200,7 @@ body.km-no-scroll {
   line-height: 1.15;
   color: var(--km-maroon-deep);
   font-weight: 400;
+  text-shadow: 0 2px 10px rgba(251, 238, 184, 0.95);
 }
 
 .km-gallery__sub {
@@ -1197,6 +1210,7 @@ body.km-no-scroll {
   color: var(--km-green);
   max-width: 32ch;
   margin: 0 auto;
+  text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-gallery__grid {
@@ -1207,21 +1221,27 @@ body.km-no-scroll {
   margin-top: 18px;
 }
 
+/* Royal Palace Gold-Framed Artwork Cells */
 .km-gallery__cell {
   position: relative;
   overflow: hidden;
-  border: 4px solid #fffdf8;
-  outline: 1px solid var(--km-gold);
+  border: 3.5px solid #fffdf8;
+  outline: 1.2px solid var(--km-gold);
   border-radius: 4px;
   padding: 0;
   margin: 0;
   background: #fff;
   aspect-ratio: 1 / 1.15;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(91, 58, 41, 0.14);
+  box-shadow: 0 6px 18px rgba(91, 58, 41, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.65s var(--km-ease-reveal), transform 0.65s var(--km-ease-reveal), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.km-gallery__cell:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 26px rgba(91, 58, 41, 0.22), 0 0 14px rgba(201, 162, 75, 0.35);
 }
 
 .km-gallery__cell.in-view {
@@ -1232,6 +1252,9 @@ body.km-no-scroll {
 .km-gallery__cell--feature {
   grid-column: 1 / -1;
   aspect-ratio: 16 / 10;
+  border: 4.5px solid #fffdf8;
+  outline: 1.5px solid var(--km-gold);
+  box-shadow: 0 8px 24px rgba(91, 58, 41, 0.18), 0 0 12px rgba(201, 162, 75, 0.25);
 }
 
 .km-gallery__img {
@@ -1595,11 +1618,12 @@ body.km-no-scroll {
   font-family: var(--km-font-cormorant);
   font-size: clamp(0.98rem, 3.6vw, 1.25rem);
   font-weight: 500;
-  color: var(--km-ink);
+  color: #4a2e20;
   margin-bottom: 2px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.8s var(--km-ease-reveal) 0.15s, transform 0.8s var(--km-ease-reveal) 0.15s;
+  text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-footer__greet-main {
@@ -1612,18 +1636,20 @@ body.km-no-scroll {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.8s var(--km-ease-reveal) 0.3s, transform 0.8s var(--km-ease-reveal) 0.3s;
+  text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 14px rgba(201, 162, 75, 0.35);
 }
 
 .km-footer__telugu {
   font-family: var(--km-font-telugu);
-  font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+  font-size: clamp(1.8rem, 6.8vw, 2.4rem);
   font-weight: 700;
   color: var(--km-maroon-deep);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   margin-bottom: 4px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.8s var(--km-ease-reveal) 0.45s, transform 0.8s var(--km-ease-reveal) 0.45s;
+  text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 16px rgba(201, 162, 75, 0.45);
 }
 
 .km-footer__divider {

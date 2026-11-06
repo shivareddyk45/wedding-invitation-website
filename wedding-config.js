@@ -23,8 +23,8 @@ window.WEDDING_CONFIG = {
     label: "THE WEDDING OF",
     groom: "Nageshwar Reddy",
     bride: "Neeraja",
-    dateText: "03 DECEMBER 2026",
-    venueText: "Ravichettu Bazar, Dondapadu, INDIA"
+    dateText: "MONDAY, OCTOBER 26, 2026",
+    venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA"
   },
   hero: {
     invocation: "|| Shree Ganeshay Namah ||",
@@ -41,7 +41,7 @@ window.WEDDING_CONFIG = {
   },
   countdown: {
     title: "OUR MUHURTHAM IN",
-    targetIso: "2026-10-26T10:00:00+05:30",
+    targetIso: "2027-10-26T10:00:00+05:30",
     completedMessage: "The sacred hour has arrived"
   },
   journey: {
