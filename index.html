@@ -3,7 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>The Wedding of Nageshwar Reddy &amp; Neeraja</title>
+  <title>The Wedding of Nageshwar Reddy &amp; Neeraja | Thursday, 3 December 2026</title>
+  <meta name="description" content="Nageshwar Reddy &amp; Neeraja invite you to celebrate their wedding on Thursday, 3 December 2026 at DJ Usthav Mahal, Bhavanipuram, Vijayawada.">
+  <meta name="theme-color" content="#FBE9B7">
+  <link rel="canonical" href="https://wedding-invitation-website-x854.vercel.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wedding-invitation-website-x854.vercel.app/">
+  <meta property="og:title" content="Nageshwar Reddy &amp; Neeraja Wedding Invitation">
+  <meta property="og:description" content="Celebrate the wedding of Nageshwar Reddy &amp; Neeraja on Thursday, 3 December 2026 at DJ Usthav Mahal, Bhavanipuram, Vijayawada.">
+  <meta property="og:image" content="https://wedding-invitation-website-x854.vercel.app/assets/banners/og-homepage-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://wedding-invitation-website-x854.vercel.app/">
+  <meta name="twitter:title" content="Nageshwar Reddy &amp; Neeraja Wedding Invitation">
+  <meta name="twitter:description" content="Celebrate the wedding of Nageshwar Reddy &amp; Neeraja on Thursday, 3 December 2026 at DJ Usthav Mahal, Bhavanipuram, Vijayawada.">
+  <meta name="twitter:image" content="https://wedding-invitation-website-x854.vercel.app/assets/banners/og-homepage-banner.png">
+
+  <!-- Schema.org Event JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Wedding of Nageshwar Reddy and Neeraja",
+    "startDate": "2026-12-03T00:00:00+05:30",
+    "endDate": "2026-12-03T23:59:59+05:30",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "DJ Usthav Mahal",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bhavanipuram",
+        "addressLocality": "Vijayawada",
+        "addressRegion": "Andhra Pradesh",
+        "addressCountry": "IN"
+      }
+    },
+    "image": "https://wedding-invitation-website-x854.vercel.app/assets/banners/og-homepage-banner.png",
+    "description": "Nageshwar Reddy & Neeraja invite you to celebrate their wedding on Thursday, 3 December 2026 at DJ Usthav Mahal, Bhavanipuram, Vijayawada."
+  }
+  </script>
 
   <!-- Favicons -->
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
@@ -20,12 +66,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="style.css?v=3.1">
 
-  <!-- Central Wedding Configuration (Separates Content from Engine) -->
-  <script src="wedding-config.js?v=3.0"></script>
+  <!-- Central Wedding Configuration (Single Source of Truth) -->
+  <script src="src/data/wedding.js?v=3.1"></script>
+  <script src="wedding-config.js?v=3.1"></script>
 </head>
 <body class="km-body km-no-scroll">
+
+  <!-- Accessible Skip Link -->
+  <a href="#ceremonial-hero" class="km-skip-link" id="skip-link">Skip to invitation content</a>
 
   <!-- Background Wedding Soundtrack (Lyrical Soundtrack with Audio API Fade-in) -->
   <audio id="wedding-audio" loop preload="none">
@@ -34,10 +84,21 @@
   </audio>
 
   <!-- ==============================================
-       FLOATING AUDIO CONTROLLER (Bottom Corner)
+       TOP CONTROLS (Language Switcher Pill)
+       ============================================== -->
+  <div class="km-top-bar" aria-label="Language selection">
+    <button id="lang-toggle-btn" class="km-lang-toggle" type="button" aria-label="Switch language between English and Telugu" data-lang="en">
+      <span class="km-lang-toggle__opt km-lang-toggle__opt--active" data-lang-opt="en">EN</span>
+      <span class="km-lang-toggle__divider" aria-hidden="true">|</span>
+      <span class="km-lang-toggle__opt" data-lang-opt="te">తెలుగు</span>
+    </button>
+  </div>
+
+  <!-- ==============================================
+       FLOATING PERSISTENT AUDIO BAR (Bottom Corner)
        ============================================== -->
   <div id="km-persistent-bar" class="km-persistent-bar" aria-hidden="true">
-    <button id="music-toggle" class="km-bell" aria-label="Play or Pause Wedding Music" type="button">
+    <button id="music-toggle" class="km-bell" aria-label="Play Wedding Soundtrack" type="button">
       <span class="km-bell__disc">
         <img id="music-icon-img" src="assets/images/dholak_icon.svg" alt="Traditional Drum Music Icon" class="km-bell__icon" width="40" height="40">
       </span>
@@ -58,23 +119,26 @@
 
         <!-- Entry Typography Content -->
         <div class="km-entry__content">
+          <!-- Personalized Guest Greeting (from ?to=Name) -->
+          <p id="entry-guest-greeting" class="km-entry__guest-greeting" style="display: none;"></p>
+
           <div class="km-entry__group">
             <p class="km-entry__label" id="entry-label">THE WEDDING OF</p>
-            <h1 class="km-entry__names">
+            <div class="km-entry__names">
               <span class="km-entry__groom" id="entry-groom">Nageshwar Reddy</span>
               <span class="km-entry__amp">&amp;</span>
               <span class="km-entry__bride" id="entry-bride">Neeraja</span>
-            </h1>
+            </div>
           </div>
 
           <div class="km-entry__group km-entry__meta">
-            <p class="km-entry__date" id="entry-date">MONDAY, OCTOBER 26, 2026</p>
+            <p class="km-entry__date" id="entry-date">THURSDAY, DECEMBER 3, 2026</p>
             <p class="km-entry__city" id="entry-venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
           </div>
 
           <!-- Pulsing Shimmer Pill Button -->
           <button id="km-open-btn" class="km-entry__cta" aria-label="Open the wedding invitation" type="button">
-            <span class="km-entry__cta-inner">OPEN INVITATION</span>
+            <span class="km-entry__cta-inner" id="entry-open-text">OPEN INVITATION</span>
           </button>
         </div>
       </div>
@@ -112,13 +176,13 @@
           <!-- Ganesha Invocation -->
           <p class="km-hero__invocation km-hero-stagger" style="--stagger: 0;" id="hero-invocation">|| Shree Ganeshay Namah ||</p>
 
-          <h2 class="km-hero__names km-hero-stagger" style="--stagger: 1;">
+          <h1 class="km-hero__names km-hero-stagger" style="--stagger: 1;">
             <span id="hero-groom">Nageshwar Reddy</span>
             <span class="km-hero__names-amp">&amp;</span>
             <span id="hero-bride">Neeraja</span>
-          </h2>
+          </h1>
 
-          <p class="km-hero__date km-hero-stagger" style="--stagger: 2;" id="hero-date">Monday, October 26, 2026</p>
+          <p class="km-hero__date km-hero-stagger" style="--stagger: 2;" id="hero-date">Thursday, December 3, 2026</p>
           <p class="km-hero__venue km-hero-stagger" style="--stagger: 3;">
             <em id="hero-venue-lead">at</em> <span id="hero-venue">DJ USTHAV MAHAL, BHAVANIPURAM,<br>VIJAYAWADA</span>
           </p>
@@ -143,8 +207,8 @@
 
         <div class="km-container km-couple__inner">
           <div class="km-section-head">
-            <h2 class="km-couple__heading">The Couple</h2>
-            <p class="km-couple__sub">Two families, many blessings, one timeless celebration.</p>
+            <h2 class="km-couple__heading" id="couple-heading">The Couple</h2>
+            <p class="km-couple__sub" id="couple-subline">Two families, many blessings, one timeless celebration.</p>
           </div>
 
           <!-- Groom: Nageshwar Reddy -->
@@ -155,7 +219,7 @@
               
               <!-- Arch Photo Window with Mirrored Scalloped Mask -->
               <div class="km-couple__photo-window km-couple__photo-window--groom km-couple__portrait-wrap">
-                <img src="assets/images/vijay-groom-portrait-618dff4e0d.jpg" alt="Portrait of Groom Nageshwar Reddy" class="km-couple__photo" width="300" height="380" loading="lazy">
+                <img id="groom-photo" src="assets/images/groom-portrait.jpg" alt="Portrait of Groom Nageshwar Reddy" class="km-couple__photo" width="300" height="380" loading="lazy">
               </div>
             </div>
 
@@ -182,14 +246,17 @@
               
               <!-- Arch Photo Window with Regular Scalloped Mask -->
               <div class="km-couple__photo-window km-couple__photo-window--bride km-couple__portrait-wrap">
-                <img src="assets/images/rashmika-bride-portrait-c4cc91ddfb.jpg" alt="Portrait of Bride Neeraja" class="km-couple__photo" width="300" height="380" loading="lazy">
+                <img id="bride-photo" src="assets/images/bride-portrait.jpg" alt="Portrait of Bride Neeraja" class="km-couple__photo" width="300" height="380" loading="lazy">
               </div>
             </div>
 
             <div class="km-couple__meta">
               <h3 class="km-couple__name" id="bride-name">Neeraja</h3>
               <p class="km-couple__parent-label" id="bride-label">DAUGHTER OF</p>
-              <p class="km-couple__parents" id="bride-parents">Yet to fill</p>
+              <p class="km-couple__parents" id="bride-parents">
+                <span class="km-couple__parent-line">Yaddala Shiva Reddy</span>
+                <span class="km-couple__parent-line">&amp; Adi Lakshmi</span>
+              </p>
             </div>
           </article>
         </div>
@@ -222,9 +289,9 @@
             </div>
           </div>
 
-          <!-- Zero State Message Overlay -->
+          <!-- State Messages for Day-of and Past -->
           <div id="countdown-complete-msg" class="km-countdown__zero-state" style="display: none;">
-            <p class="km-countdown__sacred-text">The sacred hour has arrived</p>
+            <p id="countdown-sacred-text" class="km-countdown__sacred-text">Today is the day! We celebrate with love and gratitude.</p>
           </div>
         </div>
       </section>
@@ -249,83 +316,22 @@
         </div>
 
         <div class="km-container km-events__inner">
-          <div class="km-section-head">
-            <h2 class="km-events__heading">The Wedding Journey</h2>
-            <p class="km-events__sub">Walk with us, function to function, to the sacred hour.</p>
+          <div class="km-events__head">
+            <h2 class="km-events__heading" id="journey-heading">The Wedding Journey</h2>
+            <p class="km-events__sub" id="journey-subline">Walk with us, function to function, to the sacred hour.</p>
           </div>
 
-          <div class="km-events__stage" style="aspect-ratio: 400 / 1200;">
-            <!-- Hidden SVG Reference for Path & Step Geometry -->
-            <svg class="km-events__svg" viewBox="0 0 400 1200" preserveAspectRatio="none" aria-hidden="true">
-              <path class="km-events__path" d="M 200 30 C 200 115, 116 115, 116 200 C 116 350, 284 350, 284 500 C 284 650, 116 650, 116 800 C 116 950, 284 950, 284 1100" fill="none" stroke="none" />
+          <!-- Dynamic Stage (Configured programmatically by script.js based on enabled events) -->
+          <div class="km-events__stage" id="journey-stage">
+            <svg class="km-events__svg" id="journey-svg" viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true">
+              <path class="km-events__path" id="journey-path" d="" fill="none" stroke="none" />
             </svg>
 
             <!-- Dynamic Programmatic Footsteps Container -->
-            <div class="km-events__feet-layer" aria-hidden="true"></div>
+            <div class="km-events__feet-layer" id="journey-feet" aria-hidden="true"></div>
 
-            <!-- Event 1: Mehendi (Medallion Left, Text Right) -->
-            <div class="km-events__row km-events__row--even" id="event-mehendi" data-event-idx="0">
-              <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
-                <img src="assets/images/event-mehendi.png" alt="Mehendi" class="km-events__medallion-img" width="56" height="56">
-              </div>
-              <div class="km-events__card km-events__card--right">
-                <h3 class="km-events__name">Mehendi</h3>
-                <p class="km-events__when">24th February 2026 · 5:00 PM onwards</p>
-                <p class="km-events__venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
-                <button class="km-events__map" data-event="Mehendi" data-location="DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA" type="button" aria-label="View Mehendi location on map">
-                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-                  <span>VIEW MAP</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Event 2: Haldi & Sangeet (Text Left, Medallion Right) -->
-            <div class="km-events__row km-events__row--odd" id="event-haldi" data-event-idx="1">
-              <div class="km-events__card km-events__card--left">
-                <h3 class="km-events__name">Haldi &amp; Sangeet</h3>
-                <p class="km-events__when">25th February 2026 · 10:48 AM</p>
-                <p class="km-events__venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
-                <button class="km-events__map" data-event="Haldi &amp; Sangeet" data-location="DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA" type="button" aria-label="View Haldi and Sangeet location on map">
-                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-                  <span>VIEW MAP</span>
-                </button>
-              </div>
-              <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
-                <img src="assets/images/event-haldi-bowl.png" alt="Haldi &amp; Sangeet" class="km-events__medallion-img" width="56" height="56">
-              </div>
-            </div>
-
-            <!-- Event 3: Telugu Wedding (Medallion Left, Text Right) -->
-            <div class="km-events__row km-events__row--even" id="event-telugu" data-event-idx="2">
-              <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
-                <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding" class="km-events__medallion-img" width="56" height="56">
-              </div>
-              <div class="km-events__card km-events__card--right">
-                <h3 class="km-events__name">Telugu Wedding</h3>
-                <p class="km-events__when">26th February 2026 · 10:00 AM onwards</p>
-                <p class="km-events__venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
-                <button class="km-events__map" data-event="Telugu Wedding" data-location="DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA" type="button" aria-label="View Telugu Wedding location on map">
-                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-                  <span>VIEW MAP</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Event 4: Kodava Ceremony (Text Left, Medallion Right) -->
-            <div class="km-events__row km-events__row--odd" id="event-kodava" data-event-idx="3">
-              <div class="km-events__card km-events__card--left">
-                <h3 class="km-events__name">Kodava Ceremony</h3>
-                <p class="km-events__when">26th February 2026 — Evening · 6:30 PM onwards</p>
-                <p class="km-events__venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
-                <button class="km-events__map" data-event="Kodava Ceremony" data-location="DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA" type="button" aria-label="View Kodava Ceremony location on map">
-                  <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-                  <span>VIEW MAP</span>
-                </button>
-              </div>
-              <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
-                <img src="assets/images/event-nadaswaram.png" alt="Kodava Ceremony" class="km-events__medallion-img" width="56" height="56">
-              </div>
-            </div>
+            <!-- Dynamic Event Rows Container -->
+            <div class="km-events__rows-layer" id="journey-rows"></div>
           </div>
         </div>
       </section>
@@ -344,61 +350,51 @@
 
         <div class="km-container km-gallery__stage">
           <div class="km-section-head">
-            <h2 class="km-gallery__heading">Before the Vows</h2>
-            <p class="km-gallery__sub">Little moments from the years that brought us here.</p>
+            <h2 class="km-gallery__heading" id="gallery-heading">Before the Vows</h2>
+            <p class="km-gallery__sub" id="gallery-subline">Little moments from the years that brought us here.</p>
           </div>
 
           <!-- Two-Column Masonry with Polaroid-Style Borders -->
           <div class="km-gallery__grid" id="gallery-grid">
-            <!-- Photo 1: Feature -->
+            <!-- Photos 1 to 10 will be dynamically bound or preserved with neutral alt text -->
             <button type="button" class="km-gallery__cell km-gallery__cell--feature" data-index="0" aria-label="Open photo 1 in lightbox">
-              <img src="assets/images/gallery-photo-01-a7bbd013fb-22.jpeg" alt="Nageshwar Reddy and Neeraja Wedding Floral Mandap" class="km-gallery__img" loading="lazy" width="460" height="288">
+              <img src="assets/images/gallery-01.jpg" alt="Sacred Floral Mandap" class="km-gallery__img" loading="lazy" width="460" height="288">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
-
-            <!-- Photos 2 & 3 -->
             <button type="button" class="km-gallery__cell" data-index="1" aria-label="Open photo 2 in lightbox">
-              <img src="assets/images/gallery-photo-02-20d69634d1-29.jpeg" alt="Traditional Red Saree Walk" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-02.jpg" alt="Ceremonial Walk" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="2" aria-label="Open photo 3 in lightbox">
-              <img src="assets/images/gallery-photo-03-1ea95d2922-23-1.jpeg" alt="Laughter and Festivity" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-03.jpg" alt="Smiles &amp; Festivity" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
-
-            <!-- Photos 4 & 5 -->
             <button type="button" class="km-gallery__cell" data-index="3" aria-label="Open photo 4 in lightbox">
-              <img src="assets/images/gallery-photo-04-a509bf14e8-F-1.jpg" alt="Starry Gala Reception Dance" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-04.jpg" alt="Evening Gala" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="4" aria-label="Open photo 5 in lightbox">
-              <img src="assets/images/gallery-photo-05-10630c5a75-25-1.jpeg" alt="Pastel Candid Smiles" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-05.jpg" alt="Candid Radiance" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
-
-            <!-- Photos 6 & 7 -->
             <button type="button" class="km-gallery__cell" data-index="5" aria-label="Open photo 6 in lightbox">
-              <img src="assets/images/gallery-photo-06-fdbc188766-34.jpeg" alt="Sangeet Performance" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-06.jpg" alt="Celebration Beats" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="6" aria-label="Open photo 7 in lightbox">
-              <img src="assets/images/gallery-photo-07-f42440eb83-27.jpeg" alt="Varmala Garland Exchange" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-07.jpg" alt="Garland Exchange" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
-
-            <!-- Photos 8 & 9 -->
             <button type="button" class="km-gallery__cell" data-index="7" aria-label="Open photo 8 in lightbox">
-              <img src="assets/images/gallery-photo-08-83ace83b69-26.jpeg" alt="Cherished Celebration Moment" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-08.jpg" alt="Cherished Blessings" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="8" aria-label="Open photo 9 in lightbox">
-              <img src="assets/images/gallery-photo-09-938d8ff3f5-WhatsApp-Image.jpeg" alt="Joyful Candid Together" class="km-gallery__img" loading="lazy" width="220" height="250">
+              <img src="assets/images/gallery-09.jpg" alt="Together in Joy" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
-
-            <!-- Photo 10: Feature -->
             <button type="button" class="km-gallery__cell km-gallery__cell--feature" data-index="9" aria-label="Open photo 10 in lightbox">
-              <img src="assets/images/gallery-photo-10-88632f61b3-31.jpeg" alt="Romantic Boat Ride on Udaipur Lake" class="km-gallery__img" loading="lazy" width="460" height="288">
+              <img src="assets/images/gallery-10.jpg" alt="Serene Reflections" class="km-gallery__img" loading="lazy" width="460" height="288">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
           </div>
@@ -406,7 +402,7 @@
       </section>
 
       <!-- ==============================================
-           7. FOOTER (FINAL BLESSINGS & MYSHAADHI LINK)
+           7. FOOTER (FINAL BLESSINGS & ACTIONS)
            ============================================== -->
       <footer id="final-blessings" class="km-section km-footer">
         <div class="km-footer__card">
@@ -414,15 +410,34 @@
           <img src="assets/banners/footer-card.jpg" alt="Sacred Sita Rama Kalyanam and Temple Gopuram" class="km-footer__art" loading="lazy" width="480" height="960">
 
           <div class="km-footer__greeting">
-            <p class="km-footer__greet-lead">We await your gracious presence</p>
-            <h2 class="km-footer__greet-main">and your blessings</h2>
+            <p class="km-footer__greet-lead" id="footer-lead">We await your gracious presence</p>
+            <h2 class="km-footer__greet-main" id="footer-main">and your blessings</h2>
 
-            <!-- Telugu Sacred Benediction: శుభమస్తు in Noto Sans Telugu -->
+            <!-- Telugu Sacred Benediction: శుభమస్తు -->
             <p class="km-footer__telugu">శుభమస్తు</p>
 
             <!-- Sacred Gold Divider Motif -->
             <div class="km-divider-wrap km-footer__divider" aria-hidden="true">
               <img src="assets/images/gold-divider.webp" alt="" class="km-divider-img" width="220" height="22">
+            </div>
+
+            <!-- Guest Action Buttons (Add to Calendar & Share Invitation) -->
+            <div class="km-footer__actions">
+              <button id="footer-cal-btn" class="km-action-btn km-action-btn--calendar" type="button" aria-label="Add wedding to your calendar">
+                <svg class="km-action-btn__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span id="footer-cal-text">Add to Calendar</span>
+              </button>
+
+              <button id="footer-share-btn" class="km-action-btn km-action-btn--share" type="button" aria-label="Share wedding invitation">
+                <svg class="km-action-btn__icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span id="footer-share-text">Share Invitation</span>
+              </button>
+            </div>
+
+            <!-- Family Courtesy Line -->
+            <div class="km-footer__family">
+              <p class="km-footer__family-lead" id="footer-family-lead">With Love &amp; Regards,</p>
+              <p class="km-footer__family-names" id="footer-family-names">Kalagotla &amp; Challa Family</p>
             </div>
           </div>
 
@@ -480,12 +495,22 @@
         </iframe>
       </div>
 
-      <a id="external-maps-btn" href="https://maps.google.com/?q=DJ+Usthav+Mahal,+Bhavanipuram,+Vijayawada" target="_blank" rel="noopener noreferrer" class="km-external-link-btn">
-        Open in Google Maps
-      </a>
+      <div class="km-map-modal__actions">
+        <a id="external-maps-btn" href="https://maps.google.com/?q=DJ+Usthav+Mahal,+Bhavanipuram,+Vijayawada" target="_blank" rel="noopener noreferrer" class="km-external-link-btn">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+          <span id="map-modal-open-maps">Open in Google Maps</span>
+        </a>
+        <a id="directions-maps-btn" href="https://www.google.com/maps/dir/?api=1&destination=DJ+Usthav+Mahal,+Bhavanipuram,+Vijayawada" target="_blank" rel="noopener noreferrer" class="km-external-link-btn km-external-link-btn--secondary">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span id="map-modal-get-directions">Get Directions</span>
+        </a>
+      </div>
     </div>
   </div>
 
-  <script src="script.js?v=3.0"></script>
+  <!-- Toast Notification Container for Share / Copy fallback -->
+  <div id="km-toast" class="km-toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js?v=3.1"></script>
 </body>
 </html>
