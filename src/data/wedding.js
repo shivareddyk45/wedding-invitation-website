@@ -248,7 +248,7 @@
         footerGreetingLead: 'We await your gracious presence',
         footerGreetingMain: 'and your blessings',
         footerFamilyLead: 'With Love & Regards,',
-        footerFamilyNames: 'Kalagotla & Challa Family',
+        footerFamilyNames: 'Kalagotla Family',
         skipLink: 'Skip to invitation content'
       },
       te: {
@@ -274,7 +274,7 @@
         footerGreetingLead: 'మీ రాక మాకెంతో సంతోషం',
         footerGreetingMain: 'మీ ఆశీస్సులే మాకు రక్ష',
         footerFamilyLead: 'ప్రేమతో & గౌరవంతో,',
-        footerFamilyNames: 'కళాగోట్ల & చల్లా కుటుంబం',
+        footerFamilyNames: 'కళాగోట్ల కుటుంబం',
         skipLink: 'ముఖ్య విషయాలకు వెళ్లండి'
       }
     },
