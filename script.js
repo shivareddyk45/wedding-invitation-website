@@ -877,44 +877,234 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 10. ADD TO CALENDAR (.ICS & GOOGLE CALENDAR)
   // =========================================================================
-  function downloadIcsFile() {
-    // 3 December 2026: 09:00 AM IST to 01:00 PM IST (03:30 to 07:30 UTC)
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Kalyana Mandapam//Wedding Invitation//EN',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'BEGIN:VEVENT',
-      'UID:wedding-nageshwar-neeraja-20261203@wedding-invitation',
-      'DTSTAMP:20261109T000000Z',
-      'DTSTART:20261203T033000Z',
-      'DTEND:20261203T183000Z',
-      'SUMMARY:Wedding of Nageshwar Reddy & Neeraja',
-      'DESCRIPTION:We joyfully invite you to celebrate the sacred wedding of Nageshwar Reddy and Neeraja at DJ Usthav Mahal, Bhavanipuram, Vijayawada. Your presence and blessings mean the world to us.',
-      'LOCATION:DJ Usthav Mahal, Bhavanipuram, Vijayawada, Andhra Pradesh, India',
-      'STATUS:CONFIRMED',
-      'TRANSP:OPAQUE',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
+  // 10. ADD TO CALENDAR (RFC 5545 .ICS & DIRECT GOOGLE CALENDAR)
+  // =========================================================================
+  /**
+   * IMPORTANT NOTE ON REMINDERS:
+   * Google Calendar template URLs (https://calendar.google.com/calendar/render?...)
+   * do NOT support reminder/notification parameters via URL; the user's personal
+   * Google Calendar default notifications will apply.
+   * The guaranteed 1-day reminder is provided via the RFC 5545 .ics VALARM trigger.
+   */
 
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'wedding-nageshwar-neeraja.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  let activeCalendarEventId = 'wedding';
+  let calendarTriggerElement = null;
 
-    showToast(currentLang === 'te' ? 'క్యాలెండర్ ఈవెంట్ డౌన్‌లోడ్ చేయబడింది!' : 'Calendar invite downloaded!');
+  /**
+   * Platform detection for calendar options:
+   * - 'in-app': In-app browsers (WhatsApp, Instagram, Facebook, Snapchat, etc.)
+   * - 'apple-safari': iOS Safari and macOS Safari
+   * - 'android': Android devices
+   * - 'desktop-or-other': Windows, Chrome/Firefox on desktop or iOS, etc.
+   */
+  function detectCalendarPlatform() {
+    const ua = navigator.userAgent || '';
+    const vendor = navigator.vendor || '';
+
+    // In-app browsers (WhatsApp, Instagram, Facebook, Snapchat, Messenger, etc.)
+    const isInApp = /(FBAN|FBAV|Instagram|WhatsApp|Snapchat|Line|MicroMessenger|TikTok|Twitter|FB_IAB|FB4A|IAB)/i.test(ua);
+    if (isInApp) {
+      return 'in-app';
+    }
+
+    // iOS check (including iPadOS desktop emulation)
+    const isIOS = /(iPhone|iPad|iPod)/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isIOSThirdParty = isIOS && /(CriOS|FxiOS|EdgiOS)/i.test(ua);
+
+    // Android check
+    const isAndroid = /Android/i.test(ua);
+
+    // macOS Safari check (Safari in UA, Apple in vendor, NOT Chrome, NOT Chromium, NOT Android)
+    const isMacOSSafari = /Macintosh|Mac OS X/i.test(ua) && !isIOS && /Safari/i.test(ua) && /Apple/i.test(vendor) && !/Chrome|Chromium|Edg|OPR/i.test(ua);
+
+    const isIOSSafari = isIOS && !isIOSThirdParty;
+
+    if (isIOSSafari || isMacOSSafari) {
+      return 'apple-safari';
+    }
+    if (isAndroid) {
+      return 'android';
+    }
+    return 'desktop-or-other';
+  }
+
+  function renderCalendarModal(eventId) {
+    eventId = eventId || activeCalendarEventId || 'wedding';
+    activeCalendarEventId = eventId;
+
+    const data = window.WEDDING_DATA || {};
+    const dict = (data.i18n && data.i18n[currentLang]) ? data.i18n[currentLang] : {};
+    const helper = window.CALENDAR_HELPER;
+
+    const resolved = helper ? helper.getResolvedEvent(data, eventId) : {
+      title: 'Wedding of Nageshwar Reddy & Neeraja'
+    };
+
+    // Update modal title & event name
+    const modalTitleEl = document.getElementById('calendar-modal-title');
+    if (modalTitleEl) modalTitleEl.textContent = dict.calModalTitle || 'Add to Calendar';
+
+    const modalEventEl = document.getElementById('calendar-modal-event');
+    if (modalEventEl) {
+      if (eventId === 'wedding') {
+        modalEventEl.textContent = currentLang === 'te' ? 'నాగేశ్వర్ రెడ్డి & నీరజ కళ్యాణం' : 'Wedding of Nageshwar Reddy & Neeraja';
+      } else {
+        modalEventEl.textContent = resolved.title;
+      }
+    }
+
+    const optionsContainer = document.getElementById('calendar-options-container');
+    const inAppHint = document.getElementById('calendar-inapp-hint');
+    const inAppText = document.getElementById('calendar-inapp-text');
+    const copyLinkText = document.getElementById('calendar-copy-link-text');
+
+    if (inAppText) inAppText.textContent = dict.calInAppHint || 'For Apple Calendar & 1-day reminder, open this page in Safari or Chrome:';
+    if (copyLinkText) copyLinkText.textContent = dict.calCopyLink || 'Copy Link';
+
+    const icsUrl = `/api/calendar.ics?event=${encodeURIComponent(eventId)}`;
+    // Google Calendar template URL
+    const googleUrl = helper ? helper.generateGoogleUrl(data, eventId) : '#';
+
+    const platform = detectCalendarPlatform();
+
+    // Option A: Apple Calendar / Outlook (.ics hosted link)
+    const appleOptionHtml = `
+      <a href="${icsUrl}" class="km-cal-option km-cal-option--ics" id="cal-option-apple">
+        <div class="km-cal-option__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="km-cal-option__content">
+          <div class="km-cal-option__title-row">
+            <span class="km-cal-option__title">${dict.calAppleOutlook || 'Apple Calendar / Outlook'}</span>
+            ${platform === 'apple-safari' ? `<span class="km-cal-badge">${dict.calRecommended || 'Recommended'}</span>` : ''}
+          </div>
+          <span class="km-cal-option__desc">${dict.calAppleOutlookSub || 'Includes 1-day reminder'}</span>
+        </div>
+        <svg class="km-cal-option__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    `;
+
+    // Option B: Google Calendar (direct link)
+    const googleOptionHtml = `
+      <a href="${googleUrl}" target="_blank" rel="noopener" class="km-cal-option km-cal-option--google" id="cal-option-google">
+        <div class="km-cal-option__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
+        </div>
+        <div class="km-cal-option__content">
+          <div class="km-cal-option__title-row">
+            <span class="km-cal-option__title">${dict.calGoogle || 'Google Calendar'}</span>
+            ${platform !== 'apple-safari' && platform !== 'in-app' ? `<span class="km-cal-badge">${dict.calRecommended || 'Recommended'}</span>` : ''}
+          </div>
+          <span class="km-cal-option__desc">${dict.calGoogleSub || 'Opens directly in Google Calendar'}</span>
+        </div>
+        <svg class="km-cal-option__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    `;
+
+    if (!optionsContainer) return;
+
+    if (platform === 'in-app') {
+      // In-app webviews fail on .ics handling. Show ONLY Google Calendar, plus hint to open in Safari/Chrome.
+      optionsContainer.innerHTML = googleOptionHtml;
+      if (inAppHint) inAppHint.style.display = 'block';
+    } else if (platform === 'apple-safari') {
+      // iOS and macOS Safari: .ics first (Recommended)
+      optionsContainer.innerHTML = appleOptionHtml + googleOptionHtml;
+      if (inAppHint) inAppHint.style.display = 'none';
+    } else {
+      // Android & Desktop / iOS Chrome: Google first (Recommended), .ics second
+      optionsContainer.innerHTML = googleOptionHtml + appleOptionHtml;
+      if (inAppHint) inAppHint.style.display = 'none';
+    }
+
+    // Attach non-blocking feedback to both links
+    const optionLinks = optionsContainer.querySelectorAll('.km-cal-option');
+    optionLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        // Show brief polite non-blocking feedback
+        showToast(dict.calOpening || 'Opening your calendar...');
+        // Non-blocking auto close after user tap gesture has initiated
+        setTimeout(closeCalendarModal, 400);
+      });
+    });
+  }
+
+  function openCalendarModal(eventId, triggerBtn) {
+    calendarTriggerElement = triggerBtn || document.getElementById('footer-cal-btn');
+    renderCalendarModal(eventId);
+    const modal = document.getElementById('calendar-modal');
+    if (modal) {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      // Focus close button or first interactive link for accessibility
+      const firstFocusable = modal.querySelector('button, a');
+      if (firstFocusable) firstFocusable.focus();
+    }
+  }
+
+  function closeCalendarModal() {
+    const modal = document.getElementById('calendar-modal');
+    if (modal && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      if (calendarTriggerElement) {
+        calendarTriggerElement.focus();
+      }
+    }
+  }
+
+  const calModalClose = document.getElementById('calendar-modal-close');
+  if (calModalClose) {
+    calModalClose.addEventListener('click', closeCalendarModal);
+  }
+
+  const calModalBackdrop = document.getElementById('calendar-modal-backdrop');
+  if (calModalBackdrop) {
+    calModalBackdrop.addEventListener('click', closeCalendarModal);
+  }
+
+  // Keyboard accessibility: Escape closes modal
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      const calModal = document.getElementById('calendar-modal');
+      if (calModal && calModal.classList.contains('active')) {
+        closeCalendarModal();
+      }
+    }
+  });
+
+  // In-App browser copy link button
+  const calendarCopyBtn = document.getElementById('calendar-copy-link-btn');
+  if (calendarCopyBtn) {
+    calendarCopyBtn.addEventListener('click', function () {
+      const data = window.WEDDING_DATA || {};
+      const dict = (data.i18n && data.i18n[currentLang]) ? data.i18n[currentLang] : {};
+      const copyUrl = data?.meta?.url || window.location.href;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(copyUrl).then(function () {
+          const copyTextEl = document.getElementById('calendar-copy-link-text');
+          if (copyTextEl) copyTextEl.textContent = dict.calLinkCopied || 'Link copied!';
+          showToast(dict.calLinkCopied || 'Link copied!');
+          setTimeout(function () {
+            if (copyTextEl) copyTextEl.textContent = dict.calCopyLink || 'Copy Link';
+          }, 2000);
+        }).catch(function () {
+          showToast('URL: ' + copyUrl);
+        });
+      } else {
+        showToast('URL: ' + copyUrl);
+      }
+    });
   }
 
   const footerCalBtn = document.getElementById('footer-cal-btn');
   if (footerCalBtn) {
-    footerCalBtn.addEventListener('click', downloadIcsFile);
+    footerCalBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openCalendarModal('wedding', footerCalBtn);
+    });
   }
 
 
@@ -1099,6 +1289,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const footerCalText = document.getElementById('footer-cal-text');
     if (footerCalText && dict.addToCalendar) footerCalText.textContent = dict.addToCalendar;
+
+    // Re-render calendar modal options for updated language
+    renderCalendarModal(activeCalendarEventId || 'wedding');
 
     const footerShareText = document.getElementById('footer-share-text');
     if (footerShareText && dict.shareInvitation) footerShareText.textContent = dict.shareInvitation;

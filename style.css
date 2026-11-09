@@ -1972,6 +1972,249 @@ body.km-no-scroll {
 }
 
 /* ==========================================================================
+   ADD TO CALENDAR POPOVER / BOTTOM SHEET
+   ========================================================================== */
+.km-calendar-modal {
+  z-index: 10000;
+  transition: opacity 0.28s var(--km-ease-reveal);
+}
+
+.km-calendar-card {
+  max-width: 440px;
+  background: #FFFDF7;
+  border: 2px solid var(--km-gold);
+  border-radius: 16px;
+  padding: 24px 22px 22px;
+  box-shadow: 0 16px 40px rgba(74, 14, 23, 0.35);
+  text-align: left;
+  transform: scale(0.96) translateY(10px);
+  transition: transform 0.28s var(--km-ease-reveal), opacity 0.28s var(--km-ease-reveal);
+}
+
+.km-calendar-modal.active .km-calendar-card {
+  transform: scale(1) translateY(0);
+}
+
+.km-calendar-card__drag-handle {
+  display: none;
+}
+
+.km-calendar-card__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.km-calendar-card__icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px solid var(--km-gold);
+  color: var(--km-maroon-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.km-calendar-card .km-modal__title {
+  margin-bottom: 4px;
+  font-size: 1.25rem;
+}
+
+.km-calendar-card__event {
+  font-family: var(--km-font-marcellus);
+  font-size: 0.92rem;
+  color: var(--km-maroon);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.km-calendar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.km-cal-option {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background: #FAF4E6;
+  border: 1.5px solid rgba(197, 160, 89, 0.45);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+
+.km-cal-option:hover,
+.km-cal-option:focus-visible {
+  background: #F7EEDB;
+  border-color: var(--km-gold);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(74, 14, 23, 0.12);
+  outline: none;
+}
+
+.km-cal-option:focus-visible {
+  outline: 2px solid var(--km-gold);
+  outline-offset: 2px;
+}
+
+.km-cal-option--featured {
+  background: #FAF1DC;
+  border-color: var(--km-gold);
+}
+
+.km-cal-option__icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: var(--km-maroon-deep);
+  color: #FBE9B7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+}
+
+.km-cal-option--google .km-cal-option__icon {
+  background: #2D5F3E;
+  color: #FFF;
+}
+
+.km-cal-option__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.km-cal-option__title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.km-cal-option__title {
+  font-family: var(--km-font-cinzel);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--km-maroon-deep);
+  letter-spacing: 0.04em;
+}
+
+.km-cal-badge {
+  font-family: var(--km-font-marcellus);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #d4af37 0%, #ecd896 100%);
+  color: #3b0914;
+  padding: 2px 7px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.km-cal-option__desc {
+  display: block;
+  font-family: var(--km-font-cormorant);
+  font-size: 0.82rem;
+  color: #665040;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.km-cal-option__arrow {
+  color: var(--km-gold);
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+
+.km-cal-option:hover .km-cal-option__arrow {
+  transform: translateX(3px);
+}
+
+/* In-App Browser Hint Container */
+.km-calendar-inapp-hint {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(197, 160, 89, 0.12);
+  border: 1px dashed var(--km-gold);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.km-calendar-inapp-text {
+  font-family: var(--km-font-marcellus);
+  font-size: 0.8rem;
+  color: var(--km-maroon);
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+}
+
+.km-calendar-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--km-maroon-deep);
+  color: #FBE9B7;
+  border: 1px solid var(--km-gold);
+  border-radius: var(--km-radius-full);
+  font-family: var(--km-font-cinzel);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.km-calendar-copy-btn:hover {
+  background: var(--km-maroon);
+  transform: translateY(-1px);
+}
+
+.km-calendar-copy-btn:active {
+  transform: scale(0.97);
+}
+
+/* Mobile Bottom Sheet Adaptation */
+@media (max-width: 600px) {
+  .km-calendar-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .km-calendar-card {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    padding: 16px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+  }
+
+  .km-calendar-card__drag-handle {
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: rgba(197, 160, 89, 0.45);
+    border-radius: 2px;
+    margin: 0 auto 12px;
+  }
+
+  .km-calendar-modal.active .km-calendar-card {
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
    PREFERS-REDUCED-MOTION ACCESSIBILITY
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {

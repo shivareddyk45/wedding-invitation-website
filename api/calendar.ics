@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedding-2026-12-03@wedding-invitation-website-x854.vercel.app
+DTSTAMP:20261109T000000Z
+DTSTART;VALUE=DATE:20261203
+DTEND;VALUE=DATE:20261204
+STATUS:CONFIRMED
+SUMMARY:Wedding of Nageshwar Reddy & Neeraja
+DESCRIPTION:Join us in celebrating the wedding of Nageshwar Reddy & Neeraja
+ .\n\nWedding Invitation: https://wedding-invitation-website-x854.vercel.ap
+ p/\nVenue Directions: https://maps.google.com/?q=DJ+Usthav+Mahal\,+Bhavani
+ puram\,+Vijayawada
+LOCATION:DJ Usthav Mahal\, Bhavanipuram\, Vijayawada
+URL:https://wedding-invitation-website-x854.vercel.app/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Wedding of Nageshwar Reddy & Neeraja is tomorrow
+TRIGGER:-PT15H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

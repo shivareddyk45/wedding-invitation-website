@@ -249,7 +249,17 @@
         footerGreetingMain: 'and your blessings',
         footerFamilyLead: 'With Love & Regards,',
         footerFamilyNames: 'Kalagotla Family',
-        skipLink: 'Skip to invitation content'
+        skipLink: 'Skip to invitation content',
+        calModalTitle: 'Add to Calendar',
+        calAppleOutlook: 'Apple Calendar / Outlook',
+        calAppleOutlookSub: 'Includes 1-day reminder',
+        calGoogle: 'Google Calendar',
+        calGoogleSub: 'Opens directly in Google Calendar',
+        calRecommended: 'Recommended',
+        calInAppHint: 'For Apple Calendar & 1-day reminder, open this page in Safari or Chrome:',
+        calCopyLink: 'Copy Link',
+        calLinkCopied: 'Link copied!',
+        calOpening: 'Opening your calendar...'
       },
       te: {
         openInvitation: 'ఆహ్వానం తెరవండి',
@@ -275,7 +285,17 @@
         footerGreetingMain: 'మీ ఆశీస్సులే మాకు రక్ష',
         footerFamilyLead: 'ప్రేమతో & గౌరవంతో,',
         footerFamilyNames: 'కళాగోట్ల కుటుంబం',
-        skipLink: 'ముఖ్య విషయాలకు వెళ్లండి'
+        skipLink: 'ముఖ్య విషయాలకు వెళ్లండి',
+        calModalTitle: 'క్యాలెండర్‌కు జోడించండి',
+        calAppleOutlook: 'ఆపిల్ క్యాలెండర్ / ఔట్లుక్',
+        calAppleOutlookSub: '1 రోజు ముందు రిమైండర్‌తో',
+        calGoogle: 'గూగుల్ క్యాలెండర్',
+        calGoogleSub: 'గూగుల్ క్యాలెండర్‌లో నేరుగా తెరవండి',
+        calRecommended: 'సిఫార్సు చేయబడింది',
+        calInAppHint: 'ఆపిల్ క్యాలెండర్ & 1-రోజు రిమైండర్ కోసం, ఈ పేజీని Safari లేదా Chromeలో తెరవండి:',
+        calCopyLink: 'లింక్ కాపీ చేయండి',
+        calLinkCopied: 'లింక్ కాపీ చేయబడింది!',
+        calOpening: 'మీ క్యాలెండర్ తెరవబడుతోంది...'
       }
     },
 
