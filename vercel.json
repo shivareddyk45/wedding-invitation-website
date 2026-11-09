@@ -1,8 +1,7 @@
 {
-  "version": 2,
   "headers": [
     {
-      "source": "/calendar/(.*)",
+      "source": "/calendar/:path*",
       "headers": [
         { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
         { "key": "Content-Disposition", "value": "inline; filename=\"wedding-nageshwar-neeraja.ics\"" },
@@ -11,14 +10,6 @@
     },
     {
       "source": "/api/calendar.ics",
-      "headers": [
-        { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
-        { "key": "Content-Disposition", "value": "inline; filename=\"wedding-nageshwar-neeraja.ics\"" },
-        { "key": "Cache-Control", "value": "public, max-age=300" }
-      ]
-    },
-    {
-      "source": "/api/calendar",
       "headers": [
         { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
         { "key": "Content-Disposition", "value": "inline; filename=\"wedding-nageshwar-neeraja.ics\"" },
