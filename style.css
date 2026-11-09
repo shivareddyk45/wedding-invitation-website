@@ -1698,7 +1698,7 @@ body.km-no-scroll {
 
 .km-footer__greeting {
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -1712,47 +1712,47 @@ body.km-no-scroll {
 
 .km-footer__greet-lead {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.98rem, 3.6vw, 1.25rem);
+  font-size: clamp(0.92rem, 3.4vw, 1.15rem);
   font-weight: 500;
   color: #4a2e20;
   margin-bottom: 2px;
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(14px);
   transition: opacity 0.8s var(--km-ease-reveal) 0.15s, transform 0.8s var(--km-ease-reveal) 0.15s;
   text-shadow: 0 1px 2px rgba(251, 238, 184, 0.9);
 }
 
 .km-footer__greet-main {
   font-family: var(--km-font-script);
-  font-size: clamp(2.4rem, 8.8vw, 3.4rem);
-  line-height: 1.15;
+  font-size: clamp(2.2rem, 8.2vw, 3.0rem);
+  line-height: 1.1;
   color: var(--km-maroon-deep);
   font-weight: 400;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--km-ease-reveal) 0.3s, transform 0.8s var(--km-ease-reveal) 0.3s;
+  transform: translateY(14px);
+  transition: opacity 0.8s var(--km-ease-reveal) 0.25s, transform 0.8s var(--km-ease-reveal) 0.25s;
   text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 14px rgba(201, 162, 75, 0.35);
 }
 
 .km-footer__telugu {
   font-family: var(--km-font-telugu);
-  font-size: clamp(1.8rem, 6.8vw, 2.4rem);
+  font-size: clamp(1.6rem, 6.2vw, 2.1rem);
   font-weight: 700;
   color: var(--km-maroon-deep);
   letter-spacing: 0.06em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--km-ease-reveal) 0.45s, transform 0.8s var(--km-ease-reveal) 0.45s;
+  transform: translateY(14px);
+  transition: opacity 0.8s var(--km-ease-reveal) 0.35s, transform 0.8s var(--km-ease-reveal) 0.35s;
   text-shadow: 0 2px 8px rgba(251, 238, 184, 0.95), 0 0 16px rgba(201, 162, 75, 0.45);
 }
 
 .km-footer__divider {
-  margin: 2px auto 0;
+  margin: 4px auto 10px;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.8s var(--km-ease-reveal) 0.55s, transform 0.8s var(--km-ease-reveal) 0.55s;
+  transform: translateY(12px);
+  transition: opacity 0.8s var(--km-ease-reveal) 0.45s, transform 0.8s var(--km-ease-reveal) 0.45s;
 }
 
 .km-footer.in-view .km-footer__greet-lead,
@@ -2162,14 +2162,12 @@ body.km-no-scroll {
   background: #f5e2b4;
 }
 
-/* 6. Footer Actions (Add to Calendar & Share Invitation) */
+/* 6. Footer Actions (Add to Calendar) */
 .km-footer__actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin: 1.2rem auto 1.6rem;
+  margin: 6px auto 8px;
 }
 
 .km-action-btn {
@@ -2177,26 +2175,26 @@ body.km-no-scroll {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 40px;
-  padding: 0 20px;
+  height: 38px;
+  padding: 0 24px;
   border-radius: 999px;
-  background: #fdf6e2;
+  background: linear-gradient(180deg, #fffbf0 0%, #faedd0 100%);
   border: 1px solid var(--km-gold);
   color: var(--km-maroon-deep);
   font-family: var(--km-font-cinzel), 'Cinzel', serif;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(91, 58, 41, 0.12);
-  transition: background 0.2s ease, transform 0.2s var(--km-ease-reveal), box-shadow 0.2s ease;
+  box-shadow: 0 3px 10px rgba(91, 58, 41, 0.14);
+  transition: all 0.25s var(--km-ease-reveal);
 }
 
 .km-action-btn:hover {
-  background: #f7e8be;
+  background: linear-gradient(180deg, #fffcf4 0%, #f4e1b8 100%);
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 14px rgba(91, 58, 41, 0.22);
+  box-shadow: 0 5px 16px rgba(91, 58, 41, 0.22);
 }
 
 .km-action-btn:active {
@@ -2214,12 +2212,13 @@ body.km-no-scroll {
 }
 
 .km-footer__family {
-  margin-top: 1.1rem;
+  margin-top: 6px;
+  text-align: center;
 }
 
 .km-footer__family-lead {
   font-family: var(--km-font-cormorant);
-  font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+  font-size: clamp(0.85rem, 3.0vw, 0.98rem);
   font-style: italic;
   color: var(--km-maroon-soft);
   margin: 0 0 2px;
@@ -2227,7 +2226,7 @@ body.km-no-scroll {
 
 .km-footer__family-names {
   font-family: var(--km-font-cinzel);
-  font-size: clamp(0.88rem, 3.2vw, 1.02rem);
+  font-size: clamp(0.82rem, 3.0vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--km-maroon-deep);
