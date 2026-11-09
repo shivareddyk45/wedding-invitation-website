@@ -2697,7 +2697,6 @@ body.lang-te .km-footer__greet-main {
   contain-intrinsic-size: 800px;
 }
 
-.km-entry__card,
 .km-countdown__panel,
 .km-gallery__img {
   will-change: transform, opacity;

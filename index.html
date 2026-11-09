@@ -57,231 +57,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 
-  <!-- Preload Critical LCP Asset (Entry Card Responsive WebP) -->
-  <link rel="preload" as="image" href="assets/banners/entry-card-720w.webp" imagesrcset="assets/banners/entry-card-480w.webp 480w, assets/banners/entry-card-720w.webp 720w, assets/banners/entry-card-960w.webp 960w" imagesizes="(max-width: 480px) 100vw, 480px" fetchpriority="high">
+  <!-- Preload Critical Above-the-fold Assets -->
+  <link rel="preload" href="assets/banners/entry-card.jpg?v=3.0" as="image">
+  <link rel="preload" href="assets/images/hero-poster.jpg" as="image">
 
-  <!-- Typography: Google Fonts Preconnect & Load with font-display: swap (Non-render-blocking) -->
+  <!-- Typography: Google Fonts Preconnect & Load with font-display: swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <!-- Critical Inline CSS for Instant First Paint of Entry Screen -->
-  <style>
-    :root {
-      --km-parchment: #FBE9B7;
-      --km-parchment-light: #FFF4D6;
-      --km-parchment-deep: #F3E19C;
-      --km-desktop-bg: #EFE1BC;
-      --km-maroon: #8B1A3A;
-      --km-maroon-deep: #7A1530;
-      --km-maroon-soft: #A82E4D;
-      --km-gold: #C9A24B;
-      --km-gold-light: #E8CA7A;
-      --km-ink: #5B3A29;
-      --km-radius-full: 999px;
-      --km-font-cinzel: "Cinzel", Georgia, serif;
-      --km-font-cormorant: "Cormorant Garamond", Georgia, serif;
-      --km-font-script: "Great Vibes", cursive;
-      --km-ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-    html {
-      font-size: 16px;
-      background-color: var(--km-desktop-bg);
-    }
-    body.km-body {
-      font-family: var(--km-font-cormorant);
-      background-color: var(--km-desktop-bg);
-      color: var(--km-ink);
-      line-height: 1.6;
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      -webkit-font-smoothing: antialiased;
-    }
-    .site-outer-frame {
-      width: 100%;
-      max-width: 480px;
-      height: 100vh;
-      height: 100dvh;
-      overflow-x: clip;
-      overflow-y: auto;
-      background-color: var(--km-parchment);
-      position: relative;
-    }
-    .site-outer-frame--pre-tap {
-      display: none !important;
-    }
-    .km-modal {
-      display: none !important;
-    }
-    .km-modal.active {
-      display: flex !important;
-    }
-    .km-entry {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      cursor: pointer;
-      overflow: hidden;
-      transition: opacity 0.85s var(--km-ease-reveal), transform 0.85s var(--km-ease-reveal), visibility 0.85s var(--km-ease-reveal);
-    }
-    .km-entry--closing {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: scale(1.03);
-    }
-    .km-entry__veil {
-      position: absolute;
-      inset: 0;
-      background: #fcf1d2;
-    }
-    .km-entry__card {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(100vw, 480px);
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-      background-color: #f7e8be;
-    }
-    .km-entry__art-picture,
-    .km-entry__art {
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-      display: block;
-    }
-    .km-entry__mandala {
-      position: absolute;
-      top: 32%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(76vw, 330px);
-      height: auto;
-      opacity: 0.35;
-      pointer-events: none;
-      animation: km-mandala-spin 90s linear infinite;
-    }
-    @keyframes km-mandala-spin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    .km-entry__content {
-      position: absolute;
-      top: 17.5%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(90%, 420px);
-      text-align: center;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(0.45rem, 1.6vw, 0.75rem);
-    }
-    .km-entry__label {
-      font-family: var(--km-font-cinzel);
-      font-size: clamp(0.72rem, 2.5vw, 0.84rem);
-      letter-spacing: 0.32em;
-      text-indent: 0.32em;
-      color: var(--km-maroon-deep);
-      font-weight: 700;
-      margin-bottom: 3px;
-      text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
-    }
-    .km-entry__names {
-      font-family: var(--km-font-script);
-      font-size: clamp(2.35rem, 8.2vw, 3.4rem);
-      line-height: 1.08;
-      color: var(--km-maroon-deep);
-      font-weight: 400;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-shadow: 0 2px 10px rgba(251, 238, 184, 0.95), 0 0 20px rgba(201, 162, 75, 0.4);
-    }
-    .km-entry__amp {
-      font-family: var(--km-font-script);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 0.65em;
-      line-height: 1;
-      margin: 0.02em 0;
-      color: var(--km-maroon-deep);
-      text-shadow: 0 1px 3px rgba(251, 238, 184, 0.95);
-    }
-    .km-entry__date {
-      font-family: var(--km-font-cinzel);
-      font-size: clamp(0.82rem, 2.9vw, 0.98rem);
-      letter-spacing: 0.22em;
-      text-indent: 0.22em;
-      color: #4a2e20;
-      font-weight: 700;
-      text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
-    }
-    .km-entry__city {
-      font-family: var(--km-font-cinzel);
-      font-size: clamp(0.62rem, 2.1vw, 0.74rem);
-      letter-spacing: 0.16em;
-      text-indent: 0.16em;
-      color: var(--km-maroon);
-      line-height: 1.45;
-      margin-top: 3px;
-      max-width: 32ch;
-      font-weight: 600;
-      text-shadow: 0 1px 2px rgba(255, 244, 214, 0.9);
-    }
-    .km-entry__cta {
-      margin-top: clamp(0.7rem, 2.2vw, 1.2rem);
-      padding: 0.78rem 2.4rem;
-      border-radius: var(--km-radius-full);
-      background: linear-gradient(135deg, #7a1530 0%, #981c3c 50%, #681026 100%);
-      border: 1.5px solid #d4af37;
-      color: #fff6db;
-      font-family: var(--km-font-cinzel);
-      font-size: clamp(0.74rem, 2.5vw, 0.86rem);
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-indent: 0.22em;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(122, 21, 48, 0.45), inset 0 1px 2px rgba(255, 245, 210, 0.5), 0 0 14px rgba(212, 175, 55, 0.35);
-      animation: km-cta-shimmer 2.4s infinite ease-in-out;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .km-entry__cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(122, 21, 48, 0.6), 0 0 20px rgba(212, 175, 55, 0.55);
-    }
-    @keyframes km-cta-shimmer {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 8px 24px rgba(122, 21, 48, 0.45), 0 0 14px rgba(212, 175, 55, 0.35);
-      }
-      50% {
-        transform: scale(1.03);
-        box-shadow: 0 10px 32px rgba(201, 162, 75, 0.7), 0 0 18px rgba(212, 175, 55, 0.6);
-      }
-    }
-  </style>
-
-  <!-- Asynchronous Non-blocking Load of Main Stylesheet -->
-  <link rel="preload" href="style.css?v=3.3" as="style">
-  <link rel="stylesheet" href="style.css?v=3.3" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="style.css?v=3.3"></noscript>
+  <link rel="stylesheet" href="style.css?v=3.3">
 </head>
 <body class="km-body km-no-scroll">
 
@@ -307,15 +92,12 @@
        ============================================== -->
   <aside id="km-entry-screen" class="km-entry" role="dialog" aria-modal="true" aria-label="Wedding Invitation Envelope">
     <div class="km-entry__veil">
-      <div class="km-entry__card" style="background-image: url('data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAACQBgCdASogAEAAPyWEtlOuKaUis/ZtUcAkiUAYm2pOGn+hWAzOVn66JxrP/2Y6wkqpBJw0DteJHmKP1ZMAAP5g8Gd3rMy+evYtJgnK/qjaV1pY4lJhx4oiDuLj6XAnS0PWIGUy/3Pl8pf3gX3zUhbSACGV9iUBO8FbwlhCDVlNTA6eCV7jZIrMLBil5E+DfADx2BdNPhnHH9IAAAA='); background-size: cover; background-position: center;">
+      <div class="km-entry__card">
         <!-- Entry Banner Card Artwork -->
-        <picture class="km-entry__art-picture">
-          <source type="image/webp" srcset="assets/banners/entry-card-480w.webp 480w, assets/banners/entry-card-720w.webp 720w, assets/banners/entry-card-960w.webp 960w" sizes="(max-width: 480px) 100vw, 480px">
-          <img src="assets/banners/entry-card-720w.webp" alt="Traditional Wedding Invitation Scene with Gopuram and Sita Rama Kalyanam" class="km-entry__art" fetchpriority="high" decoding="async" width="480" height="960">
-        </picture>
+        <img src="assets/banners/entry-card.jpg?v=3.0" alt="Traditional Wedding Invitation Scene with Gopuram and Sita Rama Kalyanam" class="km-entry__art" fetchpriority="high" width="480" height="960">
         
         <!-- Faint Gold Mandala Watermark -->
-        <img src="assets/images/mandala-gold.webp" alt="" class="km-entry__mandala" aria-hidden="true" width="340" height="340" decoding="async">
+        <img src="assets/images/mandala-gold.webp" alt="" class="km-entry__mandala" aria-hidden="true" width="340" height="340">
 
         <!-- Entry Typography Content -->
         <div class="km-entry__content">
@@ -323,17 +105,17 @@
           <p id="entry-guest-greeting" class="km-entry__guest-greeting" style="display: none;"></p>
 
           <div class="km-entry__group">
-            <p class="km-entry__label" id="entry-label" data-i18n="weddingTitle">THE WEDDING OF</p>
+            <p class="km-entry__label" id="entry-label">THE WEDDING OF</p>
             <div class="km-entry__names">
-              <span class="km-entry__groom" id="entry-groom" data-i18n="groomName">Nageshwar Reddy</span>
+              <span class="km-entry__groom" id="entry-groom">Nageshwar Reddy</span>
               <span class="km-entry__amp">&amp;</span>
-              <span class="km-entry__bride" id="entry-bride" data-i18n="brideName">Neeraja</span>
+              <span class="km-entry__bride" id="entry-bride">Neeraja</span>
             </div>
           </div>
 
           <div class="km-entry__group km-entry__meta">
             <p class="km-entry__date" id="entry-date">THURSDAY, DECEMBER 3, 2026</p>
-            <p class="km-entry__city" id="entry-venue" data-i18n="venueAddress">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
+            <p class="km-entry__city" id="entry-venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
           </div>
 
           <!-- Pulsing Shimmer Pill Button -->
@@ -348,7 +130,7 @@
   <!-- ==============================================
        MAIN KALYANA MANDAPAM INVITATION WEBSITE
        ============================================== -->
-  <div class="site-outer-frame site-outer-frame--pre-tap">
+  <div class="site-outer-frame">
     <main id="kalyana-mandapam-app" class="kalyana-mandapam">
 
       <!-- ==============================================

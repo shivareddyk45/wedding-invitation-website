@@ -178,12 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function openInvitation() {
     if (!entryScreen || entryScreen.classList.contains('km-entry--closing')) return;
 
-    // Reveal underlying invitation frame instantly before crossfade
-    const outerFrame = document.querySelector('.site-outer-frame');
-    if (outerFrame) {
-      outerFrame.classList.remove('site-outer-frame--pre-tap');
-    }
-
     // Start lyrical soundtrack on user gesture with fade-in
     fadeInAudio(data.audio?.fadeInDurationMs || 1500);
 
@@ -1391,8 +1385,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionParam = urlParams.get('section');
 
   if (skipEntryParam || sectionParam) {
-    const outerFrame = document.querySelector('.site-outer-frame');
-    if (outerFrame) outerFrame.classList.remove('site-outer-frame--pre-tap');
     if (entryScreen) entryScreen.style.display = 'none';
     document.body.classList.remove('km-no-scroll');
     if (persistentBar) persistentBar.classList.add('km-persistent-bar--visible');
