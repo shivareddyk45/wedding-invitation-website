@@ -50,10 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function fadeInAudio(durationMs = 1500) {
     if (!audio) return;
-    if (!audio.src && audio.dataset.audioSrc) {
-      audio.src = audio.dataset.audioSrc;
-      audio.load();
-    }
     clearInterval(audioFadeInterval);
     audio.volume = 0;
     audio.play().then(() => {
@@ -155,17 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function ensureHeroVideoPlays() {
     if (!heroVideo) return;
-    if (!heroVideo.poster && heroVideo.dataset.poster) {
-      heroVideo.poster = heroVideo.dataset.poster;
-    }
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const isSaveData = conn && (conn.saveData || /2g/.test(conn.effectiveType));
-    if (isSaveData) return;
-
-    if (!heroVideo.src && heroVideo.dataset.videoSrc) {
-      heroVideo.src = heroVideo.dataset.videoSrc;
-      heroVideo.load();
-    }
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
@@ -174,6 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
       playPromise.catch(() => {});
     }
   }
+
+  ensureHeroVideoPlays();
+  document.addEventListener('touchstart', ensureHeroVideoPlays, { once: true, passive: true });
+  document.addEventListener('click', ensureHeroVideoPlays, { once: true, passive: true });
 
   function openInvitation() {
     if (!entryScreen || entryScreen.classList.contains('km-entry--closing')) return;
@@ -672,24 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onScrollCheck();
   }
 
-  if ('IntersectionObserver' in window) {
-    const journeySection = document.getElementById('wedding-journey');
-    if (journeySection) {
-      const journeyObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            initWeddingJourneyWalk();
-            obs.disconnect();
-          }
-        });
-      }, { rootMargin: '300px 0px' });
-      journeyObserver.observe(journeySection);
-    } else {
-      initWeddingJourneyWalk();
-    }
-  } else {
-    initWeddingJourneyWalk();
-  }
+  initWeddingJourneyWalk();
 
   // Attach map buttons in Journey
   const mapButtons = document.querySelectorAll('.km-events__map');
@@ -1389,7 +1361,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('km-no-scroll');
     if (persistentBar) persistentBar.classList.add('km-persistent-bar--visible');
     if (ceremonialHero) ceremonialHero.classList.add('km-hero--active');
-    ensureHeroVideoPlays();
 
     if (sectionParam) {
       const targetSec = document.getElementById(sectionParam) || document.getElementById(sectionParam.replace(/^#/, ''));

@@ -66,7 +66,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3.3">
+  <link rel="stylesheet" href="style.css?v=3.1">
+
+  <!-- Central Wedding Configuration (Single Source of Truth) -->
+  <script src="src/data/wedding.js?v=3.2"></script>
+  <script src="src/data/calendar-helper.js?v=3.2"></script>
+  <script src="wedding-config.js?v=3.2"></script>
 </head>
 <body class="km-body km-no-scroll">
 
@@ -74,7 +79,10 @@
   <a href="#ceremonial-hero" class="km-skip-link" id="skip-link">Skip to invitation content</a>
 
   <!-- Background Wedding Soundtrack (Lyrical Soundtrack with Audio API Fade-in) -->
-  <audio id="wedding-audio" loop preload="none" data-audio-src="assets/audio/soundtrack-opt.mp3"></audio>
+  <audio id="wedding-audio" loop preload="none">
+    <source src="assets/videos/wedding-invitation-soundtrack-ybhogam-lyrical.mp3" type="audio/mpeg">
+    <source src="assets/audio/wedding_music.m4a" type="audio/mp4">
+  </audio>
 
   <!-- ==============================================
        FLOATING PERSISTENT AUDIO BAR (Bottom Corner)
@@ -105,17 +113,17 @@
           <p id="entry-guest-greeting" class="km-entry__guest-greeting" style="display: none;"></p>
 
           <div class="km-entry__group">
-            <p class="km-entry__label" id="entry-label">THE WEDDING OF</p>
+            <p class="km-entry__label" id="entry-label" data-i18n="weddingTitle">THE WEDDING OF</p>
             <div class="km-entry__names">
-              <span class="km-entry__groom" id="entry-groom">Nageshwar Reddy</span>
+              <span class="km-entry__groom" id="entry-groom" data-i18n="groomName">Nageshwar Reddy</span>
               <span class="km-entry__amp">&amp;</span>
-              <span class="km-entry__bride" id="entry-bride">Neeraja</span>
+              <span class="km-entry__bride" id="entry-bride" data-i18n="brideName">Neeraja</span>
             </div>
           </div>
 
           <div class="km-entry__group km-entry__meta">
             <p class="km-entry__date" id="entry-date">THURSDAY, DECEMBER 3, 2026</p>
-            <p class="km-entry__city" id="entry-venue">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
+            <p class="km-entry__city" id="entry-venue" data-i18n="venueAddress">DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA</p>
           </div>
 
           <!-- Pulsing Shimmer Pill Button -->
@@ -142,13 +150,15 @@
           <video
             id="hero-procession-video"
             class="km-hero__video"
+            autoplay
             loop
             muted
             playsinline
-            preload="none"
-            data-poster="assets/images/hero-poster-720w.webp"
-            data-video-src="assets/videos/hero-procession-720p.mp4"
+            preload="auto"
+            poster="assets/images/hero-poster.jpg"
           >
+            <source src="assets/videos/hero-procession-bg-2x-v2.mp4" type="video/mp4">
+            <source src="assets/videos/hero-procession-bg-v2.mp4" type="video/mp4">
           </video>
         </div>
 
@@ -195,11 +205,11 @@
           <article class="km-couple__unit km-couple__unit--groom" id="groom-card">
             <div class="km-couple__card">
               <!-- Peacock Arch Overlay Graphic -->
-              <img src="assets/images/peacock-arch.webp" alt="" class="km-couple__ornament km-couple__peacock" aria-hidden="true" width="340" height="240" loading="lazy" decoding="async">
+              <img src="assets/images/peacock-arch.webp" alt="" class="km-couple__ornament km-couple__peacock" aria-hidden="true" width="340" height="240">
               
               <!-- Arch Photo Window with Mirrored Scalloped Mask -->
               <div class="km-couple__photo-window km-couple__photo-window--groom km-couple__portrait-wrap">
-                <img id="groom-photo" src="assets/images/groom-portrait-600w.webp" alt="Portrait of Groom Nageshwar Reddy" class="km-couple__photo" width="300" height="380" loading="lazy" decoding="async">
+                <img id="groom-photo" src="assets/images/groom-portrait.jpg" alt="Portrait of Groom Nageshwar Reddy" class="km-couple__photo" width="300" height="380" loading="lazy">
               </div>
             </div>
 
@@ -215,18 +225,18 @@
 
           <!-- Authentic Gold Divider -->
           <div class="km-divider-wrap km-couple__divider" aria-hidden="true">
-            <img src="assets/images/gold-divider.webp" alt="" class="km-divider-img" width="220" height="22" loading="lazy" decoding="async">
+            <img src="assets/images/gold-divider.webp" alt="" class="km-divider-img" width="220" height="22">
           </div>
 
           <!-- Bride: Neeraja -->
           <article class="km-couple__unit km-couple__unit--bride" id="bride-card">
             <div class="km-couple__card">
               <!-- Peacock Arch Graphic Overlay -->
-              <img src="assets/images/peacock-arch.webp" alt="" class="km-couple__ornament km-couple__ornament--bride km-couple__peacock" aria-hidden="true" width="340" height="240" loading="lazy" decoding="async">
+              <img src="assets/images/peacock-arch.webp" alt="" class="km-couple__ornament km-couple__ornament--bride km-couple__peacock" aria-hidden="true" width="340" height="240">
               
               <!-- Arch Photo Window with Regular Scalloped Mask -->
               <div class="km-couple__photo-window km-couple__photo-window--bride km-couple__portrait-wrap">
-                <img id="bride-photo" src="assets/images/bride-portrait-600w.webp" alt="Portrait of Bride Neeraja" class="km-couple__photo" width="300" height="380" loading="lazy" decoding="async">
+                <img id="bride-photo" src="assets/images/bride-portrait.jpg" alt="Portrait of Bride Neeraja" class="km-couple__photo" width="300" height="380" loading="lazy">
               </div>
             </div>
 
@@ -248,7 +258,10 @@
       <section id="muhurtham-countdown" class="km-section km-countdown" aria-label="Muhurtham Countdown">
         <div class="km-countdown__stage">
           <!-- Carved Stone Temple Facade Backdrop -->
-          <img src="assets/images/countdown-wall-opt.webp" alt="Carved Stone Temple Architectural Wall with Elephant Pillars" class="km-countdown__panel" width="480" height="260" loading="lazy" decoding="async">
+          <picture>
+            <source media="(max-width: 600px)" srcset="assets/images/countdown-wall-sm.webp">
+            <img src="assets/images/countdown-wall.webp" alt="Carved Stone Temple Architectural Wall with Elephant Pillars" class="km-countdown__panel" width="480" height="260" loading="lazy">
+          </picture>
 
           <!-- Live Muhurtham Niches with Digit Animation Containers -->
           <div class="km-countdown__grid" id="countdown-grid">
@@ -310,7 +323,7 @@
             <!-- Event 1: Mehendi (Medallion Left, Text Right) -->
             <div class="km-events__row km-events__row--even" id="event-mehendi" data-event-idx="0">
               <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
-                <img src="assets/images/event-mehendi.png" alt="Mehendi" class="km-events__medallion-img" width="56" height="56" loading="lazy" decoding="async">
+                <img src="assets/images/event-mehendi.png" alt="Mehendi" class="km-events__medallion-img" width="56" height="56">
               </div>
               <div class="km-events__card km-events__card--right">
                 <h3 class="km-events__name" data-i18n="mehendiTitle">Mehendi</h3>
@@ -335,14 +348,14 @@
                 </button>
               </div>
               <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
-                <img src="assets/images/event-haldi-bowl.png" alt="Haldi &amp; Sangeet" class="km-events__medallion-img" width="56" height="56" loading="lazy" decoding="async">
+                <img src="assets/images/event-haldi-bowl.png" alt="Haldi &amp; Sangeet" class="km-events__medallion-img" width="56" height="56">
               </div>
             </div>
 
             <!-- Event 3: Telugu Wedding (Medallion Left, Text Right) -->
             <div class="km-events__row km-events__row--even" id="event-telugu" data-event-idx="2">
               <div class="km-events__medallion km-events__medallion--left" aria-hidden="true">
-                <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding" class="km-events__medallion-img" width="56" height="56" loading="lazy" decoding="async">
+                <img src="assets/images/event-nadaswaram.png" alt="Telugu Wedding" class="km-events__medallion-img" width="56" height="56">
               </div>
               <div class="km-events__card km-events__card--right">
                 <h3 class="km-events__name" data-i18n="teluguWeddingTitle">Telugu Wedding</h3>
@@ -367,7 +380,7 @@
                 </button>
               </div>
               <div class="km-events__medallion km-events__medallion--right" aria-hidden="true">
-                <img src="assets/images/event-nadaswaram.png" alt="Kodava Ceremony" class="km-events__medallion-img" width="56" height="56" loading="lazy" decoding="async">
+                <img src="assets/images/event-nadaswaram.png" alt="Kodava Ceremony" class="km-events__medallion-img" width="56" height="56">
               </div>
             </div>
           </div>
@@ -380,11 +393,11 @@
       <section id="photo-gallery" class="km-section km-gallery" aria-label="Photo Gallery">
         <!-- Hanging Toranam Strip at Top Edge -->
         <div class="km-toranam-wrap" aria-hidden="true">
-          <img src="assets/banners/toranam-strip-opt.webp" alt="" class="km-toranam-img" width="480" height="64" loading="lazy" decoding="async">
+          <img src="assets/banners/toranam-strip.webp" alt="" class="km-toranam-img" width="480" height="64">
         </div>
 
         <!-- Traditional Parasol Peeking In at Top Left -->
-        <img src="assets/images/gallery-parasol-opt.webp" alt="" class="km-gallery__parasol" aria-hidden="true" width="90" height="90" loading="lazy" decoding="async">
+        <img src="assets/images/gallery-parasol.png" alt="" class="km-gallery__parasol" aria-hidden="true" width="90" height="90">
 
         <div class="km-container km-gallery__stage">
           <div class="km-section-head">
@@ -396,43 +409,43 @@
           <div class="km-gallery__grid" id="gallery-grid">
             <!-- Photos 1 to 10 will be dynamically bound or preserved with neutral alt text -->
             <button type="button" class="km-gallery__cell km-gallery__cell--feature" data-index="0" aria-label="Open photo 1 in lightbox">
-              <img src="assets/images/gallery-01-thumb.webp" data-full="assets/images/gallery-01-full.webp" alt="Sacred Floral Mandap" class="km-gallery__img" loading="lazy" decoding="async" width="460" height="288">
+              <img src="assets/images/gallery-01.jpg" alt="Sacred Floral Mandap" class="km-gallery__img" loading="lazy" width="460" height="288">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="1" aria-label="Open photo 2 in lightbox">
-              <img src="assets/images/gallery-02-thumb.webp" data-full="assets/images/gallery-02-full.webp" alt="Ceremonial Walk" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-02.jpg" alt="Ceremonial Walk" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="2" aria-label="Open photo 3 in lightbox">
-              <img src="assets/images/gallery-03-thumb.webp" data-full="assets/images/gallery-03-full.webp" alt="Smiles &amp; Festivity" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-03.jpg" alt="Smiles &amp; Festivity" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="3" aria-label="Open photo 4 in lightbox">
-              <img src="assets/images/gallery-04-thumb.webp" data-full="assets/images/gallery-04-full.webp" alt="Evening Gala" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-04.jpg" alt="Evening Gala" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="4" aria-label="Open photo 5 in lightbox">
-              <img src="assets/images/gallery-05-thumb.webp" data-full="assets/images/gallery-05-full.webp" alt="Candid Radiance" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-05.jpg" alt="Candid Radiance" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="5" aria-label="Open photo 6 in lightbox">
-              <img src="assets/images/gallery-06-thumb.webp" data-full="assets/images/gallery-06-full.webp" alt="Celebration Beats" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-06.jpg" alt="Celebration Beats" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="6" aria-label="Open photo 7 in lightbox">
-              <img src="assets/images/gallery-07-thumb.webp" data-full="assets/images/gallery-07-full.webp" alt="Garland Exchange" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-07.jpg" alt="Garland Exchange" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="7" aria-label="Open photo 8 in lightbox">
-              <img src="assets/images/gallery-08-thumb.webp" data-full="assets/images/gallery-08-full.webp" alt="Cherished Blessings" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-08.jpg" alt="Cherished Blessings" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell" data-index="8" aria-label="Open photo 9 in lightbox">
-              <img src="assets/images/gallery-09-thumb.webp" data-full="assets/images/gallery-09-full.webp" alt="Together in Joy" class="km-gallery__img" loading="lazy" decoding="async" width="220" height="250">
+              <img src="assets/images/gallery-09.jpg" alt="Together in Joy" class="km-gallery__img" loading="lazy" width="220" height="250">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
             <button type="button" class="km-gallery__cell km-gallery__cell--feature" data-index="9" aria-label="Open photo 10 in lightbox">
-              <img src="assets/images/gallery-10-thumb.webp" data-full="assets/images/gallery-10-full.webp" alt="Serene Reflections" class="km-gallery__img" loading="lazy" decoding="async" width="460" height="288">
+              <img src="assets/images/gallery-10.jpg" alt="Serene Reflections" class="km-gallery__img" loading="lazy" width="460" height="288">
               <span class="km-gallery__zoom-badge" aria-hidden="true">🔍</span>
             </button>
           </div>
@@ -445,10 +458,7 @@
       <footer id="final-blessings" class="km-section km-footer">
         <div class="km-footer__card">
           <!-- Authentic Footer Card Artwork -->
-          <picture class="km-footer__art-picture">
-            <source srcset="assets/banners/footer-card-480w.webp 480w, assets/banners/footer-card-720w.webp 720w, assets/banners/footer-card-960w.webp 960w" sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, 960px">
-            <img src="assets/banners/footer-card-720w.webp" alt="Sacred Sita Rama Kalyanam and Temple Gopuram" class="km-footer__art" loading="lazy" decoding="async" width="480" height="960">
-          </picture>
+          <img src="assets/banners/footer-card.jpg" alt="Sacred Sita Rama Kalyanam and Temple Gopuram" class="km-footer__art" loading="lazy" width="480" height="960">
 
           <div class="km-footer__greeting">
             <p class="km-footer__greet-lead" id="footer-lead" data-i18n="footerPresence">We await your gracious presence</p>
@@ -459,7 +469,7 @@
 
             <!-- Sacred Gold Divider Motif -->
             <div class="km-divider-wrap km-footer__divider" aria-hidden="true">
-              <img src="assets/images/gold-divider.webp" alt="" class="km-divider-img" width="220" height="22" loading="lazy" decoding="async">
+              <img src="assets/images/gold-divider.webp" alt="" class="km-divider-img" width="220" height="22">
             </div>
 
             <!-- Guest Action: Add to Calendar -->
@@ -527,7 +537,7 @@
           height="220" 
           style="border:0; border-radius: 8px;" 
           loading="lazy" 
-          data-src="https://maps.google.com/maps?q=DJ+Usthav+Mahal,+Bhavanipuram,+Vijayawada&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed">
+          src="https://maps.google.com/maps?q=DJ+Usthav+Mahal,+Bhavanipuram,+Vijayawada&t=&z=15&ie=UTF8&iwloc=&output=embed">
         </iframe>
       </div>
 
@@ -581,9 +591,6 @@
   <!-- Toast Notification Container for Share / Copy fallback -->
   <div id="km-toast" class="km-toast" role="status" aria-live="polite"></div>
 
-  <script src="src/data/wedding.js?v=3.3" defer></script>
-  <script src="src/data/calendar-helper.js?v=3.3" defer></script>
-  <script src="wedding-config.js?v=3.3" defer></script>
-  <script src="script.js?v=3.3" defer></script>
+  <script src="script.js?v=3.1"></script>
 </body>
 </html>
