@@ -398,63 +398,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
   // 7. THE WEDDING JOURNEY (SCROLL-DRIVEN WALKING TRANSITION)
-  // Supports 1 to 6 enabled events dynamically with clean geometry
   // =========================================================================
-  let journeyCleanup = null;
-
-  function initWeddingJourney() {
-    if (journeyCleanup) {
-      journeyCleanup();
-      journeyCleanup = null;
-    }
-
+  function initWeddingJourneyWalk() {
     const section = document.getElementById('wedding-journey');
     if (!section) return;
 
-    const stage = document.getElementById('journey-stage');
-    const path = document.getElementById('journey-path');
-    const svg = document.getElementById('journey-svg');
-    const feetLayer = document.getElementById('journey-feet');
-    const rowsLayer = document.getElementById('journey-rows');
+    const stage = section.querySelector('.km-events__stage');
+    const path = section.querySelector('.km-events__path');
+    const feetLayer = section.querySelector('.km-events__feet-layer');
+    const rows = Array.from(section.querySelectorAll('.km-events__row'));
     const head = section.querySelector('.km-events__head');
     const outerFrame = document.querySelector('.site-outer-frame');
 
-    if (!stage || !path || !svg || !feetLayer || !rowsLayer) return;
+    if (!stage || !path || !feetLayer || rows.length === 0) return;
 
-    const enabledEvents = data.getEnabledEvents ? data.getEnabledEvents() : [];
-    const eventCount = enabledEvents.length;
-    if (eventCount === 0) {
-      section.style.display = 'none';
-      return;
-    }
-    section.style.display = 'block';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // 1. Compute stage dimensions & anchors
-    let stageHeight = 360;
-    let anchors = [];
+    // 1. Path geometry setup
+    const anchors = [
+      { id: 0, x: 116, y: 200, side: 'left' },
+      { id: 1, x: 284, y: 500, side: 'right' },
+      { id: 2, x: 116, y: 800, side: 'left' },
+      { id: 3, x: 284, y: 1100, side: 'right' }
+    ];
 
-    if (eventCount === 1) {
-      stageHeight = 380;
-      // Single event: top center down to right apex
-      anchors = [
-        { id: 0, x: 284, y: 220, side: 'right', event: enabledEvents[0] }
-      ];
-    } else {
-      stageHeight = Math.max(480, eventCount * 300);
-      anchors = enabledEvents.map((ev, i) => ({
-        id: i,
-        x: (i % 2 === 0) ? 116 : 284,
-        y: 200 + i * 300,
-        side: (i % 2 === 0) ? 'left' : 'right',
-        event: ev
-      }));
-    }
-
-    stage.style.height = `${stageHeight}px`;
-    stage.style.aspectRatio = `400 / ${stageHeight}`;
-    svg.setAttribute('viewBox', `0 0 400 ${stageHeight}`);
-
-    // Build SVG path
     const startPt = { x: 200, y: 30 };
     const curvePoints = [startPt, ...anchors];
 
@@ -467,75 +434,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     path.setAttribute('d', d);
 
-    // 2. Build DOM Event Rows
-    rowsLayer.innerHTML = '';
-    const strings = data.i18n?.[currentLang] || {};
-
-    const rowElements = anchors.map((anchor, idx) => {
-      const ev = anchor.event;
-      const row = document.createElement('div');
-      const isOdd = anchor.side === 'left';
-      row.className = `km-events__row ${isOdd ? 'km-events__row--odd' : 'km-events__row--even'}`;
-      row.id = `event-${ev.id}`;
-      row.setAttribute('data-event-idx', idx);
-
-      const topPos = anchor.y - 150;
-      row.style.top = `${topPos}px`;
-
-      const evTitle = (typeof ev.title === 'object') ? (ev.title[currentLang] || ev.title.en) : ev.title;
-      const formattedDate = data.formatDate ? data.formatDate(ev.dateISO, currentLang) : ev.dateISO;
-      const timeDisplay = ev.time && ev.time !== 'TODO_CONFIRM' ? ` · ${ev.time}` : '';
-      const whenText = `${formattedDate}${timeDisplay}`;
-      const venueText = ev.venueRef?.fullTextUppercase || data.venue.fullTextUppercase;
-
-      const medallionHtml = `
-        <div class="km-events__medallion ${isOdd ? 'km-events__medallion--left' : 'km-events__medallion--right'}" aria-hidden="true">
-          <img src="${ev.icon}" alt="" class="km-events__medallion-img" width="56" height="56">
-        </div>
-      `;
-
-      const cardSideClass = isOdd ? 'km-events__card--left' : 'km-events__card--right';
-      const cardHtml = `
-        <div class="km-events__card ${cardSideClass}">
-          <h3 class="km-events__name">${evTitle}</h3>
-          <p class="km-events__when">${whenText}</p>
-          <p class="km-events__venue">${venueText}</p>
-          <div class="km-events__card-actions">
-            <button class="km-events__map" data-event="${evTitle}" data-location="${venueText}" type="button" aria-label="${strings.viewMap || 'View Map'} - ${evTitle}">
-              <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
-              <span>${strings.viewMap || 'VIEW MAP'}</span>
-            </button>
-            <button class="km-events__map km-events__map--cal" data-event-cal="${ev.id}" type="button" aria-label="${strings.addToCalendar || 'Add to Calendar'} - ${evTitle}">
-              <svg class="km-map-pin-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              <span>${strings.addToCalendar || 'CALENDAR'}</span>
-            </button>
-          </div>
-        </div>
-      `;
-
-      row.innerHTML = isOdd ? (cardHtml + medallionHtml) : (medallionHtml + cardHtml);
-      rowsLayer.appendChild(row);
-      return row;
-    });
-
-    // 3. Programmatic footsteps generation along the path
+    // 2. Programmatic step generation along path
     const totalLen = path.getTotalLength();
     const stepSpacing = 36;
     const stepsData = [];
-    const anchorStepIndices = anchors.map(() => 0);
-    const closestDistances = anchors.map(() => Infinity);
+    const anchorStepIndices = [5, 13, 20, 27]; // fallback defaults
+    const closestDistances = [Infinity, Infinity, Infinity, Infinity];
 
     let footCounter = 0;
-    for (let s = 12; s <= totalLen - 8; s += stepSpacing) {
+    for (let s = 10; s <= totalLen - 10; s += stepSpacing) {
       const pt = path.getPointAtLength(s);
 
+      // Check distance to each event anchor
       let nearIcon = false;
-      anchors.forEach((a, aIdx) => {
+      anchors.forEach(a => {
         const dist = Math.hypot(pt.x - a.x, pt.y - a.y);
-        if (dist < 38) nearIcon = true;
-        if (dist < closestDistances[aIdx]) {
-          closestDistances[aIdx] = dist;
-          anchorStepIndices[aIdx] = footCounter;
+        if (dist < 38) nearIcon = true; // stops ~10px short of 56px icon
+        if (dist < closestDistances[a.id]) {
+          closestDistances[a.id] = dist;
+          anchorStepIndices[a.id] = footCounter;
         }
       });
 
@@ -557,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
           index: footCounter,
           side,
           xPct: (footX / 400) * 100,
-          yPct: (footY / stageHeight) * 100,
+          yPct: (footY / 1200) * 100,
           angle: angle
         });
         footCounter++;
@@ -579,40 +496,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Event rows metadata
-    const eventRowsData = rowElements.map((row, i) => {
-      const anchorIdx = anchorStepIndices[i] || (i + 1) * 6;
+    const eventRowsData = rows.map((row, i) => {
+      const anchorIdx = anchorStepIndices[i] !== undefined ? anchorStepIndices[i] : (i + 1) * 7;
       const triggerStep = Math.max(0, anchorIdx - 3);
       const medallion = row.querySelector('.km-events__medallion');
       const title = row.querySelector('.km-events__name');
       const when = row.querySelector('.km-events__when');
       const venue = row.querySelector('.km-events__venue');
       const mapBtn = row.querySelector('.km-events__map');
-      const side = anchors[i].side;
+      const isOdd = row.classList.contains('km-events__row--odd');
+      const side = isOdd ? 'left' : 'right';
       return { row, triggerStep, medallion, title, when, venue, mapBtn, side };
     });
 
-    // Attach map button click listeners
-    rowElements.forEach(row => {
-      const mapBtn = row.querySelector('.km-events__map:not(.km-events__map--cal)');
-      if (mapBtn) {
-        mapBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const evTitle = mapBtn.getAttribute('data-event') || 'Wedding';
-          const evLoc = mapBtn.getAttribute('data-location') || data.venue.fullTextUppercase;
-          openMapModal(evTitle, evLoc);
-        });
-      }
-
-      const calBtn = row.querySelector('.km-events__map--cal');
-      if (calBtn) {
-        calBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          downloadIcsFile();
-        });
-      }
-    });
-
-    // If reduced motion requested
+    // Reduced motion shortcut
     if (prefersReducedMotion) {
       if (head) head.classList.add('km-in-view');
       footElements.forEach(f => {
@@ -634,12 +531,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 4. Render walking state function
+    // 3. Render state function (pure function of walkProgress 0..1)
     const totalSteps = stepsData.length;
 
     function renderWalk(walkProgress) {
       const currentStepFloat = walkProgress * (totalSteps + 1.2) - 0.4;
 
+      // Update footsteps
       for (let k = 0; k < totalSteps; k++) {
         const diff = currentStepFloat - k;
         const el = footElements[k];
@@ -664,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      // Update event rows
       for (let i = 0; i < eventRowsData.length; i++) {
         const ev = eventRowsData[i];
         const eventDiff = currentStepFloat - ev.triggerStep;
@@ -679,6 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (ev.venue) { ev.venue.style.setProperty('--venue-opacity', '0'); ev.venue.style.setProperty('--venue-tx', initTx); }
           if (ev.mapBtn) { ev.mapBtn.style.setProperty('--map-opacity', '0'); ev.mapBtn.style.setProperty('--map-tx', initTx); }
         } else {
+          // Icon pops in with slight spring
           const p = Math.min(1, eventDiff / 1.6);
           const spring = p < 1 ? Math.sin(p * Math.PI) * 0.08 : 0;
           const medScale = Math.min(1.08, 0.7 + 0.3 * p + spring);
@@ -687,6 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ev.medallion.style.setProperty('--medallion-scale', medScale.toFixed(3));
           }
 
+          // Staggered text (title, date, venue, map button)
           const items = [
             { el: ev.title, key: 'title', delay: 0.12 },
             { el: ev.when, key: 'when', delay: 0.24 },
@@ -707,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5. Scroll tracking with scrub
+    // 4. Scroll tracking with damped scrub
     let currentProgress = 0;
     let targetProgress = 0;
     let isTicking = false;
@@ -719,12 +620,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = stage.getBoundingClientRect();
       const sectionRect = section.getBoundingClientRect();
 
+      // Heading reveal
       if (sectionRect.top < vh * 0.85 && head) {
         head.classList.add('km-in-view');
       }
 
+      // Map scroll to walk progress
       const walkStart = vh * 0.68;
-      const walkDist = stageHeight;
+      const walkDist = 1200; // stage height
       const raw = (walkStart - rect.top) / walkDist;
       targetProgress = Math.min(1, Math.max(0, raw));
 
@@ -747,22 +650,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Attach listeners
     if (outerFrame) outerFrame.addEventListener('scroll', onScrollCheck, { passive: true });
     window.addEventListener('scroll', onScrollCheck, { passive: true });
     window.addEventListener('resize', onScrollCheck, { passive: true });
 
+    // Enable interactive styling and run initial check
     section.classList.add('km-events--interactive');
     renderWalk(0);
     onScrollCheck();
-
-    journeyCleanup = function () {
-      if (outerFrame) outerFrame.removeEventListener('scroll', onScrollCheck);
-      window.removeEventListener('scroll', onScrollCheck);
-      window.removeEventListener('resize', onScrollCheck);
-    };
   }
 
-  initWeddingJourney();
+  initWeddingJourneyWalk();
+
+  // Attach map buttons in Journey
+  const mapButtons = document.querySelectorAll('.km-events__map');
+  mapButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const eventName = btn.getAttribute('data-event') || 'Ceremony';
+      const location = btn.getAttribute('data-location') || 'DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA';
+      openMapModal(eventName, location);
+    });
+  });
 
 
   // =========================================================================
@@ -1166,15 +1076,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Countdown section
     updateCountdown();
 
-    // 7. Journey section
+    // 7. Journey section (Page 5 restored)
     const journeyHeading = document.getElementById('journey-heading');
     if (journeyHeading) journeyHeading.textContent = newLang === 'te' ? data.journey.headingTe : data.journey.headingEn;
 
     const journeySubline = document.getElementById('journey-subline');
     if (journeySubline) journeySubline.textContent = newLang === 'te' ? data.journey.sublineTe : data.journey.sublineEn;
-
-    // Re-render journey with translated event names and dates
-    initWeddingJourney();
 
     // 8. Gallery section
     const galleryHeading = document.getElementById('gallery-heading');
