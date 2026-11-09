@@ -199,21 +199,21 @@
       sublineEn: 'Little moments from the years that brought us here.',
       sublineTe: 'మా ప్రయాణంలోని అందమైన మధుర జ్ఞాపకాలు.',
       photos: [
-        { src: 'assets/images/gallery-01.jpg', alt: 'Wedding floral mandap celebration', captionEn: 'Sacred Floral Mandap', captionTe: 'కళ్యాణ మండపం', feature: true },
-        { src: 'assets/images/gallery-02.jpg', alt: 'Traditional saree celebration walk', captionEn: 'Ceremonial Walk', captionTe: 'సంప్రదాయ నడక' },
-        { src: 'assets/images/gallery-03.jpg', alt: 'Celebration smiles and laughter', captionEn: 'Smiles & Festivity', captionTe: 'చిరునవ్వులు, వేడుకలు' },
-        { src: 'assets/images/gallery-04.jpg', alt: 'Evening reception gala moments', captionEn: 'Evening Gala', captionTe: 'సంధ్యా వేడుక' },
-        { src: 'assets/images/gallery-05.jpg', alt: 'Candid warm portraits', captionEn: 'Candid Radiance', captionTe: 'మధుర క్షణాలు' },
-        { src: 'assets/images/gallery-06.jpg', alt: 'Traditional musical sangeet celebration', captionEn: 'Celebration Beats', captionTe: 'సంగీత వేడుక' },
-        { src: 'assets/images/gallery-07.jpg', alt: 'Sacred garland exchange ritual', captionEn: 'Garland Exchange', captionTe: 'వరమాల మహోత్సవం' },
-        { src: 'assets/images/gallery-08.jpg', alt: 'Traditional festive blessings', captionEn: 'Cherished Blessings', captionTe: 'ఆశీర్వాదాలు' },
-        { src: 'assets/images/gallery-09.jpg', alt: 'Joyful candid together moment', captionEn: 'Together in Joy', captionTe: 'ఆనంద క్షణాలు' },
-        { src: 'assets/images/gallery-10.jpg', alt: 'Serene sunset celebration', captionEn: 'Serene Reflections', captionTe: 'ప్రశాంత సంధ్య', feature: true }
+        { thumb: 'assets/images/gallery-01-thumb.webp', src: 'assets/images/gallery-01-full.webp', alt: 'Wedding floral mandap celebration', captionEn: 'Sacred Floral Mandap', captionTe: 'కళ్యాణ మండపం', feature: true },
+        { thumb: 'assets/images/gallery-02-thumb.webp', src: 'assets/images/gallery-02-full.webp', alt: 'Traditional saree celebration walk', captionEn: 'Ceremonial Walk', captionTe: 'సంప్రదాయ నడక' },
+        { thumb: 'assets/images/gallery-03-thumb.webp', src: 'assets/images/gallery-03-full.webp', alt: 'Celebration smiles and laughter', captionEn: 'Smiles & Festivity', captionTe: 'చిరునవ్వులు, వేడుకలు' },
+        { thumb: 'assets/images/gallery-04-thumb.webp', src: 'assets/images/gallery-04-full.webp', alt: 'Evening reception gala moments', captionEn: 'Evening Gala', captionTe: 'సంధ్యా వేడుక' },
+        { thumb: 'assets/images/gallery-05-thumb.webp', src: 'assets/images/gallery-05-full.webp', alt: 'Candid warm portraits', captionEn: 'Candid Radiance', captionTe: 'మధుర క్షణాలు' },
+        { thumb: 'assets/images/gallery-06-thumb.webp', src: 'assets/images/gallery-06-full.webp', alt: 'Traditional musical sangeet celebration', captionEn: 'Celebration Beats', captionTe: 'సంగీత వేడుక' },
+        { thumb: 'assets/images/gallery-07-thumb.webp', src: 'assets/images/gallery-07-full.webp', alt: 'Sacred garland exchange ritual', captionEn: 'Garland Exchange', captionTe: 'వరమాల మహోత్సవం' },
+        { thumb: 'assets/images/gallery-08-thumb.webp', src: 'assets/images/gallery-08-full.webp', alt: 'Traditional festive blessings', captionEn: 'Cherished Blessings', captionTe: 'ఆశీర్వాదాలు' },
+        { thumb: 'assets/images/gallery-09-thumb.webp', src: 'assets/images/gallery-09-full.webp', alt: 'Joyful candid together moment', captionEn: 'Together in Joy', captionTe: 'ఆనంద క్షణాలు' },
+        { thumb: 'assets/images/gallery-10-thumb.webp', src: 'assets/images/gallery-10-full.webp', alt: 'Serene sunset celebration', captionEn: 'Serene Reflections', captionTe: 'ప్రశాంత సంధ్య', feature: true }
       ]
     },
 
     audio: {
-      src: 'assets/audio/wedding_music.m4a',
+      src: 'assets/audio/soundtrack-opt.mp3',
       fadeInDurationMs: 1500
     },
 

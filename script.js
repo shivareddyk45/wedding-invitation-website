@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function fadeInAudio(durationMs = 1500) {
     if (!audio) return;
+    if (!audio.src && audio.dataset.audioSrc) {
+      audio.src = audio.dataset.audioSrc;
+      audio.load();
+    }
     clearInterval(audioFadeInterval);
     audio.volume = 0;
     audio.play().then(() => {
@@ -151,6 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function ensureHeroVideoPlays() {
     if (!heroVideo) return;
+    if (!heroVideo.poster && heroVideo.dataset.poster) {
+      heroVideo.poster = heroVideo.dataset.poster;
+    }
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isSaveData = conn && (conn.saveData || /2g/.test(conn.effectiveType));
+    if (isSaveData) return;
+
+    if (!heroVideo.src && heroVideo.dataset.videoSrc) {
+      heroVideo.src = heroVideo.dataset.videoSrc;
+      heroVideo.load();
+    }
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
@@ -160,12 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  ensureHeroVideoPlays();
-  document.addEventListener('touchstart', ensureHeroVideoPlays, { once: true, passive: true });
-  document.addEventListener('click', ensureHeroVideoPlays, { once: true, passive: true });
-
   function openInvitation() {
     if (!entryScreen || entryScreen.classList.contains('km-entry--closing')) return;
+
+    // Reveal underlying invitation frame instantly before crossfade
+    const outerFrame = document.querySelector('.site-outer-frame');
+    if (outerFrame) {
+      outerFrame.classList.remove('site-outer-frame--pre-tap');
+    }
 
     // Start lyrical soundtrack on user gesture with fade-in
     fadeInAudio(data.audio?.fadeInDurationMs || 1500);
@@ -661,7 +678,24 @@ document.addEventListener('DOMContentLoaded', () => {
     onScrollCheck();
   }
 
-  initWeddingJourneyWalk();
+  if ('IntersectionObserver' in window) {
+    const journeySection = document.getElementById('wedding-journey');
+    if (journeySection) {
+      const journeyObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initWeddingJourneyWalk();
+            obs.disconnect();
+          }
+        });
+      }, { rootMargin: '300px 0px' });
+      journeyObserver.observe(journeySection);
+    } else {
+      initWeddingJourneyWalk();
+    }
+  } else {
+    initWeddingJourneyWalk();
+  }
 
   // Attach map buttons in Journey
   const mapButtons = document.querySelectorAll('.km-events__map');
@@ -1201,166 +1235,155 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
   // 12. BILINGUAL LANGUAGE SWITCHER (EN <-> TE)
-  // Persists in localStorage and updates all DOM text dynamically
+  // Client-side translation dictionary with data-i18n attributes
   // =========================================================================
-  const langToggleBtn = document.getElementById('lang-toggle-btn');
+  const translations = {
+    en: {
+      invitationTop: "|| Shree Ganeshay Namah ||",
+      weddingTitle: "THE WEDDING OF",
+      groomName: "Nageshwar Reddy",
+      brideName: "Neeraja",
+      heroDate: "Thursday, December 3, 2026",
+      heroVenue: "DJ USTHAV MAHAL, BHAVANIPURAM,<br>VIJAYAWADA",
+
+      coupleTitle: "The Couple",
+      coupleSubtitle: "Two families, many blessings, one timeless celebration.",
+      sonOf: "SON OF",
+      groomParents: "Kalagotla Bramha Reddy & Vijaya",
+      daughterOf: "DAUGHTER OF",
+      brideParents: "Yaddala Shiva Reddy & Adi Lakshmi",
+
+      journeyTitle: "The Wedding Journey",
+      journeySubtitle: "Walk with us, function to function, to the sacred hour.",
+      mehendiTitle: "Mehendi",
+      mehendiTime: "24th February 2026 · 5:00 PM onwards",
+      haldiTitle: "Haldi & Sangeet",
+      haldiTime: "25th February 2026 · 10:48 AM",
+      teluguWeddingTitle: "Telugu Wedding",
+      teluguWeddingTime: "26th February 2026 · 10:00 AM onwards",
+      kodavaTitle: "Kodava Ceremony",
+      kodavaTime: "26th February 2026 — Evening · 6:30 PM onwards",
+      venueAddress: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
+
+      countdownToday: "Today is the day! We celebrate with love and gratitude.",
+      galleryTitle: "Before the Vows",
+      gallerySubtitle: "Little moments from the years that brought us here.",
+
+      footerPresence: "We await your gracious presence",
+      footerBlessings: "and your blessings",
+      blessingWord: "శుభమస్తు",
+      withRegards: "With Love & Regards,",
+      familySign: "Kalagotla Family",
+
+      mapVenueTitle: "Ceremony Venue",
+      openMaps: "Open in Google Maps",
+      getDirections: "Get Directions",
+      addCalendar: "Add to your calendar"
+    },
+    te: {
+      invitationTop: "|| శ్రీ గణేశాయ నమః ||",
+      weddingTitle: "వివాహ ఆహ్వాన మహోత్సవం",
+      groomName: "నాగేశ్వర్ రెడ్డి",
+      brideName: "నీరజ",
+      heroDate: "గురువారం, డిసెంబర్ 3, 2026",
+      heroVenue: "డి.జె. ఉత్సవ్ మహల్, భవానీపురం,<br>విజయవాడ",
+
+      coupleTitle: "వధూవరులు",
+      coupleSubtitle: "రెండు కుటుంబాల ఆత్మీయ కలయిక... పెద్దల ఆశీస్సులు... కలకాలం నిలిచే వేడుక.",
+      sonOf: "సుపుత్రుడు",
+      groomParents: "శ్రీమతి కలగోట్ల విజయ మరియు శ్రీ కలగోట్ల బ్రహ్మారెడ్డి",
+      daughterOf: "సుపుత్రిక",
+      brideParents: "శ్రీమతి యద్దల ఆదిలక్ష్మి మరియు శ్రీ యద్దల శివారెడ్డి",
+
+      journeyTitle: "వివాహ వేడుకల వివరాలు",
+      journeySubtitle: "ప్రతి శుభ ఘడియలో మాతో కలిసి ఆనందించండి.",
+      mehendiTitle: "మెహందీ",
+      mehendiTime: "2026 ఫిబ్రవరి 24 · సాయంత్రం 5:00 గంటల నుండి",
+      haldiTitle: "హల్దీ & సంగీత్",
+      haldiTime: "2026 ఫిబ్రవరి 25 · ఉదయం 10:48 గంటలకు",
+      teluguWeddingTitle: "తెలుగు వివాహం",
+      teluguWeddingTime: "2026 ఫిబ్రవరి 26 · ఉదయం 10:00 గంటల నుండి",
+      kodavaTitle: "కొడవ సాంప్రదాయ వేడుక",
+      kodavaTime: "2026 ఫిబ్రవరి 26 · సాయంత్రం 6:30 గంటల నుండి",
+      venueAddress: "డి.జె. ఉత్సవ్ మహల్, భవానీపురం, విజయవాడ",
+
+      countdownToday: "ఈ రోజే ఆ శుభదినం! ప్రేమతో, కృతజ్ఞతలతో వేడుక చేసుకుంటున్నాం.",
+      galleryTitle: "సప్తపదికి ముందు",
+      gallerySubtitle: "మమ్మల్ని ఈ పవిత్ర బంధం వైపు నడిపించిన కొన్ని మధుర జ్ఞాపకాలు.",
+
+      footerPresence: "మీ రాకయే మాకు ఆనందదాయకం",
+      footerBlessings: "మీ ఆశీస్సులే మాకు శ్రీరామరక్ష",
+      blessingWord: "శుభమస్తు",
+      withRegards: "ప్రేమాభిమానాలతో,",
+      familySign: "కలగోట్ల కుటుంబ సభ్యులు, బంధుమిత్రులు",
+
+      mapVenueTitle: "కళ్యాణ వేదిక",
+      openMaps: "గూగుల్ మ్యాప్స్లో చూడండి",
+      getDirections: "దారి కనుగొనండి",
+      addCalendar: "క్యాలెండర్కు జోడించండి"
+    }
+  };
+
+  function applyTranslations(lang) {
+    const dict = translations[lang] || translations.en;
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      const val = dict[key];
+      if (val !== undefined) {
+        el.innerHTML = val;
+      }
+    });
+  }
 
   function updateLanguage(newLang) {
     currentLang = newLang;
     localStorage.setItem('wedding_lang', newLang);
     document.documentElement.lang = newLang;
 
-    // Update Language Pill UI
-    if (langToggleBtn) {
-      langToggleBtn.setAttribute('data-lang', newLang);
-      const optEn = langToggleBtn.querySelector('[data-lang-opt="en"]');
-      const optTe = langToggleBtn.querySelector('[data-lang-opt="te"]');
-      if (optEn) optEn.classList.toggle('km-lang-toggle__opt--active', newLang === 'en');
-      if (optTe) optTe.classList.toggle('km-lang-toggle__opt--active', newLang === 'te');
+    // Toggle .lang-te class on body for Telugu script line-height protection
+    if (newLang === 'te') {
+      document.body.classList.add('lang-te');
+    } else {
+      document.body.classList.remove('lang-te');
     }
 
-    const dict = data.i18n?.[newLang] || {};
+    // Apply translations to all tagged data-i18n elements
+    applyTranslations(newLang);
 
-    // 1. Skip link
-    const skipLink = document.getElementById('skip-link');
-    if (skipLink && dict.skipLink) skipLink.textContent = dict.skipLink;
-
-    // 2. Personalized greeting
+    // Keep dynamic components and metadata in sync
     initPersonalizedGreeting();
-
-    // 3. Entry screen
-    const entryLabel = document.getElementById('entry-label');
-    if (entryLabel) entryLabel.textContent = dict.theWeddingOf || 'THE WEDDING OF';
+    updateCountdown();
 
     const entryDate = document.getElementById('entry-date');
-    if (entryDate) entryDate.textContent = data.formatDateUppercase(data.weddingDate.dateISO, newLang);
-
-    const entryOpenText = document.getElementById('entry-open-text');
-    if (entryOpenText && dict.openInvitation) entryOpenText.textContent = dict.openInvitation;
-
-    // 4. Hero section
-    const heroInvocation = document.getElementById('hero-invocation');
-    if (heroInvocation) {
-      heroInvocation.textContent = newLang === 'te' ? data.hero.invocationTe : data.hero.invocationEn;
+    if (entryDate && data.formatDateUppercase) {
+      entryDate.textContent = data.formatDateUppercase(data.weddingDate?.dateISO, newLang);
     }
 
-    const heroDate = document.getElementById('hero-date');
-    if (heroDate) {
-      heroDate.textContent = data.formatDate(data.weddingDate.dateISO, newLang);
+    const entryOpenText = document.getElementById('entry-open-text');
+    if (entryOpenText) {
+      entryOpenText.textContent = newLang === 'te' ? 'ఆహ్వాన పత్రికను తెరవండి' : 'OPEN INVITATION';
     }
 
     const heroVenueLead = document.getElementById('hero-venue-lead');
     if (heroVenueLead) {
-      heroVenueLead.textContent = newLang === 'te' ? data.hero.venueLeadTe : data.hero.venueLeadEn;
+      heroVenueLead.textContent = newLang === 'te' ? (data.hero?.venueLeadTe || 'కళ్యాణ వేదిక:') : (data.hero?.venueLeadEn || 'at');
     }
-
-    // 5. The Couple section
-    const coupleHeading = document.getElementById('couple-heading');
-    if (coupleHeading) coupleHeading.textContent = newLang === 'te' ? 'వధూవరులు' : 'The Couple';
-
-    const coupleSubline = document.getElementById('couple-subline');
-    if (coupleSubline) {
-      coupleSubline.textContent = newLang === 'te'
-        ? 'రెండు కుటుంబాలు, ఎన్నో ఆశీస్సులు, ఒక మధుర బంధం.'
-        : 'Two families, many blessings, one timeless celebration.';
-    }
-
-    const groomLabel = document.getElementById('groom-label');
-    if (groomLabel) groomLabel.textContent = data.couple.groom.label[newLang] || 'SON OF';
-
-    const groomParents = document.getElementById('groom-parents');
-    if (groomParents) {
-      if (newLang === 'te' && data.couple.groom.parentsTe) {
-        groomParents.innerHTML = `<span class="km-couple__parent-line">${data.couple.groom.parentsTe}</span>`;
-      } else {
-        groomParents.innerHTML = `
-          <span class="km-couple__parent-line">Kalagotla Bramha Reddy</span>
-          <span class="km-couple__parent-line">&amp; Vijaya</span>
-        `;
-      }
-    }
-
-    const brideLabel = document.getElementById('bride-label');
-    if (brideLabel) brideLabel.textContent = data.couple.bride.label[newLang] || 'DAUGHTER OF';
-
-    const brideParents = document.getElementById('bride-parents');
-    if (brideParents) {
-      if (newLang === 'te' && data.couple.bride.parentsTe) {
-        brideParents.innerHTML = `<span class="km-couple__parent-line">${data.couple.bride.parentsTe}</span>`;
-      } else {
-        brideParents.innerHTML = `
-          <span class="km-couple__parent-line">Yaddala Shiva Reddy</span>
-          <span class="km-couple__parent-line">&amp; Adi Lakshmi</span>
-        `;
-      }
-    }
-
-    // 6. Countdown section
-    updateCountdown();
-
-    // 7. Journey section (Page 5 restored)
-    const journeyHeading = document.getElementById('journey-heading');
-    if (journeyHeading) journeyHeading.textContent = newLang === 'te' ? data.journey.headingTe : data.journey.headingEn;
-
-    const journeySubline = document.getElementById('journey-subline');
-    if (journeySubline) journeySubline.textContent = newLang === 'te' ? data.journey.sublineTe : data.journey.sublineEn;
-
-    // 8. Gallery section
-    const galleryHeading = document.getElementById('gallery-heading');
-    if (galleryHeading) galleryHeading.textContent = newLang === 'te' ? data.gallery.headingTe : data.gallery.headingEn;
-
-    const gallerySubline = document.getElementById('gallery-subline');
-    if (gallerySubline) gallerySubline.textContent = newLang === 'te' ? data.gallery.sublineTe : data.gallery.sublineEn;
-
-    // 9. Footer section
-    const footerLead = document.getElementById('footer-lead');
-    if (footerLead && dict.footerGreetingLead) footerLead.textContent = dict.footerGreetingLead;
-
-    const footerMain = document.getElementById('footer-main');
-    if (footerMain && dict.footerGreetingMain) footerMain.textContent = dict.footerGreetingMain;
-
-    const footerCalText = document.getElementById('footer-cal-text');
-    if (footerCalText && dict.addToCalendar) footerCalText.textContent = dict.addToCalendar;
 
     // Re-render calendar modal options for updated language
-    renderCalendarModal(activeCalendarEventId || 'wedding');
+    if (typeof renderCalendarModal === 'function') {
+      renderCalendarModal(activeCalendarEventId || 'wedding');
+    }
 
-    const footerShareText = document.getElementById('footer-share-text');
-    if (footerShareText && dict.shareInvitation) footerShareText.textContent = dict.shareInvitation;
-
-    const footerFamilyLead = document.getElementById('footer-family-lead');
-    if (footerFamilyLead && dict.footerFamilyLead) footerFamilyLead.textContent = dict.footerFamilyLead;
-
-    const footerFamilyNames = document.getElementById('footer-family-names');
-    if (footerFamilyNames && dict.footerFamilyNames) footerFamilyNames.textContent = dict.footerFamilyNames;
-
-    // 10. Map Modal buttons
-    const mapModalOpenMaps = document.getElementById('map-modal-open-maps');
-    if (mapModalOpenMaps && dict.openInGoogleMaps) mapModalOpenMaps.textContent = dict.openInGoogleMaps;
-
-    const mapModalGetDirections = document.getElementById('map-modal-get-directions');
-    if (mapModalGetDirections && dict.getDirections) mapModalGetDirections.textContent = dict.getDirections;
-
-    // 11. Audio button
     if (audio) {
       updateMusicUI(!audio.paused);
     }
   }
 
-  if (langToggleBtn) {
-    langToggleBtn.addEventListener('click', () => {
-      const nextLang = currentLang === 'en' ? 'te' : 'en';
-      updateLanguage(nextLang);
-    });
-  }
-
-  // Initial language setup if saved as 'te' or passed via ?lang=te
+  // On page load, initialize language (default: 'en', or 'te' via ?lang=te)
   const urlLangParam = new URLSearchParams(window.location.search).get('lang');
-  if (urlLangParam === 'te' || (!urlLangParam && currentLang === 'te')) {
-    updateLanguage('te');
-  } else if (urlLangParam === 'en') {
-    updateLanguage('en');
-  }
+  const initialLang = urlLangParam === 'te' ? 'te' : 'en';
+  updateLanguage(initialLang);
 
   // Deep-linking / automated preview support (?skipEntry=1&section=wedding-journey)
   const urlParams = new URLSearchParams(window.location.search);
@@ -1368,10 +1391,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionParam = urlParams.get('section');
 
   if (skipEntryParam || sectionParam) {
+    const outerFrame = document.querySelector('.site-outer-frame');
+    if (outerFrame) outerFrame.classList.remove('site-outer-frame--pre-tap');
     if (entryScreen) entryScreen.style.display = 'none';
     document.body.classList.remove('km-no-scroll');
     if (persistentBar) persistentBar.classList.add('km-persistent-bar--visible');
     if (ceremonialHero) ceremonialHero.classList.add('km-hero--active');
+    ensureHeroVideoPlays();
 
     if (sectionParam) {
       const targetSec = document.getElementById(sectionParam) || document.getElementById(sectionParam.replace(/^#/, ''));
