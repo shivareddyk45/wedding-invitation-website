@@ -24,7 +24,7 @@ window.WEDDING_CONFIG = {
     groom: "Nageshwar Reddy",
     bride: "Neeraja",
     dateText: "MONDAY, OCTOBER 26, 2026",
-    venueText: "ITC MEMENTOS, UDAIPUR, RAJASTHAN, INDIA"
+    venueText: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA"
   },
   hero: {
     invocation: "|| Shree Ganeshay Namah ||",
@@ -32,7 +32,7 @@ window.WEDDING_CONFIG = {
     bride: "Neeraja",
     dateText: "Thursday, December 03 , 2026",
     venueLead: "at",
-    venueText: "Ravichettu Bazar, Dondapadu, INDIA",
+    venueText: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
     video: {
       mp4Mobile: "assets/videos/hero-procession-bg-mobile.mp4",
       mp4Desktop: "assets/videos/hero-procession-bg-v2.mp4",
@@ -53,40 +53,40 @@ window.WEDDING_CONFIG = {
         name: "Mehendi",
         date: "24th February 2026",
         time: "5:00 PM onwards",
-        venue: "Ravichettu Bazar, Dondapadu",
+        venue: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
         icon: "assets/images/event-mehendi.png",
         side: "left",
-        mapQuery: "Ravichettu Bazar, Dondapadu"
+        mapQuery: "DJ Usthav Mahal, Bhavanipuram, Vijayawada"
       },
       {
         id: "haldi",
         name: "Haldi & Sangeet",
         date: "25th February 2026",
         time: "10:48 AM",
-        venue: "Ravichettu Bazar, Dondapadu",
+        venue: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
         icon: "assets/images/event-haldi-bowl.png",
         side: "right",
-        mapQuery: "Ravichettu Bazar, Dondapadu"
+        mapQuery: "DJ Usthav Mahal, Bhavanipuram, Vijayawada"
       },
       {
         id: "telugu-wedding",
         name: "Telugu Wedding",
         date: "26th February 2026",
         time: "10:00 AM onwards",
-        venue: "Ravichettu Bazar, Dondapadu",
+        venue: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
         icon: "assets/images/event-nadaswaram.png",
         side: "left",
-        mapQuery: "Ravichettu Bazar, Dondapadu"
+        mapQuery: "DJ Usthav Mahal, Bhavanipuram, Vijayawada"
       },
       {
         id: "kodava-ceremony",
         name: "Kodava Ceremony",
         date: "26th February 2026",
         time: "Evening · 6:30 PM onwards",
-        venue: "Ravichettu Bazar, Dondapadu",
+        venue: "DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA",
         icon: "assets/images/icon_kodava_ceremony.png",
         side: "right",
-        mapQuery: "Ravichettu Bazar, Dondapadu"
+        mapQuery: "DJ Usthav Mahal, Bhavanipuram, Vijayawada"
       }
     ]
   },

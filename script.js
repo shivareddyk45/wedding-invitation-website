@@ -609,14 +609,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const mapModalClose = document.getElementById('map-modal-close');
   const mapEventTitle = document.getElementById('map-event-title');
   const mapEventLoc = document.getElementById('map-event-loc');
+  const mapModalIframe = document.getElementById('map-modal-iframe');
   const externalMapsBtn = document.getElementById('external-maps-btn');
   const mapButtons = document.querySelectorAll('.km-events__map');
 
   function openMapModal(eventName, location) {
     if (mapEventTitle) mapEventTitle.textContent = `${eventName} Venue`;
-    if (mapEventLoc) mapEventLoc.textContent = `${location}, Rajasthan, India`;
+    if (mapEventLoc) mapEventLoc.textContent = location;
+    if (mapModalIframe) {
+      mapModalIframe.src = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+    }
     if (externalMapsBtn) {
-      externalMapsBtn.href = `https://maps.google.com/?q=${encodeURIComponent(location + ', Rajasthan')}`;
+      externalMapsBtn.href = `https://maps.google.com/?q=${encodeURIComponent(location)}`;
     }
     if (mapModal) {
       mapModal.classList.add('active');
@@ -635,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const eventName = btn.getAttribute('data-event') || 'Ceremony';
-      const location = btn.getAttribute('data-location') || 'ITC Mementos, Udaipur';
+      const location = btn.getAttribute('data-location') || 'DJ USTHAV MAHAL, BHAVANIPURAM, VIJAYAWADA';
       openMapModal(eventName, location);
     });
   });
@@ -862,7 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Display customized success state
       if (rsvpStatusMsg && rsvpStatusText) {
         if (attendance === 'attending') {
-          rsvpStatusText.innerHTML = `Dearest <strong>${escapeHtml(guestParamName)}</strong>, thank you! We will joyfully keep a place for you in Udaipur!`;
+          rsvpStatusText.innerHTML = `Dearest <strong>${escapeHtml(guestParamName)}</strong>, thank you! We will joyfully keep a place for you in Vijayawada!`;
         } else {
           rsvpStatusText.innerHTML = `Dearest <strong>${escapeHtml(guestParamName)}</strong>, thank you for letting us know. You will be dearly missed, and your warm blessings remain in our hearts.`;
         }
