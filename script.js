@@ -938,39 +938,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const helper = window.CALENDAR_HELPER;
 
     const resolved = helper ? helper.getResolvedEvent(data, eventId) : {
-      title: 'Wedding of Nageshwar Reddy & Neeraja'
+      title: 'Wedding of Nageshwar Reddy & Neeraja',
+      dateISO: '2026-12-03',
+      venue: 'DJ Usthav Mahal, Bhavanipuram, Vijayawada'
     };
 
-    // Update modal title & event name
+    // --- Modal title ---
     const modalTitleEl = document.getElementById('calendar-modal-title');
-    if (modalTitleEl) modalTitleEl.textContent = dict.calModalTitle || 'Add to Calendar';
+    if (modalTitleEl) modalTitleEl.textContent = dict.calModalTitle || 'Add to your calendar';
 
-    const modalEventEl = document.getElementById('calendar-modal-event');
-    if (modalEventEl) {
-      if (eventId === 'wedding') {
-        modalEventEl.textContent = currentLang === 'te' ? 'నాగేశ్వర్ రెడ్డి & నీరజ కళ్యాణం' : 'Wedding of Nageshwar Reddy & Neeraja';
-      } else {
-        modalEventEl.textContent = resolved.title;
-      }
+    // --- Subtitle: derived from config (date · venue), never hardcoded ---
+    const subtitleEl = document.getElementById('calendar-modal-subtitle');
+    if (subtitleEl) {
+      const venue = resolved.venue || (data.venue && data.venue.fullText) || 'DJ Usthav Mahal, Bhavanipuram, Vijayawada';
+      const dateFormatted = (data.formatDate && resolved.dateISO && resolved.dateISO !== 'TODO_CONFIRM')
+        ? data.formatDate(resolved.dateISO, currentLang)
+        : (currentLang === 'te' ? 'గురువారం, 3 డిసెంబర్ 2026' : 'Thursday, 3 December 2026');
+      subtitleEl.textContent = dateFormatted + ' \u00b7 ' + venue;
     }
 
     const optionsContainer = document.getElementById('calendar-options-container');
     const inAppHint = document.getElementById('calendar-inapp-hint');
     const inAppText = document.getElementById('calendar-inapp-text');
     const copyLinkText = document.getElementById('calendar-copy-link-text');
+    const platformHint = document.getElementById('calendar-platform-hint');
 
-    if (inAppText) inAppText.textContent = dict.calInAppHint || 'For Apple Calendar & 1-day reminder, open this page in Safari or Chrome:';
+    // Update in-app notice text
+    if (inAppText) inAppText.textContent = dict.calInAppNotice || 'Open this invitation in your phone\u2019s browser (\u22ee menu \u203a Open in browser) to use the option with the reminder.';
     if (copyLinkText) copyLinkText.textContent = dict.calCopyLink || 'Copy Link';
 
     const icsUrl = `/api/calendar.ics?event=${encodeURIComponent(eventId)}`;
-    // Google Calendar template URL
+    // Google Calendar template URL — reminder cannot be set via URL (limitation noted in calendar-helper.js)
     const googleUrl = helper ? helper.generateGoogleUrl(data, eventId) : '#';
 
     const platform = detectCalendarPlatform();
 
+    // Bell SVG for inline use
+    const bellSvg = `<svg class="km-cal-desc__bell" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`;
+
     // Option A: Apple Calendar / Outlook (.ics hosted link)
     const appleOptionHtml = `
-      <a href="${icsUrl}" class="km-cal-option km-cal-option--ics" id="cal-option-apple">
+      <a href="${icsUrl}" class="km-cal-option km-cal-option--ics" id="cal-option-apple" data-cal-type="ics">
         <div class="km-cal-option__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
@@ -979,7 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="km-cal-option__title">${dict.calAppleOutlook || 'Apple Calendar / Outlook'}</span>
             ${platform === 'apple-safari' ? `<span class="km-cal-badge">${dict.calRecommended || 'Recommended'}</span>` : ''}
           </div>
-          <span class="km-cal-option__desc">${dict.calAppleOutlookSub || 'Includes 1-day reminder'}</span>
+          <span class="km-cal-option__desc">${bellSvg} ${dict.calAppleOutlookSub || 'Includes a reminder 1 day before'}</span>
         </div>
         <svg class="km-cal-option__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
@@ -987,44 +995,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Option B: Google Calendar (direct link)
     const googleOptionHtml = `
-      <a href="${googleUrl}" target="_blank" rel="noopener" class="km-cal-option km-cal-option--google" id="cal-option-google">
-        <div class="km-cal-option__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="16" r="2"/></svg>
-        </div>
-        <div class="km-cal-option__content">
-          <div class="km-cal-option__title-row">
-            <span class="km-cal-option__title">${dict.calGoogle || 'Google Calendar'}</span>
-            ${platform !== 'apple-safari' && platform !== 'in-app' ? `<span class="km-cal-badge">${dict.calRecommended || 'Recommended'}</span>` : ''}
+      <div class="km-cal-option-wrap">
+        <a href="${googleUrl}" target="_blank" rel="noopener" class="km-cal-option km-cal-option--google" id="cal-option-google" data-cal-type="google">
+          <div class="km-cal-option__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="9" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg>
           </div>
-          <span class="km-cal-option__desc">${dict.calGoogleSub || 'Opens directly in Google Calendar'}</span>
-        </div>
-        <svg class="km-cal-option__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
+          <div class="km-cal-option__content">
+            <div class="km-cal-option__title-row">
+              <span class="km-cal-option__title">${dict.calGoogle || 'Google Calendar'}</span>
+              ${platform !== 'apple-safari' && platform !== 'in-app' ? `<span class="km-cal-badge">${dict.calRecommended || 'Recommended'}</span>` : ''}
+            </div>
+            <span class="km-cal-option__desc">${dict.calGoogleSub || 'Opens Google Calendar with the event filled in'}</span>
+          </div>
+          <svg class="km-cal-option__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <p class="km-cal-google-tip">${bellSvg} ${dict.calGoogleTip || 'Tip: after saving, open the event and tap \u2018Add notification\u2019 to set a reminder 1 day before.'}</p>
+      </div>
     `;
 
     if (!optionsContainer) return;
 
     if (platform === 'in-app') {
-      // In-app webviews fail on .ics handling. Show ONLY Google Calendar, plus hint to open in Safari/Chrome.
+      // In-app webviews: show ONLY Google + amber in-app notice. No .ics option.
       optionsContainer.innerHTML = googleOptionHtml;
-      if (inAppHint) inAppHint.style.display = 'block';
+      if (inAppHint) inAppHint.style.display = 'flex';
+      if (platformHint) platformHint.style.display = 'none';
     } else if (platform === 'apple-safari') {
-      // iOS and macOS Safari: .ics first (Recommended)
+      // iOS / macOS Safari: .ics first (Recommended — opens native sheet, includes reminder)
       optionsContainer.innerHTML = appleOptionHtml + googleOptionHtml;
       if (inAppHint) inAppHint.style.display = 'none';
-    } else {
-      // Android & Desktop / iOS Chrome: Google first (Recommended), .ics second
+      if (platformHint) {
+        platformHint.textContent = dict.calPlatformHintIOS || 'Tap \u2018Add to Calendar\u2019 on the next screen. The reminder is already included.';
+        platformHint.style.display = 'block';
+      }
+    } else if (platform === 'android') {
+      // Android: Google first (Recommended)
       optionsContainer.innerHTML = googleOptionHtml + appleOptionHtml;
       if (inAppHint) inAppHint.style.display = 'none';
+      if (platformHint) {
+        platformHint.textContent = dict.calPlatformHintAndroid || 'Google Calendar is recommended. Add the notification after saving to get a reminder.';
+        platformHint.style.display = 'block';
+      }
+    } else {
+      // Desktop / other: Google first (Recommended)
+      optionsContainer.innerHTML = googleOptionHtml + appleOptionHtml;
+      if (inAppHint) inAppHint.style.display = 'none';
+      if (platformHint) {
+        platformHint.textContent = dict.calPlatformHintDesktop || 'Use Google Calendar, or download the file and open it in Outlook\u202for Apple Calendar for the built-in reminder.';
+        platformHint.style.display = 'block';
+      }
     }
 
-    // Attach non-blocking feedback to both links
+    // Attach distinct non-blocking feedback toasts per option type
     const optionLinks = optionsContainer.querySelectorAll('.km-cal-option');
     optionLinks.forEach(function (link) {
       link.addEventListener('click', function () {
-        // Show brief polite non-blocking feedback
-        showToast(dict.calOpening || 'Opening your calendar...');
-        // Non-blocking auto close after user tap gesture has initiated
+        const calType = link.getAttribute('data-cal-type');
+        if (calType === 'ics') {
+          showToast(dict.calOpeningIcs || 'Opening your calendar\u2026 A reminder 1 day before is included.');
+        } else {
+          showToast(dict.calOpeningGoogle || 'Opening Google Calendar\u2026 Don\u2019t forget to add a reminder.');
+        }
+        // Auto-close modal (non-blocking, after gesture completes)
         setTimeout(closeCalendarModal, 400);
       });
     });
@@ -1122,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toastEl.classList.remove('km-toast--visible');
-    }, 3200);
+    }, 4000);
   }
 
   function shareInvitation() {

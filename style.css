@@ -2022,12 +2022,16 @@ body.km-no-scroll {
   font-size: 1.25rem;
 }
 
-.km-calendar-card__event {
+/* Subtitle below title: "Thursday, 3 Dec 2026 · DJ Usthav Mahal..." */
+.km-calendar-card__subtitle {
   font-family: var(--km-font-marcellus);
-  font-size: 0.92rem;
-  color: var(--km-maroon);
+  font-size: 0.82rem;
+  color: #7a4a30;
   margin: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  max-width: 36ch;
+  margin-inline: auto;
 }
 
 .km-calendar-options {
@@ -2039,6 +2043,7 @@ body.km-no-scroll {
 .km-cal-option {
   display: flex;
   align-items: center;
+  min-height: 56px;
   padding: 14px 16px;
   background: #FAF4E6;
   border: 1.5px solid rgba(197, 160, 89, 0.45);
@@ -2122,12 +2127,59 @@ body.km-no-scroll {
 }
 
 .km-cal-option__desc {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-family: var(--km-font-cormorant);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: #665040;
   font-style: italic;
-  line-height: 1.25;
+  line-height: 1.3;
+}
+
+.km-cal-desc__bell {
+  flex-shrink: 0;
+  color: var(--km-maroon);
+  opacity: 0.75;
+  position: relative;
+  top: 1px;
+}
+
+/* Google Calendar option wrapper (card + tip text below it) */
+.km-cal-option-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Muted tip below the Google option */
+.km-cal-google-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-family: var(--km-font-cormorant);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #8a6050;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0 4px;
+}
+
+.km-cal-google-tip .km-cal-desc__bell {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Platform-specific one-line guidance shown under the cards */
+.km-calendar-platform-hint {
+  margin-top: 12px;
+  font-family: var(--km-font-marcellus);
+  font-size: 0.78rem;
+  color: #7a5040;
+  line-height: 1.45;
+  text-align: center;
+  padding: 0 4px;
 }
 
 .km-cal-option__arrow {
@@ -2141,22 +2193,33 @@ body.km-no-scroll {
   transform: translateX(3px);
 }
 
-/* In-App Browser Hint Container */
+/* In-App Browser Notice (amber) */
 .km-calendar-inapp-hint {
   margin-top: 14px;
   padding: 12px 14px;
-  background: rgba(197, 160, 89, 0.12);
-  border: 1px dashed var(--km-gold);
+  background: rgba(197, 140, 30, 0.08);
+  border: 1.5px solid rgba(185, 125, 20, 0.45);
   border-radius: 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-calendar-inapp-icon {
+  flex-shrink: 0;
+  color: #9a6800;
+  margin-bottom: 2px;
+  align-self: flex-start;
 }
 
 .km-calendar-inapp-text {
   font-family: var(--km-font-marcellus);
   font-size: 0.8rem;
-  color: var(--km-maroon);
-  line-height: 1.35;
-  margin: 0 0 10px 0;
+  color: #7a5200;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
 }
 
 .km-calendar-copy-btn {
