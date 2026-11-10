@@ -40,7 +40,6 @@
   --km-font-marcellus: "Marcellus", serif;
   --km-font-script: "Great Vibes", cursive;
   --km-font-telugu: "Noto Sans Telugu", "Noto Serif Telugu", sans-serif;
-  --km-font-playfair: "Playfair Display", Georgia, serif;
 
   /* Motion & Easing */
   --km-ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
@@ -407,10 +406,10 @@ body.km-no-scroll {
   background-repeat: no-repeat;
 }
 
-.km-frame-corner--tl { top: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-tl.webp'); }
-.km-frame-corner--tr { top: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-tr.webp'); }
-.km-frame-corner--bl { bottom: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-bl.webp'); }
-.km-frame-corner--br { bottom: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-br.webp'); }
+.km-frame-corner--tl { top: 0; left: 0; background-image: url('assets/backgrounds/border-corner-tl.webp'); }
+.km-frame-corner--tr { top: 0; right: 0; background-image: url('assets/backgrounds/border-corner-tr.webp'); }
+.km-frame-corner--bl { bottom: 0; left: 0; background-image: url('assets/backgrounds/border-corner-bl.webp'); }
+.km-frame-corner--br { bottom: 0; right: 0; background-image: url('assets/backgrounds/border-corner-br.webp'); }
 
 .km-frame-rail {
   position: absolute;
@@ -422,7 +421,7 @@ body.km-no-scroll {
   left: var(--km-frame-w);
   right: var(--km-frame-w);
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-top.webp');
+  background-image: url('assets/backgrounds/border-rail-top.webp');
   background-size: auto 100%;
 }
 
@@ -431,7 +430,7 @@ body.km-no-scroll {
   left: var(--km-frame-w);
   right: var(--km-frame-w);
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-bottom.webp');
+  background-image: url('assets/backgrounds/border-rail-bottom.webp');
   background-size: auto 100%;
 }
 
@@ -440,7 +439,7 @@ body.km-no-scroll {
   bottom: var(--km-frame-w);
   left: 0;
   width: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-left.webp');
+  background-image: url('assets/backgrounds/border-rail-left.webp');
   background-size: 100% auto;
 }
 
@@ -449,7 +448,7 @@ body.km-no-scroll {
   bottom: var(--km-frame-w);
   right: 0;
   width: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-right.webp');
+  background-image: url('assets/backgrounds/border-rail-right.webp');
   background-size: 100% auto;
 }
 
@@ -539,10 +538,6 @@ body.km-no-scroll {
   }
 }
 
-.km-hero__ganesha-wrap {
-  display: none;
-}
-
 .km-hero__invocation {
   font-family: var(--km-font-cormorant);
   font-size: clamp(0.78rem, 2.7vw, 0.94rem);
@@ -609,20 +604,6 @@ body.km-no-scroll {
   color: #5c3b28;
   margin-right: 0.25em;
   font-weight: 400;
-}
-
-/* Middle Golden Ornamental Divider */
-.km-hero__divider-wrap {
-  width: 100%;
-  max-width: clamp(200px, 58vw, 290px);
-  margin: clamp(12px, 2.6vh, 22px) auto 0;
-  line-height: 0;
-}
-
-.km-hero__divider-img {
-  width: 100%;
-  height: auto;
-  opacity: 0.92;
 }
 
 /* ==========================================================================
@@ -1376,289 +1357,6 @@ body.km-no-scroll {
 }
 
 /* ==========================================================================
-   7. BLESS US WITH YOUR PRESENCE (RSVP)
-   ========================================================================== */
-.km-rsvp {
-  position: relative;
-  background-color: var(--km-parchment);
-  background-image: url('assets/backgrounds/pattu-silk-tile.webp');
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 2.4rem);
-}
-
-.km-rsvp__inner {
-  position: relative;
-  z-index: 2;
-}
-
-.km-rsvp__heading {
-  font-family: var(--km-font-script);
-  font-size: clamp(2.3rem, 8.5vw, 3.2rem);
-  line-height: 1.15;
-  color: var(--km-maroon-deep);
-  font-weight: 400;
-}
-
-.km-rsvp__sub {
-  font-family: var(--km-font-cormorant);
-  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
-  font-style: italic;
-  color: var(--km-green);
-  max-width: 32ch;
-  margin: 0 auto;
-}
-
-.km-rsvp__card {
-  width: 100%;
-  max-width: 380px;
-  margin: 18px auto 0;
-  background: #fdf5e0;
-  border: 1px solid var(--km-gold);
-  border-radius: var(--km-radius-md);
-  padding: 22px 18px;
-  box-shadow: 0 6px 18px rgba(91, 58, 41, 0.1);
-}
-
-.km-rsvp__options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.km-rsvp__option-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1.5px solid rgba(201, 162, 75, 0.45);
-  border-radius: var(--km-radius-sm);
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.km-rsvp__option-label:hover {
-  background: #fff;
-  border-color: var(--km-gold);
-}
-
-.km-rsvp__radio {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Custom indicator: Maroon fill / Gold ring */
-.km-rsvp__custom-indicator {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--km-gold);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.km-rsvp__custom-indicator::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--km-maroon-deep);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.km-rsvp__radio:checked + .km-rsvp__custom-indicator {
-  border-color: var(--km-maroon-deep);
-  box-shadow: 0 0 0 2px rgba(201, 162, 75, 0.4);
-}
-
-.km-rsvp__radio:checked + .km-rsvp__custom-indicator::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.km-rsvp__option-label:has(.km-rsvp__radio:checked) {
-  border-color: var(--km-maroon-deep);
-  background: #fffaf0;
-  box-shadow: 0 2px 8px rgba(122, 21, 48, 0.1);
-}
-
-.km-rsvp__option-text {
-  font-family: var(--km-font-marcellus);
-  font-size: clamp(0.85rem, 3vw, 0.96rem);
-  color: var(--km-ink);
-  font-weight: 500;
-}
-
-/* Submit Button States */
-.km-rsvp__submit-btn {
-  font-family: var(--km-font-marcellus);
-  font-size: 0.84rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
-  padding: 13px 24px;
-  border-radius: var(--km-radius-sm);
-  border: none;
-  width: 100%;
-  margin-top: 14px;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Disabled/Pale pink initial state */
-.km-rsvp__submit-btn:disabled {
-  background: var(--km-maroon-pale);
-  color: var(--km-maroon-disabled);
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* Enabled maroon state */
-.km-rsvp__submit-btn:not(:disabled) {
-  background: var(--km-maroon-deep);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(122, 21, 48, 0.35);
-}
-
-.km-rsvp__submit-btn:not(:disabled):hover {
-  background: var(--km-maroon);
-  transform: translateY(-1px);
-}
-
-.km-rsvp__submit-btn:not(:disabled):active {
-  transform: translateY(0);
-}
-
-.km-rsvp__status {
-  margin-top: 14px;
-  padding: 12px 14px;
-  border-radius: var(--km-radius-sm);
-  background: #faeec7;
-  border: 1px solid var(--km-gold);
-  text-align: center;
-  animation: km-fade-up 0.4s var(--km-ease-reveal);
-}
-
-.km-rsvp__status-text {
-  font-family: var(--km-font-cormorant);
-  font-size: 1.05rem;
-  color: var(--km-maroon-deep);
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-/* ==========================================================================
-   8. OUR STORY (CARVED WALL + YOUTUBE EMBED)
-   ========================================================================== */
-.km-video {
-  position: relative;
-  background-color: var(--km-parchment);
-  padding: 0;
-  overflow: hidden;
-}
-
-.km-video__wall {
-  position: relative;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--km-ease-reveal), transform 0.8s var(--km-ease-reveal);
-  will-change: opacity, transform;
-}
-
-.km-video__wall.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.km-video__wall-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.km-video__opening {
-  position: absolute;
-  left: 14.733%;
-  top: 29.7%;
-  width: 69.667%;
-  height: 59.1%;
-  background: #1a120a;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.km-video__player-box {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.km-video__poster-stage {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-  z-index: 2;
-  transition: opacity 0.3s ease;
-}
-
-.km-video__poster-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.km-video__play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  width: clamp(50px, 12vw, 64px);
-  height: auto;
-  transition: transform 0.25s var(--km-ease-reveal), filter 0.25s ease;
-}
-
-.km-video__play-btn:hover {
-  transform: translate(-50%, -50%) scale(1.12);
-  filter: drop-shadow(0 4px 12px rgba(201, 162, 75, 0.6));
-}
-
-.km-video__play-btn:active {
-  transform: translate(-50%, -50%) scale(0.95);
-}
-
-.km-yt-play-icon {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
-}
-
-.km-video__iframe-slot {
-  width: 100%;
-  height: 100%;
-}
-
-.km-video__iframe-slot iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* ==========================================================================
    9. FOOTER (FINAL BLESSINGS & NEUTRAL CREDIT - PAGE 7)
    ========================================================================== */
 .km-footer {
@@ -1770,7 +1468,7 @@ body.km-no-scroll {
   right: 0;
   width: 100%;
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-bottom.webp');
+  background-image: url('assets/backgrounds/border-rail-bottom.webp');
   background-size: auto 100%;
   background-repeat: repeat-x;
   background-position: center bottom;
@@ -2299,8 +1997,6 @@ body.km-no-scroll {
   }
 
   .km-hero-stagger,
-  .km-hero__top-decor,
-  .km-hero__divider-wrap,
   .km-hero__durbar-wrap,
   .km-section-head,
   .km-couple__name,
@@ -2309,7 +2005,6 @@ body.km-no-scroll {
   .km-couple__divider .km-divider-img,
   .km-countdown__stage,
   .km-countdown__unit,
-  .km-footstep,
   .km-events__foot,
   .km-events__row,
   .km-events__medallion,
@@ -2323,7 +2018,6 @@ body.km-no-scroll {
   .km-gallery__cell,
   .km-couple__peacock,
   .km-couple__portrait-wrap,
-  .km-video__wall,
   .km-footer__greet-lead,
   .km-footer__greet-main,
   .km-footer__telugu,
@@ -2365,64 +2059,7 @@ body.km-no-scroll {
   outline-offset: 2px;
 }
 
-/* 2. Language Toggle Pill (Fixed top-right) */
-.km-top-bar {
-  position: fixed;
-  top: max(14px, env(safe-area-inset-top));
-  right: max(14px, env(safe-area-inset-right));
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.km-lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(253, 246, 226, 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--km-gold);
-  box-shadow: 0 2px 10px rgba(91, 58, 41, 0.16);
-  font-family: var(--km-font-cinzel), 'Noto Sans Telugu', serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--km-maroon-deep);
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.km-lang-toggle:hover {
-  background: #fbf0d0;
-  transform: scale(1.04);
-  box-shadow: 0 4px 14px rgba(91, 58, 41, 0.24);
-}
-
-.km-lang-toggle:focus-visible {
-  outline: 2px solid var(--km-gold-bright);
-  outline-offset: 2px;
-}
-
-.km-lang-toggle__opt {
-  opacity: 0.55;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.km-lang-toggle__opt--active {
-  opacity: 1;
-  color: var(--km-maroon-deep);
-  font-weight: 800;
-}
-
-.km-lang-toggle__divider {
-  color: var(--km-gold);
-  opacity: 0.6;
-}
-
-/* 3. Personalized Guest Greeting on Entry Card */
+/* 2. Personalized Guest Greeting on Entry Card */
 .km-entry__guest-greeting {
   font-family: var(--km-font-cormorant), 'Noto Sans Telugu', Georgia, serif;
   font-size: clamp(1.05rem, 3.8vw, 1.35rem);
@@ -2442,33 +2079,7 @@ body.km-no-scroll {
   font-variant-numeric: tabular-nums;
 }
 
-/* 5. Journey Card Actions */
-.km-events__card-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 6px;
-}
-
-.km-events__card--left .km-events__card-actions {
-  justify-content: flex-end;
-}
-
-.km-events__card--right .km-events__card-actions {
-  justify-content: flex-start;
-}
-
-.km-events__map--cal {
-  background: #fcf1d6;
-  border-color: #c9932f;
-}
-
-.km-events__map--cal:hover {
-  background: #f5e2b4;
-}
-
-/* 6. Footer Actions (Add to Calendar) */
+/* 4. Footer Actions (Add to Calendar) */
 .km-footer__actions {
   display: flex;
   align-items: center;

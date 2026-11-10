@@ -64,14 +64,14 @@
   <!-- Typography: Google Fonts Preconnect & Load with font-display: swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Marcellus&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3.1">
+  <link rel="stylesheet" href="style.css?v=3.2">
 
   <!-- Central Wedding Configuration (Single Source of Truth) -->
-  <script src="src/data/wedding.js?v=3.2"></script>
-  <script src="src/data/calendar-helper.js?v=3.2"></script>
-  <script src="wedding-config.js?v=3.2"></script>
+  <script defer src="src/data/wedding.js?v=3.2"></script>
+  <script defer src="src/data/calendar-helper.js?v=3.2"></script>
+  <script defer src="wedding-config.js?v=3.2"></script>
 </head>
 <body class="km-body km-no-scroll">
 
@@ -80,7 +80,7 @@
 
   <!-- Background Wedding Soundtrack (Lyrical Soundtrack with Audio API Fade-in) -->
   <audio id="wedding-audio" loop preload="none">
-    <source src="assets/videos/wedding-invitation-soundtrack-ybhogam-lyrical.mp3" type="audio/mpeg">
+    <source src="assets/audio/soundtrack-opt.mp3" type="audio/mpeg">
     <source src="assets/audio/wedding_music.m4a" type="audio/mp4">
   </audio>
 
@@ -154,10 +154,10 @@
             loop
             muted
             playsinline
-            preload="auto"
+            preload="metadata"
             poster="assets/images/hero-poster.webp"
           >
-            <source src="assets/videos/hero-procession-bg-2x-v2.mp4" type="video/mp4">
+            <source src="assets/videos/hero-procession-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
             <source src="assets/videos/hero-procession-bg-v2.mp4" type="video/mp4">
           </video>
         </div>
