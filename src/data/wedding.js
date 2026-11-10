@@ -45,7 +45,7 @@
       descriptionTe: 'నాగేశ్వర్ రెడ్డి మరియు నీరజల వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము. వేదిక: డిజె ఉత్సవ్ మహల్, భవానీపురం, విజయవాడ.',
       url: 'https://wedding-invitation-website-x854.vercel.app/',
       themeColor: '#FBE9B7',
-      ogImage: 'https://wedding-invitation-website-x854.vercel.app/assets/banners/og-homepage-banner.png'
+      ogImage: 'https://wedding-invitation-website-x854.vercel.app/assets/banners/og-homepage-banner.webp'
     },
 
     couple: {
@@ -58,7 +58,7 @@
         },
         parents: 'Kalagotla Bramha Reddy & Vijaya',
         parentsTe: 'కళాగోట్ల బ్రహ్మారెడ్డి & విజయ',
-        portrait: 'assets/images/groom-portrait.jpg'
+        portrait: 'assets/images/groom-portrait.webp'
       },
       bride: {
         firstName: 'Neeraja',
@@ -69,7 +69,7 @@
         },
         parents: 'Yaddala Shiva Reddy & Adi Lakshmi',
         parentsTe: 'యద్దాల శివారెడ్డి & ఆదిలక్ష్మి',
-        portrait: 'assets/images/bride-portrait.jpg'
+        portrait: 'assets/images/bride-portrait.webp'
       }
     },
 
@@ -103,7 +103,7 @@
       video: {
         mp4Mobile: 'assets/videos/hero-procession-bg-mobile.mp4',
         mp4Desktop: 'assets/videos/hero-procession-bg-v2.mp4',
-        poster: 'assets/images/hero-poster.jpg'
+        poster: 'assets/images/hero-poster.webp'
       }
     },
 
@@ -130,7 +130,7 @@
           endISO: '2026-12-03T23:59:59+05:30',
           time: 'TODO_CONFIRM',
           venueRef: venue,
-          icon: 'assets/images/event-saptapadi.png',
+          icon: 'assets/images/event-saptapadi.webp',
           enabled: true
         },
         // Placeholders for future functions (show only once confirmed date & time are added)
@@ -145,7 +145,7 @@
           endISO: 'TODO_CONFIRM',
           time: 'TODO_CONFIRM',
           venueRef: venue,
-          icon: 'assets/images/event-mehendi.png',
+          icon: 'assets/images/event-mehendi.webp',
           enabled: false
         },
         {
@@ -159,7 +159,7 @@
           endISO: 'TODO_CONFIRM',
           time: 'TODO_CONFIRM',
           venueRef: venue,
-          icon: 'assets/images/event-haldi-bowl.png',
+          icon: 'assets/images/event-haldi-bowl.webp',
           enabled: false
         },
         {
@@ -187,7 +187,7 @@
           endISO: 'TODO_CONFIRM',
           time: 'TODO_CONFIRM',
           venueRef: venue,
-          icon: 'assets/images/event-nadaswaram.png',
+          icon: 'assets/images/event-nadaswaram.webp',
           enabled: false
         }
       ]
@@ -199,16 +199,16 @@
       sublineEn: 'Little moments from the years that brought us here.',
       sublineTe: 'మా ప్రయాణంలోని అందమైన మధుర జ్ఞాపకాలు.',
       photos: [
-        { src: 'assets/images/gallery-01.jpg', alt: 'Wedding floral mandap celebration', captionEn: 'Sacred Floral Mandap', captionTe: 'కళ్యాణ మండపం', feature: true },
-        { src: 'assets/images/gallery-02.jpg', alt: 'Traditional saree celebration walk', captionEn: 'Ceremonial Walk', captionTe: 'సంప్రదాయ నడక' },
-        { src: 'assets/images/gallery-03.jpg', alt: 'Celebration smiles and laughter', captionEn: 'Smiles & Festivity', captionTe: 'చిరునవ్వులు, వేడుకలు' },
-        { src: 'assets/images/gallery-04.jpg', alt: 'Evening reception gala moments', captionEn: 'Evening Gala', captionTe: 'సంధ్యా వేడుక' },
-        { src: 'assets/images/gallery-05.jpg', alt: 'Candid warm portraits', captionEn: 'Candid Radiance', captionTe: 'మధుర క్షణాలు' },
-        { src: 'assets/images/gallery-06.jpg', alt: 'Traditional musical sangeet celebration', captionEn: 'Celebration Beats', captionTe: 'సంగీత వేడుక' },
-        { src: 'assets/images/gallery-07.jpg', alt: 'Sacred garland exchange ritual', captionEn: 'Garland Exchange', captionTe: 'వరమాల మహోత్సవం' },
-        { src: 'assets/images/gallery-08.jpg', alt: 'Traditional festive blessings', captionEn: 'Cherished Blessings', captionTe: 'ఆశీర్వాదాలు' },
-        { src: 'assets/images/gallery-09.jpg', alt: 'Joyful candid together moment', captionEn: 'Together in Joy', captionTe: 'ఆనంద క్షణాలు' },
-        { src: 'assets/images/gallery-10.jpg', alt: 'Serene sunset celebration', captionEn: 'Serene Reflections', captionTe: 'ప్రశాంత సంధ్య', feature: true }
+        { src: 'assets/images/gallery-01.webp', alt: 'Wedding floral mandap celebration', captionEn: 'Sacred Floral Mandap', captionTe: 'కళ్యాణ మండపం', feature: true },
+        { src: 'assets/images/gallery-02.webp', alt: 'Traditional saree celebration walk', captionEn: 'Ceremonial Walk', captionTe: 'సంప్రదాయ నడక' },
+        { src: 'assets/images/gallery-03.webp', alt: 'Celebration smiles and laughter', captionEn: 'Smiles & Festivity', captionTe: 'చిరునవ్వులు, వేడుకలు' },
+        { src: 'assets/images/gallery-04.webp', alt: 'Evening reception gala moments', captionEn: 'Evening Gala', captionTe: 'సంధ్యా వేడుక' },
+        { src: 'assets/images/gallery-05.webp', alt: 'Candid warm portraits', captionEn: 'Candid Radiance', captionTe: 'మధుర క్షణాలు' },
+        { src: 'assets/images/gallery-06.webp', alt: 'Traditional musical sangeet celebration', captionEn: 'Celebration Beats', captionTe: 'సంగీత వేడుక' },
+        { src: 'assets/images/gallery-07.webp', alt: 'Sacred garland exchange ritual', captionEn: 'Garland Exchange', captionTe: 'వరమాల మహోత్సవం' },
+        { src: 'assets/images/gallery-08.webp', alt: 'Traditional festive blessings', captionEn: 'Cherished Blessings', captionTe: 'ఆశీర్వాదాలు' },
+        { src: 'assets/images/gallery-09.webp', alt: 'Joyful candid together moment', captionEn: 'Together in Joy', captionTe: 'ఆనంద క్షణాలు' },
+        { src: 'assets/images/gallery-10.webp', alt: 'Serene sunset celebration', captionEn: 'Serene Reflections', captionTe: 'ప్రశాంత సంధ్య', feature: true }
       ]
     },
 

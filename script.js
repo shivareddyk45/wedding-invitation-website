@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
     feetLayer.innerHTML = '';
     const footElements = stepsData.map(st => {
       const img = document.createElement('img');
-      img.src = st.side === 'left' ? 'assets/images/yatra-foot-left.png' : 'assets/images/yatra-foot-right.png';
+      img.src = st.side === 'left' ? 'assets/images/yatra-foot-left.webp' : 'assets/images/yatra-foot-right.webp';
       img.alt = '';
       img.className = `km-events__foot km-events__foot--${st.side}`;
       img.style.left = `${st.xPct.toFixed(2)}%`;

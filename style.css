@@ -407,10 +407,10 @@ body.km-no-scroll {
   background-repeat: no-repeat;
 }
 
-.km-frame-corner--tl { top: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-tl.png'); }
-.km-frame-corner--tr { top: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-tr.png'); }
-.km-frame-corner--bl { bottom: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-bl.png'); }
-.km-frame-corner--br { bottom: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-br.png'); }
+.km-frame-corner--tl { top: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-tl.webp'); }
+.km-frame-corner--tr { top: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-tr.webp'); }
+.km-frame-corner--bl { bottom: 0; left: 0; background-image: url('assets/kalyana-mandapam/border/corner-bl.webp'); }
+.km-frame-corner--br { bottom: 0; right: 0; background-image: url('assets/kalyana-mandapam/border/corner-br.webp'); }
 
 .km-frame-rail {
   position: absolute;
@@ -422,7 +422,7 @@ body.km-no-scroll {
   left: var(--km-frame-w);
   right: var(--km-frame-w);
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-top.png');
+  background-image: url('assets/kalyana-mandapam/border/rail-top.webp');
   background-size: auto 100%;
 }
 
@@ -431,7 +431,7 @@ body.km-no-scroll {
   left: var(--km-frame-w);
   right: var(--km-frame-w);
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-bottom.png');
+  background-image: url('assets/kalyana-mandapam/border/rail-bottom.webp');
   background-size: auto 100%;
 }
 
@@ -440,7 +440,7 @@ body.km-no-scroll {
   bottom: var(--km-frame-w);
   left: 0;
   width: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-left.png');
+  background-image: url('assets/kalyana-mandapam/border/rail-left.webp');
   background-size: 100% auto;
 }
 
@@ -449,7 +449,7 @@ body.km-no-scroll {
   bottom: var(--km-frame-w);
   right: 0;
   width: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-right.png');
+  background-image: url('assets/kalyana-mandapam/border/rail-right.webp');
   background-size: 100% auto;
 }
 
@@ -631,7 +631,7 @@ body.km-no-scroll {
 .km-couple {
   position: relative;
   background-color: var(--km-parchment);
-  background-image: url('assets/backgrounds/pattu-silk-tile.png');
+  background-image: url('assets/backgrounds/pattu-silk-tile.webp');
   background-repeat: repeat;
   background-size: 180px 180px;
   padding: calc(var(--km-frame-w) + 1.6rem) 1rem calc(var(--km-frame-w) + 2rem);
@@ -726,8 +726,8 @@ body.km-no-scroll {
 }
 
 .km-couple__photo-window--groom {
-  -webkit-mask-image: url('assets/backgrounds/arch-photo-mask-mirrored.png');
-  mask-image: url('assets/backgrounds/arch-photo-mask-mirrored.png');
+  -webkit-mask-image: url('assets/backgrounds/arch-photo-mask-mirrored.webp');
+  mask-image: url('assets/backgrounds/arch-photo-mask-mirrored.webp');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
@@ -735,8 +735,8 @@ body.km-no-scroll {
 }
 
 .km-couple__photo-window--bride {
-  -webkit-mask-image: url('assets/backgrounds/arch-photo-mask.png');
-  mask-image: url('assets/backgrounds/arch-photo-mask.png');
+  -webkit-mask-image: url('assets/backgrounds/arch-photo-mask.webp');
+  mask-image: url('assets/backgrounds/arch-photo-mask.webp');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
@@ -913,7 +913,7 @@ body.km-no-scroll {
 .km-events__kolam {
   position: absolute;
   inset: 0;
-  background-image: url('assets/backgrounds/kolam-tile.png');
+  background-image: url('assets/backgrounds/kolam-tile.webp');
   background-repeat: repeat;
   background-size: 140px 140px;
   opacity: 0.28;
@@ -1381,7 +1381,7 @@ body.km-no-scroll {
 .km-rsvp {
   position: relative;
   background-color: var(--km-parchment);
-  background-image: url('assets/backgrounds/pattu-silk-tile.png');
+  background-image: url('assets/backgrounds/pattu-silk-tile.webp');
   background-repeat: repeat;
   background-size: 180px 180px;
   padding: calc(var(--km-frame-w) + 1.8rem) 1rem calc(var(--km-frame-w) + 2.4rem);
@@ -1770,7 +1770,7 @@ body.km-no-scroll {
   right: 0;
   width: 100%;
   height: var(--km-frame-w);
-  background-image: url('assets/kalyana-mandapam/border/rail-bottom.png');
+  background-image: url('assets/kalyana-mandapam/border/rail-bottom.webp');
   background-size: auto 100%;
   background-repeat: repeat-x;
   background-position: center bottom;
@@ -2293,7 +2293,7 @@ body.km-no-scroll {
   }
   
   .km-hero__video-container {
-    background-image: url('assets/images/hero-poster.jpg');
+    background-image: url('assets/images/hero-poster.webp');
     background-size: cover;
     background-position: center;
   }
