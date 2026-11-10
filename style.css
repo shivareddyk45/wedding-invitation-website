@@ -538,6 +538,10 @@ body.km-no-scroll {
   }
 }
 
+.km-hero__ganesha-wrap {
+  display: none;
+}
+
 .km-hero__invocation {
   font-family: var(--km-font-cormorant);
   font-size: clamp(0.78rem, 2.7vw, 0.94rem);
@@ -604,6 +608,20 @@ body.km-no-scroll {
   color: #5c3b28;
   margin-right: 0.25em;
   font-weight: 400;
+}
+
+/* Middle Golden Ornamental Divider */
+.km-hero__divider-wrap {
+  width: 100%;
+  max-width: clamp(200px, 58vw, 290px);
+  margin: clamp(12px, 2.6vh, 22px) auto 0;
+  line-height: 0;
+}
+
+.km-hero__divider-img {
+  width: 100%;
+  height: auto;
+  opacity: 0.92;
 }
 
 /* ==========================================================================
@@ -1997,6 +2015,8 @@ body.km-no-scroll {
   }
 
   .km-hero-stagger,
+  .km-hero__top-decor,
+  .km-hero__divider-wrap,
   .km-hero__durbar-wrap,
   .km-section-head,
   .km-couple__name,
